@@ -367,11 +367,11 @@ nav button.active{
 
 const posts=[
 {
-title:"Todo sobre la informáticas",
+title:"Todo sobre la informática",
 date:"12 Febrero 2026",
-image:"/img/portada.png",
+image:"https://sergiodepaz.github.io/vitvisorn/img/portada.png",
 tags:["Programación","C"],
-excerpt:"sigue mirando y descubrirs un nuevo mundo de la informática.",
+excerpt:"Sigue mirando y descubrirás un nuevo mundo de la informática.",
 content:`En este blog encontrarás artículos, tutoriales y recursos sobre 
 programación, sistemas operativos, redes, seguridad informática y mucho más. 
 Desde conceptos básicos hasta temas avanzados, nuestro objetivo es ayudarte 
@@ -694,7 +694,6 @@ const themeToggle=document.getElementById("themeToggle");
 const htmlElement=document.documentElement;
 const body=document.body;
 
-// Cargar tema guardado o usar preferencia del sistema
 const savedTheme=localStorage.getItem("theme") || 
                  (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
 
@@ -725,6 +724,3 @@ renderPosts();
 
 </body>
 </html>
-
-
-
