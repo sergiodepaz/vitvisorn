@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vitvisor | Tecnología y Formación</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --primary:#00d084;
+    --dark:#111827;
+    --gray:#6b7280;
+    --bg-color:white;
+    --text-color:#111827;
+    --border-color:#e5e7eb;
+    --card-bg:white;
+    --hover-bg:#f3f4f6;
+}
+
+body.dark-mode{
+    --bg-color:#111827;
+    --text-color:#f3f4f6;
+    --border-color:#374151;
+    --card-bg:#1f2937;
+    --hover-bg:#374151;
+}
+
+*{box-sizing:border-box;}
+
+body{
+    margin:0;
+    font-family:'Inter',sans-serif;
+    background-color:var(--bg-color);
+    color:var(--text-color);
+    transition:background-color 0.3s, color 0.3s;
+}
+
+/* HEADER */
+header{
+    position:sticky;
+    top:0;
+    background-color:var(--bg-color);
+    border-bottom:1px solid var(--border-color);
+    padding:15px 40px;
+    z-index:1000;
+}
+
+.topbar{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    position:relative;
+    gap:20px;
+}
+
+.logo{
+    font-weight:800;
+    font-size:36px;
+    letter-spacing:2px;
+}
+
+.theme-toggle{
+    width:50px;
+    height:50px;
+    border:none;
+    background:var(--card-bg);
+    border:1px solid var(--border-color);
+    border-radius:8px;
+    cursor:pointer;
+    font-size:24px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:0.3s;
+    position:absolute;
+    right:40px;
+}
+
+.theme-toggle:hover{
+    transform:scale(1.1);
+}
+
+nav{
+    position:fixed;
+    top:0;
+    left:-300px;
+    width:280px;
+    height:100vh;
+    background-color:var(--bg-color);
+    flex-direction:column;
+    gap:0;
+    padding:80px 15px 20px 15px;
+    overflow-y:auto;
+    z-index:999;
+    transition:left 0.3s ease;
+    box-shadow:2px 0 10px rgba(0,0,0,0.1);
+    display:flex;
+}
+
+nav.active{
+    left:0;
+}
+
+nav button{
+    border:none;
+    background:none;
+    font-weight:600;
+    color:var(--gray);
+    cursor:pointer;
+    transition:0.3s;
+    white-space:nowrap;
+    text-align:left;
+    padding:12px 0;
+    border-bottom:1px solid var(--hover-bg);
+}
+
+nav button:hover,
+nav button.active{
+    color:var(--primary);
+    border-bottom:2px solid var(--primary);
+}
+
+/* HAMBURGER MENU */
+.hamburger{
+    display:flex;
+    flex-direction:column;
+    cursor:pointer;
+    gap:5px;
+    background:none;
+    border:none;
+    padding:0;
+    z-index:1001;
+    position:absolute;
+    left:15px;
+}
+
+.hamburger span{
+    width:24px;
+    height:3px;
+    background:var(--text-color);
+    transition:0.3s;
+    border-radius:2px;
+}
+
+.hamburger.active span:nth-child(1){
+    transform:rotate(45deg) translate(8px, 8px);
+}
+
+.hamburger.active span:nth-child(2){
+    opacity:0;
+}
+
+.hamburger.active span:nth-child(3){
+    transform:rotate(-45deg) translate(7px, -6px);
+}
+
+/* OVERLAY */
+.menu-overlay{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background:rgba(0,0,0,0.5);
+    z-index:998;
+    transition:opacity 0.3s ease;
+}
+
+.menu-overlay.active{
+    display:block;
+}
+
+/* SEARCH BAR */
+.search-bar{
+    display:block;
+    width:100%;
+    padding:10px 12px;
+    border:1px solid #e5e7eb;
+    border-radius:6px;
+    font-size:14px;
+    margin-bottom:20px;
+    font-family:'Inter',sans-serif;
+}
+
+.search-bar:focus{
+    outline:none;
+    border-color:var(--primary);
+    box-shadow:0 0 0 3px rgba(0,208,132,0.1);
+}
+
+/* HERO */
+.hero{
+    position:relative;
+    height:450px;
+    overflow:hidden;
+    cursor:pointer;
+}
+
+.hero img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    filter:brightness(0.6);
+}
+
+.hero-content{
+    position:absolute;
+    bottom:40px;
+    left:60px;
+    color:white;
+    max-width:700px;
+}
+
+.hero-content h2{
+    font-size:42px;
+    margin:0 0 15px 0;
+}
+
+.hero-content p{
+    font-size:18px;
+}
+
+/* GRID */
+.container{
+    max-width:1300px;
+    margin:50px auto;
+    padding:0 40px;
+}
+
+.posts{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:40px;
+}
+
+.post{
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.post img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+    border-radius:8px;
+}
+
+.post h3{
+    margin:15px 0 5px 0;
+    font-size:20px;
+}
+
+.post small{
+    color:var(--gray);
+}
+
+.post:hover{
+    transform:translateY(-5px);
+}
+
+.tag{
+    display:inline-block;
+    font-size:12px;
+    font-weight:600;
+    color:var(--primary);
+    margin-right:8px;
+}
+
+/* MODAL */
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    justify-content:center;
+    align-items:center;
+    z-index:2000;
+}
+
+.modal-overlay{
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,0.8);
+}
+
+.modal-content{
+    position:relative;
+    background-color:var(--bg-color);
+    max-width:900px;
+    width:90%;
+    border-radius:12px;
+    overflow:auto;
+    max-height:90vh;
+    z-index:10;
+    animation:fadeIn 0.25s ease;
+}
+
+.modal-content img{
+    width:100%;
+    height:300px;
+    object-fit:cover;
+}
+
+.modal-body{
+    padding:30px;
+}
+
+.close{
+    position:absolute;
+    top:15px;
+    right:20px;
+    font-size:28px;
+    cursor:pointer;
+}
+
+@keyframes fadeIn{
+    from{opacity:0; transform:scale(0.95);}
+    to{opacity:1; transform:scale(1);}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="topbar">
+        <button class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div class="logo">VITVISOR</div>
+        <button class="theme-toggle" id="themeToggle" title="Cambiar tema">🌙</button>
+    </div>
+    <nav id="tagMenu">
+        <input type="text" class="search-bar" id="searchInput" placeholder="Buscar artículos...">
+        <button class="active" onclick="filterPosts('all',this)">Todas</button>
+    </nav>
+</header>
+
+<div class="menu-overlay" id="menuOverlay"></div>
+
+<div id="heroSection"></div>
+
+<div class="container">
+    <div class="posts" id="postsContainer"></div>
+</div>
+
+<!-- MODAL -->
+<div class="modal" id="modal">
+    <div class="modal-overlay" onclick="closeModal()"></div>
+
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img id="modalImage">
+        <div class="modal-body">
+            <h2 id="modalTitle"></h2>
+            <small id="modalDate"></small>
+            <div id="modalContent" style="margin-top:20px;"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+const posts=[
+{
+title:"Todo sobre la informática",
+date:"12 Febrero 2026",
+image:"portada.png",
+tags:["Programación","C"],
+excerpt:"sigue mirando y descubrirs un nuevo mundo de la informática.",
+content:`En este blog encontrarás artículos, tutoriales y recursos sobre 
+programación, sistemas operativos, redes, seguridad informática y mucho más. 
+Desde conceptos básicos hasta temas avanzados, nuestro objetivo es ayudarte 
+a aprender y crecer en el mundo de la informática. ¡Explora nuestros contenidos 
+y comienza tu viaje tecnológico hoy mismo!`,
+hero:true
+},
+{
+title:"Virtualización Moderna",
+date:"10 Febrero 2026",
+image:"https://picsum.photos/800/400?random=22",
+tags:["Sistemas"],
+excerpt:"Infraestructura eficiente.",
+content:`Arquitectura virtual optimizada
+para entornos empresariales.`,
+},
+{
+title:"Ciberseguridad Empresarial",
+date:"8 Febrero 2026",
+image:"https://picsum.photos/800/400?random=23",
+tags:["Seguridad"],
+excerpt:"Protección avanzada.",
+content:`Estrategias de defensa y prevención
+de amenazas digitales.`,
+},
+{
+title:"Desarrollo Web Profesional",
+date:"5 Febrero 2026",
+image:"https://picsum.photos/800/400?random=24",
+tags:["Web"],
+excerpt:"Arquitectura frontend.",
+content:`Diseño modular y escalable
+para aplicaciones modernas.`,
+},
+{
+title:"Aprendiendo Python para Ciencia de Datos",
+date:"4 Febrero 2026",
+image:"https://picsum.photos/800/400?random=25",
+tags:["Python","Datos"],
+excerpt:"Introducción práctica a pandas y visualización.",
+content:`En este artículo veremos cómo usar pandas para limpieza de datos, transformaciones, agregaciones y visualizaciones con matplotlib y seaborn. Incluye ejemplos y buenas prácticas para pipelines reproducibles.`,
+},
+{
+title:"Introducción a Docker y Contenedores",
+date:"3 Febrero 2026",
+image:"https://picsum.photos/800/400?random=26",
+tags:["DevOps","Sistemas"],
+excerpt:"Contenedores desde cero.",
+content:`Explicamos conceptos básicos de Docker, creación de imágenes eficientes, gestión de volúmenes y redes, y cómo integrar contenedores en flujos CI/CD.`,
+},
+{
+title:"Machine Learning práctico con scikit-learn",
+date:"2 Febrero 2026",
+image:"https://picsum.photos/800/400?random=27",
+tags:["IA","Machine Learning"],
+excerpt:"Modelos supervisados paso a paso.",
+content:`Guía para preparar datos, seleccionar características, entrenar modelos supervisados y evaluar rendimiento con métricas claras y visualizaciones útiles.`,
+},
+{
+title:"Bases de Datos NoSQL: Casos de uso",
+date:"1 Febrero 2026",
+image:"https://picsum.photos/800/400?random=28",
+tags:["Bases de Datos","NoSQL"],
+excerpt:"Cuándo elegir NoSQL.",
+content:`Comparativa entre modelos documentales, clave-valor, columnares y grafos. Ejemplos prácticos y patrones de diseño para escalabilidad y alta disponibilidad.`,
+},
+{
+title:"Buenas prácticas en REST APIs",
+date:"31 Enero 2026",
+image:"https://picsum.photos/800/400?random=29",
+tags:["Web","APIs"],
+excerpt:"Diseño y estandarización.",
+content:`Principios para diseñar APIs REST coherentes: versionado, manejo de errores, paginación, autenticación y documentación automatizada con OpenAPI.`,
+},
+{
+title:"Optimización de rendimiento en frontend",
+date:"30 Enero 2026",
+image:"https://picsum.photos/800/400?random=30",
+tags:["Web","Frontend"],
+excerpt:"Mejoras perceptibles para usuarios.",
+content:`Técnicas para reducir el tiempo de carga: lazy-loading, minificación, critical CSS, y estrategias de caché. Incluye mediciones con Lighthouse.`,
+},
+{
+title:"Introducción a Kubernetes",
+date:"29 Enero 2026",
+image:"https://picsum.photos/800/400?random=31",
+tags:["DevOps","Cloud"],
+excerpt:"Orquestación de contenedores.",
+content:`Conceptos clave de Kubernetes: pods, deployments, services y cómo diseñar aplicaciones resilientes y autoescalables en clústeres.`,
+},
+{
+title:"Análisis de logs con ELK",
+date:"28 Enero 2026",
+image:"https://picsum.photos/800/400?random=32",
+tags:["Observabilidad","Logs"],
+excerpt:"Centralización y búsquedas eficientes.",
+content:`Implementación básica de Elasticsearch, Logstash y Kibana para centralizar logs, crear dashboards y configurar alertas basadas en patrones y umbrales.`,
+},
+{
+title:"Privacidad y protección de datos",
+date:"27 Enero 2026",
+image:"https://picsum.photos/800/400?random=33",
+tags:["Seguridad","Legal"],
+excerpt:"Regulaciones y medidas técnicas.",
+content:`Resumen de normativas relevantes, buenas prácticas para anonimización y cifrado, y cómo incorporar privacidad desde el diseño en productos digitales.`,
+},
+{
+title:"Visualización de datos avanzada",
+date:"26 Enero 2026",
+image:"https://picsum.photos/800/400?random=34",
+tags:["Datos","Visualización"],
+excerpt:"De gráficos a historias de datos.",
+content:`Técnicas para crear visualizaciones claras y efectivas que comuniquen insights: selección de gráficas, color, y narrativa visual con ejemplos.`,
+},
+{
+title:"Automatización con scripts PowerShell",
+date:"25 Enero 2026",
+image:"https://picsum.photos/800/400?random=35",
+tags:["Scripting","Windows"],
+excerpt:"Tareas repetitivas bajo control.",
+content:`Ejemplos prácticos para automatizar administración de sistemas Windows, gestión de usuarios, archivos y servicios con PowerShell.`,
+},
+{
+title:"Edge Computing: casos reales",
+date:"24 Enero 2026",
+image:"https://picsum.photos/800/400?random=36",
+tags:["Cloud","Edge"],
+excerpt:"Procesamiento en el límite.",
+content:`Exploramos escenarios donde llevar la computación al edge mejora latencia, privacidad y coste, incluyendo ejemplos en IoT y video análisis.`,
+},
+{
+title:"Testing automatizado con Jest",
+date:"23 Enero 2026",
+image:"https://picsum.photos/800/400?random=37",
+tags:["Testing","JavaScript"],
+excerpt:"Pruebas unitarias y de integración.",
+content:`Cómo estructurar tests, mocks y pruebas asíncronas con Jest para mantener confianza al refactorizar código frontend y backend.`,
+},
+{
+title:"Arquitecturas serverless en producción",
+date:"22 Enero 2026",
+image:"https://picsum.photos/800/400?random=38",
+tags:["Cloud","Serverless"],
+excerpt:"Diseño sin servidores dedicados.",
+content:`Ventajas y retos de serverless: cold starts, monitorización, límites y patrones para arquitecturas escalables y coste-eficientes.`,
+},
+{
+title:"Procesamiento de lenguaje natural (NLP)",
+date:"21 Enero 2026",
+image:"https://picsum.photos/800/400?random=39",
+tags:["IA","NLP"],
+excerpt:"Técnicas modernas y aplicaciones.",
+content:`Introducción a tareas de NLP: tokenización, embeddings, modelos transformadores y ejemplos prácticos de clasificación y extracción de información.`,
+},
+{
+title:"Optimización de consultas SQL",
+date:"20 Enero 2026",
+image:"https://picsum.photos/800/400?random=40",
+tags:["Bases de Datos","SQL"],
+excerpt:"Mejorando tiempos de respuesta.",
+content:`Técnicas para optimizar consultas: índices, EXPLAIN, particionado y diseño de esquemas pensando en consultas frecuentes.`,
+},
+{
+title:"Creando documentación técnica útil",
+date:"19 Enero 2026",
+image:"https://picsum.photos/800/400?random=41",
+tags:["Doc","Procesos"],
+excerpt:"Documentación que sí se usa.",
+content:`Buenas prácticas para escribir documentación clara y mantenible: ejemplos, plantillas, y cómo integrarla en flujos de trabajo de desarrollo.`,
+},
+{
+title:"Monitorización de aplicaciones en tiempo real",
+date:"18 Enero 2026",
+image:"https://picsum.photos/800/400?random=42",
+tags:["Observabilidad","Monitoring"],
+excerpt:"Alertas, métricas y trazas.",
+content:`Implementación de métricas y trazas distribuidas, uso de Prometheus y Grafana para crear dashboards operativos y SLAs.`,
+},
+{
+title:"Introducción a TensorFlow y modelos prácticos",
+date:"17 Enero 2026",
+image:"https://picsum.photos/800/400?random=43",
+tags:["IA","TensorFlow"],
+excerpt:"Entrenamiento y despliegue.",
+content:`Guía para empezar con TensorFlow: construcción de modelos, entrenamiento, evaluación y despliegue en entornos de inferencia.`,
+},
+{
+title:"Estrategias de backup y recuperación",
+date:"16 Enero 2026",
+image:"https://picsum.photos/800/400?random=44",
+tags:["Sistemas","Backup"],
+excerpt:"Protege tus datos correctamente.",
+content:`Políticas de backup, retención, pruebas de restauración y herramientas para garantizar continuidad de negocio ante fallos o desastres.`,
+}
+];
+
+const heroSection=document.getElementById("heroSection");
+const container=document.getElementById("postsContainer");
+const tagMenu=document.getElementById("tagMenu");
+const hamburger=document.getElementById("hamburger");
+const searchInput=document.getElementById("searchInput");
+const menuOverlay=document.getElementById("menuOverlay");
+
+/* HAMBURGER TOGGLE */
+hamburger.addEventListener("click",function(){
+    hamburger.classList.toggle("active");
+    tagMenu.classList.toggle("active");
+    menuOverlay.classList.toggle("active");
+});
+
+/* CLOSE MENU ON OVERLAY CLICK */
+menuOverlay.addEventListener("click",function(){
+    hamburger.classList.remove("active");
+    tagMenu.classList.remove("active");
+    menuOverlay.classList.remove("active");
+});
+
+/* CLOSE MENU ON BUTTON CLICK */
+document.querySelectorAll("nav button").forEach(btn=>{
+    btn.addEventListener("click",function(){
+        hamburger.classList.remove("active");
+        tagMenu.classList.remove("active");
+        menuOverlay.classList.remove("active");
+    });
+});
+
+/* SEARCH FILTER */
+searchInput.addEventListener("input",function(){
+    const searchTerm=this.value.toLowerCase();
+    if(searchTerm.length===0){
+        renderPosts();
+    } else {
+        renderPosts('search',searchTerm);
+    }
+});
+
+/* HERO */
+function renderHero(){
+    const heroPost=posts.find(p=>p.hero);
+    if(heroPost){
+        heroSection.innerHTML=`
+        <div class="hero" onclick="openModal(${posts.indexOf(heroPost)})">
+            <img src="${heroPost.image}">
+            <div class="hero-content">
+                <h2>${heroPost.title}</h2>
+                <p>${heroPost.excerpt}</p>
+            </div>
+        </div>`;
+    }
+}
+
+/* POSTS */
+function renderPosts(filter="all",searchTerm=""){
+    container.innerHTML="";
+    posts.forEach((post,index)=>{
+        const matchesTag=filter==="all"||post.tags.includes(filter);
+        const matchesSearch=searchTerm==="" || 
+                          post.title.toLowerCase().includes(searchTerm) ||
+                          post.excerpt.toLowerCase().includes(searchTerm) ||
+                          post.tags.some(tag=>tag.toLowerCase().includes(searchTerm));
+        
+        if(!post.hero && matchesTag && matchesSearch){
+            const div=document.createElement("div");
+            div.className="post";
+            div.innerHTML=`
+                <img src="${post.image}">
+                <h3>${post.title}</h3>
+                <small>${post.date}</small>
+                <p>${post.excerpt}</p>
+                ${post.tags.map(t=>`<span class="tag">${t}</span>`).join("")}
+            `;
+            div.onclick=()=>openModal(index);
+            container.appendChild(div);
+        }
+    });
+}
+
+/* TAGS */
+function generateTags(){
+    const tags=new Set();
+    posts.forEach(p=>p.tags.forEach(t=>tags.add(t)));
+    tags.forEach(tag=>{
+        const btn=document.createElement("button");
+        btn.innerText=tag;
+        btn.onclick=function(){filterPosts(tag,this)};
+        tagMenu.appendChild(btn);
+    });
+}
+
+function filterPosts(tag,el){
+    document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
+    if(el)el.classList.add("active");
+    renderPosts(tag);
+}
+
+/* MODAL */
+function openModal(index){
+    document.getElementById("modalImage").src=posts[index].image;
+    document.getElementById("modalTitle").innerText=posts[index].title;
+    document.getElementById("modalDate").innerText=posts[index].date;
+    document.getElementById("modalContent").innerText=posts[index].content;
+    document.getElementById("modal").style.display="flex";
+    document.body.style.overflow="hidden";
+}
+
+function closeModal(){
+    document.getElementById("modal").style.display="none";
+    document.body.style.overflow="auto";
+}
+
+/* ESC */
+document.addEventListener("keydown",function(e){
+    if(e.key==="Escape"){
+        closeModal();
+    }
+});
+
+/* THEME TOGGLE */
+const themeToggle=document.getElementById("themeToggle");
+const htmlElement=document.documentElement;
+const body=document.body;
+
+// Cargar tema guardado o usar preferencia del sistema
+const savedTheme=localStorage.getItem("theme") || 
+                 (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+
+function setTheme(theme){
+    if(theme==="dark"){
+        body.classList.add("dark-mode");
+        themeToggle.textContent="☀️";
+        localStorage.setItem("theme","dark");
+    } else {
+        body.classList.remove("dark-mode");
+        themeToggle.textContent="🌙";
+        localStorage.setItem("theme","light");
+    }
+}
+
+setTheme(savedTheme);
+
+themeToggle.addEventListener("click",function(){
+    const currentTheme=body.classList.contains("dark-mode") ? "dark" : "light";
+    setTheme(currentTheme==="dark" ? "light" : "dark");
+});
+
+renderHero();
+generateTags();
+renderPosts();
+
+</script>
+
+</body>
+</html>
