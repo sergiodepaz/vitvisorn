@@ -37,7 +37,6 @@ body{
     transition:background-color 0.3s, color 0.3s;
 }
 
-/* HEADER */
 header{
     position:sticky;
     top:0;
@@ -122,7 +121,6 @@ nav button.active{
     border-bottom:2px solid var(--primary);
 }
 
-/* HAMBURGER MENU */
 .hamburger{
     display:flex;
     flex-direction:column;
@@ -156,7 +154,6 @@ nav button.active{
     transform:rotate(-45deg) translate(7px, -6px);
 }
 
-/* OVERLAY */
 .menu-overlay{
     display:none;
     position:fixed;
@@ -173,7 +170,6 @@ nav button.active{
     display:block;
 }
 
-/* SEARCH BAR */
 .search-bar{
     display:block;
     width:100%;
@@ -191,7 +187,6 @@ nav button.active{
     box-shadow:0 0 0 3px rgba(0,208,132,0.1);
 }
 
-/* HERO */
 .hero{
     position:relative;
     height:450px;
@@ -223,7 +218,6 @@ nav button.active{
     font-size:18px;
 }
 
-/* GRID */
 .container{
     max-width:1300px;
     margin:50px auto;
@@ -269,7 +263,6 @@ nav button.active{
     margin-right:8px;
 }
 
-/* MODAL */
 .modal{
     display:none;
     position:fixed;
@@ -341,17 +334,14 @@ nav button.active{
 </header>
 
 <div class="menu-overlay" id="menuOverlay"></div>
-
 <div id="heroSection"></div>
 
 <div class="container">
     <div class="posts" id="postsContainer"></div>
 </div>
 
-<!-- MODAL -->
 <div class="modal" id="modal">
     <div class="modal-overlay" onclick="closeModal()"></div>
-
     <div class="modal-content">
         <span class="close" onclick="closeModal()">&times;</span>
         <img id="modalImage">
@@ -369,202 +359,195 @@ const posts=[
 {
 title:"Todo sobre la informática",
 date:"12 Febrero 2026",
-image:"https://sergiodepaz.github.io/vitvisorn/img/portada.png",
+image:"https://i.postimg.cc/bSkfFkmP/image.jpg",
 tags:["Programación","C"],
 excerpt:"Sigue mirando y descubrirás un nuevo mundo de la informática.",
-content:`En este blog encontrarás artículos, tutoriales y recursos sobre 
-programación, sistemas operativos, redes, seguridad informática y mucho más. 
-Desde conceptos básicos hasta temas avanzados, nuestro objetivo es ayudarte 
-a aprender y crecer en el mundo de la informática. ¡Explora nuestros contenidos 
-y comienza tu viaje tecnológico hoy mismo!`,
+content:`En este blog encontrarás artículos, tutoriales y recursos sobre programación, sistemas operativos, redes, seguridad informática y mucho más. Desde conceptos básicos hasta temas avanzados, nuestro objetivo es ayudarte a aprender y crecer en el mundo de la informática.`,
 hero:true
 },
 {
 title:"Virtualización Moderna",
 date:"10 Febrero 2026",
-image:"https://picsum.photos/800/400?random=22",
+image:"https://i.postimg.cc/bSkfFkmP/image.jpg",
 tags:["Sistemas"],
 excerpt:"Infraestructura eficiente.",
-content:`Arquitectura virtual optimizada
-para entornos empresariales.`,
+content:`Arquitectura virtual optimizada para entornos empresariales.`,
 },
 {
 title:"Ciberseguridad Empresarial",
 date:"8 Febrero 2026",
-image:"https://picsum.photos/800/400?random=23",
+image:"https://i.postimg.cc/bSkfFkmP/image.jpg",
 tags:["Seguridad"],
 excerpt:"Protección avanzada.",
-content:`Estrategias de defensa y prevención
-de amenazas digitales.`,
+content:`Estrategias de defensa y prevención de amenazas digitales.`,
 },
 {
 title:"Desarrollo Web Profesional",
 date:"5 Febrero 2026",
-image:"https://picsum.photos/800/400?random=24",
+image:"https://i.postimg.cc/bSkfFkmP/image.jpg",
 tags:["Web"],
 excerpt:"Arquitectura frontend.",
-content:`Diseño modular y escalable
-para aplicaciones modernas.`,
+content:`Diseño modular y escalable para aplicaciones modernas.`,
 },
 {
 title:"Aprendiendo Python para Ciencia de Datos",
 date:"4 Febrero 2026",
-image:"https://picsum.photos/800/400?random=25",
+image:"https://i.postimg.cc/bSkfFkmP/image.jpg",
 tags:["Python","Datos"],
 excerpt:"Introducción práctica a pandas y visualización.",
-content:`En este artículo veremos cómo usar pandas para limpieza de datos, transformaciones, agregaciones y visualizaciones con matplotlib y seaborn. Incluye ejemplos y buenas prácticas para pipelines reproducibles.`,
+content:`En este artículo veremos cómo usar pandas para limpieza de datos.`,
 },
 {
 title:"Introducción a Docker y Contenedores",
 date:"3 Febrero 2026",
-image:"https://picsum.photos/800/400?random=26",
+image:"https://i.postimg.cc/bSkfFkmP/image.jpg",
 tags:["DevOps","Sistemas"],
 excerpt:"Contenedores desde cero.",
-content:`Explicamos conceptos básicos de Docker, creación de imágenes eficientes, gestión de volúmenes y redes, y cómo integrar contenedores en flujos CI/CD.`,
+content:`Explicamos conceptos básicos de Docker, creación de imágenes eficientes.`,
 },
 {
 title:"Machine Learning práctico con scikit-learn",
 date:"2 Febrero 2026",
-image:"https://picsum.photos/800/400?random=27",
+image:"https://i.postimg.cc/bSkfFkmP/image.jpg",
 tags:["IA","Machine Learning"],
 excerpt:"Modelos supervisados paso a paso.",
-content:`Guía para preparar datos, seleccionar características, entrenar modelos supervisados y evaluar rendimiento con métricas claras y visualizaciones útiles.`,
+content:`Guía para preparar datos, seleccionar características, entrenar modelos.`,
 },
 {
 title:"Bases de Datos NoSQL: Casos de uso",
 date:"1 Febrero 2026",
-image:"https://picsum.photos/800/400?random=28",
+image:"https://i.postimg.cc/bSkfFkmP/image.jpg",
 tags:["Bases de Datos","NoSQL"],
 excerpt:"Cuándo elegir NoSQL.",
-content:`Comparativa entre modelos documentales, clave-valor, columnares y grafos. Ejemplos prácticos y patrones de diseño para escalabilidad y alta disponibilidad.`,
+content:`Comparativa entre modelos documentales, clave-valor, columnares y grafos.`,
 },
 {
 title:"Buenas prácticas en REST APIs",
 date:"31 Enero 2026",
-image:"https://picsum.photos/800/400?random=29",
+image:"https://i.postimg.cc/bSkfFkmP/image.jpg",
 tags:["Web","APIs"],
 excerpt:"Diseño y estandarización.",
-content:`Principios para diseñar APIs REST coherentes: versionado, manejo de errores, paginación, autenticación y documentación automatizada con OpenAPI.`,
+content:`Principios para diseñar APIs REST coherentes.`,
 },
 {
 title:"Optimización de rendimiento en frontend",
 date:"30 Enero 2026",
-image:"https://picsum.photos/800/400?random=30",
+image:"https://i.postimg.cc/bSkfFkmP/image.jpg",
 tags:["Web","Frontend"],
 excerpt:"Mejoras perceptibles para usuarios.",
-content:`Técnicas para reducir el tiempo de carga: lazy-loading, minificación, critical CSS, y estrategias de caché. Incluye mediciones con Lighthouse.`,
+content:`Técnicas para reducir el tiempo de carga.`,
 },
 {
 title:"Introducción a Kubernetes",
 date:"29 Enero 2026",
-image:"https://picsum.photos/800/400?random=31",
+image:"https://i.postimg.cc/bSkfFkmP/image.jpg",
 tags:["DevOps","Cloud"],
 excerpt:"Orquestación de contenedores.",
-content:`Conceptos clave de Kubernetes: pods, deployments, services y cómo diseñar aplicaciones resilientes y autoescalables en clústeres.`,
+content:`Conceptos clave de Kubernetes: pods, deployments, services.`,
 },
 {
 title:"Análisis de logs con ELK",
 date:"28 Enero 2026",
-image:"https://picsum.photos/800/400?random=32",
+image:"https://i.postimg.cc/bSkfFkmP/image.jpg",
 tags:["Observabilidad","Logs"],
 excerpt:"Centralización y búsquedas eficientes.",
-content:`Implementación básica de Elasticsearch, Logstash y Kibana para centralizar logs, crear dashboards y configurar alertas basadas en patrones y umbrales.`,
+content:`Implementación básica de Elasticsearch, Logstash y Kibana.`,
 },
 {
 title:"Privacidad y protección de datos",
 date:"27 Enero 2026",
-image:"https://picsum.photos/800/400?random=33",
+image:"https://i.postimg.cc/bSkfFkmP/image.jpg",
 tags:["Seguridad","Legal"],
 excerpt:"Regulaciones y medidas técnicas.",
-content:`Resumen de normativas relevantes, buenas prácticas para anonimización y cifrado, y cómo incorporar privacidad desde el diseño en productos digitales.`,
+content:`Resumen de normativas relevantes, buenas prácticas.`,
 },
 {
 title:"Visualización de datos avanzada",
 date:"26 Enero 2026",
-image:"https://picsum.photos/800/400?random=34",
+image:"https://i.postimg.cc/bSkfFkmP/image.jpg",
 tags:["Datos","Visualización"],
 excerpt:"De gráficos a historias de datos.",
-content:`Técnicas para crear visualizaciones claras y efectivas que comuniquen insights: selección de gráficas, color, y narrativa visual con ejemplos.`,
+content:`Técnicas para crear visualizaciones claras y efectivas.`,
 },
 {
 title:"Automatización con scripts PowerShell",
 date:"25 Enero 2026",
-image:"https://picsum.photos/800/400?random=35",
+image:"https://i.postimg.cc/bSkfFkmP/image.jpg",
 tags:["Scripting","Windows"],
 excerpt:"Tareas repetitivas bajo control.",
-content:`Ejemplos prácticos para automatizar administración de sistemas Windows, gestión de usuarios, archivos y servicios con PowerShell.`,
+content:`Ejemplos prácticos para automatizar administración de sistemas.`,
 },
 {
 title:"Edge Computing: casos reales",
 date:"24 Enero 2026",
-image:"https://picsum.photos/800/400?random=36",
+image:"https://i.postimg.cc/bSkfFkmP/image.jpg",
 tags:["Cloud","Edge"],
 excerpt:"Procesamiento en el límite.",
-content:`Exploramos escenarios donde llevar la computación al edge mejora latencia, privacidad y coste, incluyendo ejemplos en IoT y video análisis.`,
+content:`Exploramos escenarios donde llevar computación al edge.`,
 },
 {
 title:"Testing automatizado con Jest",
 date:"23 Enero 2026",
-image:"https://picsum.photos/800/400?random=37",
+image:"https://i.postimg.cc/bSkfFkmP/image.jpg",
 tags:["Testing","JavaScript"],
 excerpt:"Pruebas unitarias y de integración.",
-content:`Cómo estructurar tests, mocks y pruebas asíncronas con Jest para mantener confianza al refactorizar código frontend y backend.`,
+content:`Cómo estructurar tests, mocks y pruebas asíncronas.`,
 },
 {
 title:"Arquitecturas serverless en producción",
 date:"22 Enero 2026",
-image:"https://picsum.photos/800/400?random=38",
+image:"https://i.postimg.cc/bSkfFkmP/image.jpg",
 tags:["Cloud","Serverless"],
 excerpt:"Diseño sin servidores dedicados.",
-content:`Ventajas y retos de serverless: cold starts, monitorización, límites y patrones para arquitecturas escalables y coste-eficientes.`,
+content:`Ventajas y retos de serverless.`,
 },
 {
 title:"Procesamiento de lenguaje natural (NLP)",
 date:"21 Enero 2026",
-image:"https://picsum.photos/800/400?random=39",
+image:"https://i.postimg.cc/bSkfFkmP/image.jpg",
 tags:["IA","NLP"],
 excerpt:"Técnicas modernas y aplicaciones.",
-content:`Introducción a tareas de NLP: tokenización, embeddings, modelos transformadores y ejemplos prácticos de clasificación y extracción de información.`,
+content:`Introducción a tareas de NLP.`,
 },
 {
 title:"Optimización de consultas SQL",
 date:"20 Enero 2026",
-image:"https://picsum.photos/800/400?random=40",
+image:"https://i.postimg.cc/bSkfFkmP/image.jpg",
 tags:["Bases de Datos","SQL"],
 excerpt:"Mejorando tiempos de respuesta.",
-content:`Técnicas para optimizar consultas: índices, EXPLAIN, particionado y diseño de esquemas pensando en consultas frecuentes.`,
+content:`Técnicas para optimizar consultas.`,
 },
 {
 title:"Creando documentación técnica útil",
 date:"19 Enero 2026",
-image:"https://picsum.photos/800/400?random=41",
+image:"https://i.postimg.cc/bSkfFkmP/image.jpg",
 tags:["Doc","Procesos"],
 excerpt:"Documentación que sí se usa.",
-content:`Buenas prácticas para escribir documentación clara y mantenible: ejemplos, plantillas, y cómo integrarla en flujos de trabajo de desarrollo.`,
+content:`Buenas prácticas para escribir documentación clara.`,
 },
 {
 title:"Monitorización de aplicaciones en tiempo real",
 date:"18 Enero 2026",
-image:"https://picsum.photos/800/400?random=42",
+image:"https://i.postimg.cc/bSkfFkmP/image.jpg",
 tags:["Observabilidad","Monitoring"],
 excerpt:"Alertas, métricas y trazas.",
-content:`Implementación de métricas y trazas distribuidas, uso de Prometheus y Grafana para crear dashboards operativos y SLAs.`,
+content:`Implementación de métricas y trazas distribuidas.`,
 },
 {
 title:"Introducción a TensorFlow y modelos prácticos",
 date:"17 Enero 2026",
-image:"https://picsum.photos/800/400?random=43",
+image:"https://i.postimg.cc/bSkfFkmP/image.jpg",
 tags:["IA","TensorFlow"],
 excerpt:"Entrenamiento y despliegue.",
-content:`Guía para empezar con TensorFlow: construcción de modelos, entrenamiento, evaluación y despliegue en entornos de inferencia.`,
+content:`Guía para empezar con TensorFlow.`,
 },
 {
 title:"Estrategias de backup y recuperación",
 date:"16 Enero 2026",
-image:"https://picsum.photos/800/400?random=44",
+image:"https://i.postimg.cc/bSkfFkmP/image.jpg",
 tags:["Sistemas","Backup"],
 excerpt:"Protege tus datos correctamente.",
-content:`Políticas de backup, retención, pruebas de restauración y herramientas para garantizar continuidad de negocio ante fallos o desastres.`,
+content:`Políticas de backup, retención, pruebas de restauración.`,
 }
 ];
 
@@ -575,21 +558,18 @@ const hamburger=document.getElementById("hamburger");
 const searchInput=document.getElementById("searchInput");
 const menuOverlay=document.getElementById("menuOverlay");
 
-/* HAMBURGER TOGGLE */
 hamburger.addEventListener("click",function(){
     hamburger.classList.toggle("active");
     tagMenu.classList.toggle("active");
     menuOverlay.classList.toggle("active");
 });
 
-/* CLOSE MENU ON OVERLAY CLICK */
 menuOverlay.addEventListener("click",function(){
     hamburger.classList.remove("active");
     tagMenu.classList.remove("active");
     menuOverlay.classList.remove("active");
 });
 
-/* CLOSE MENU ON BUTTON CLICK */
 document.querySelectorAll("nav button").forEach(btn=>{
     btn.addEventListener("click",function(){
         hamburger.classList.remove("active");
@@ -598,7 +578,6 @@ document.querySelectorAll("nav button").forEach(btn=>{
     });
 });
 
-/* SEARCH FILTER */
 searchInput.addEventListener("input",function(){
     const searchTerm=this.value.toLowerCase();
     if(searchTerm.length===0){
@@ -608,7 +587,6 @@ searchInput.addEventListener("input",function(){
     }
 });
 
-/* HERO */
 function renderHero(){
     const heroPost=posts.find(p=>p.hero);
     if(heroPost){
@@ -623,7 +601,6 @@ function renderHero(){
     }
 }
 
-/* POSTS */
 function renderPosts(filter="all",searchTerm=""){
     container.innerHTML="";
     posts.forEach((post,index)=>{
@@ -649,7 +626,6 @@ function renderPosts(filter="all",searchTerm=""){
     });
 }
 
-/* TAGS */
 function generateTags(){
     const tags=new Set();
     posts.forEach(p=>p.tags.forEach(t=>tags.add(t)));
@@ -667,7 +643,6 @@ function filterPosts(tag,el){
     renderPosts(tag);
 }
 
-/* MODAL */
 function openModal(index){
     document.getElementById("modalImage").src=posts[index].image;
     document.getElementById("modalTitle").innerText=posts[index].title;
@@ -682,16 +657,13 @@ function closeModal(){
     document.body.style.overflow="auto";
 }
 
-/* ESC */
 document.addEventListener("keydown",function(e){
     if(e.key==="Escape"){
         closeModal();
     }
 });
 
-/* THEME TOGGLE */
 const themeToggle=document.getElementById("themeToggle");
-const htmlElement=document.documentElement;
 const body=document.body;
 
 const savedTheme=localStorage.getItem("theme") || 
