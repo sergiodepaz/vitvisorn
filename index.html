@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta name="google-site-verification" content="ifqCv2GhUP1T9SNLvbV9kcZ8A8L9zwZdFFmaqcSiANM" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Vitvisor: Colección de plantillas multimedia profesionales para proyectos, con soporte audiovisual.">
+<meta name="keywords" content="Vitvisor, plantillas, multimedia, proyectos, educación, documentos">
+<meta name="robots" content="index, follow">
+
+<meta property="og:title" content="Vitvisor | Plantillas Multimedia">
+<meta property="og:description" content="Colección de plantillas multimedia profesionales.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sergiodepaz.github.io/vitvisor_multimedia/">
+<meta property="og:image" content="https://i.postimg.cc/RhbChTfW/portada.png">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Vitvisor multimedia">
+<meta name="twitter:description" content="Colección de plantillas multimedia profesionales.">
+<meta name="twitter:image" content="https://i.postimg.cc/RhbChTfW/portada.png">
+
+<title>Vitvisor</title>
+
+<link rel="icon" type="image/png" href="https://i.postimg.cc/vBS3WzLT/android_chrome_512x512.png">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+<link rel="canonical" href="https://sergiodepaz.github.io/vitvisor_multimedia/">
+
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Inter', sans-serif;
+}
+
+body{
+    background:#0f172a;
+    color:white;
+}
+
+/* HERO */
+.hero{
+    height:400px;
+    background:url('https://i.postimg.cc/W4VkHkbC/multimedia.png') center/cover no-repeat;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+}
+
+.hero::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,0.6);
+}
+
+.hero h1{
+    position:relative;
+    font-size:3rem;
+    font-weight:800;
+}
+
+/* GRID DE PROYECTOS */
+.container{
+    padding:60px 5%;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:30px;
+}
+
+.card{
+    background:#1e293b;
+    border-radius:12px;
+    overflow:hidden;
+    cursor:pointer;
+    transition:0.4s;
+    display:flex;
+    flex-direction:column;
+}
+
+.card:hover{
+    transform:translateY(-10px);
+}
+
+.card img{
+    width:100%;
+    height:180px;
+    object-fit:cover;
+}
+
+.card-content{
+    padding:15px;
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+}
+
+.card-content h3{
+    margin-bottom:10px;
+}
+
+.card-content button{
+    padding:8px 15px;
+    background:#00d084;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+    font-weight:600;
+    transition:0.3s;
+}
+
+.card-content button:hover{
+    background:#00ffae;
+}
+
+/* MODAL */
+dialog{
+    margin:auto;
+    width:600px;
+    max-width:95%;
+    border:none;
+    border-radius:12px;
+    padding:25px;
+    background:#1e293b;
+    color:white;
+}
+
+dialog::backdrop{
+    background:rgba(0,0,0,0.7);
+}
+
+dialog img, video, iframe{
+    width:100%;
+    margin:15px 0;
+    border-radius:8px;
+}
+
+.close-btn{
+    float:right;
+    background:red;
+    color:white;
+    border:none;
+    padding:6px 10px;
+    border-radius:6px;
+    cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<section class="hero">
+    <h1>Vitvisor Templates</h1>
+</section>
+
+<section class="container">
+
+    <div class="card">
+        <img src="https://i.postimg.cc/DZs6z0vz/PLANTILLAS_PARA_MANUALES.png" alt="Plantilla Base">
+        <div class="card-content">
+            <h3>Plantilla Base</h3>
+            <button onclick="abrirProyecto(
+                'Plantilla Base',
+                'https://i.postimg.cc/DZs6z0vz/PLANTILLAS_PARA_MANUALES.png',
+                'Documento editable profesional.',
+                'https://drive.google.com/',
+                null
+            )">Ver</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <img src="https://i.postimg.cc/y8yk7H4y/PLANTILLA_DE_INVESTIGACION.png" alt="Plantilla de Investigación">
+        <div class="card-content">
+            <h3>Plantilla de Investigación</h3>
+            <button onclick="abrirProyecto(
+                'Plantilla de Investigación',
+                'https://i.postimg.cc/y8yk7H4y/PLANTILLA_DE_INVESTIGACION.png',
+                'Formato moderno para trabajos de investigación.',
+                'https://drive.google.com/',
+                null
+            )">Ver</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <img src="https://i.postimg.cc/pT0KwLp3/presentaciones-basicas.png" alt="Plantilla de Presentación">
+        <div class="card-content">
+            <h3>Plantilla de Presentación</h3>
+            <button onclick="abrirProyecto(
+                'Plantilla de Presentación',
+                'https://i.postimg.cc/pT0KwLp3/presentaciones-basicas.png',
+                'Presentaciones creativas y formales.',
+                'https://drive.google.com/',
+                null
+            )">Ver</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <img src="https://i.postimg.cc/BbXV8vkt/creando-ubuntu.png" alt="Plantilla Multimedia">
+        <div class="card-content">
+            <h3>Creación de Máquina Virtual</h3>
+            <button onclick="abrirProyecto(
+                'Creación de Máquina Virtual',
+                'https://i.postimg.cc/BbXV8vkt/creando-ubuntu.png',
+                'Video tutorial de Ubuntu.',
+                'https://www.youtube.com/watch?v=OL6le6Wze6Q&t',
+                'https://www.youtube.com/watch?v=OL6le6Wze6Q&t'
+            )">Ver</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <img src="https://i.postimg.cc/RhbChTfW/portada.png" alt="Plantilla Extra 1">
+        <div class="card-content">
+            <h3>Plantilla Extra 1</h3>
+            <button onclick="abrirProyecto(
+                'Plantilla Extra 1',
+                'https://i.postimg.cc/RhbChTfW/portada.png',
+                'Documento editable adicional.',
+                'https://drive.google.com/',
+                null
+            )">Ver</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <img src="https://i.postimg.cc/RhbChTfW/portada.png" alt="Plantilla Extra 2">
+        <div class="card-content">
+            <h3>Plantilla Extra 2</h3>
+            <button onclick="abrirProyecto(
+                'Plantilla Extra 2',
+                'https://i.postimg.cc/RhbChTfW/portada.png',
+                'Documento editable adicional.',
+                'https://drive.google.com/',
+                null
+            )">Ver</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <img src="https://i.postimg.cc/y8yk7H4y/PLANTILLA_DE_INVESTIGACION.png" alt="Plantilla de Investigación Avanzada">
+        <div class="card-content">
+            <h3>Investigación Avanzada</h3>
+            <button onclick="abrirProyecto(
+                'Investigación Avanzada',
+                'https://i.postimg.cc/y8yk7H4y/PLANTILLA_DE_INVESTIGACION.png',
+                'Formato avanzado para investigaciones profesionales.',
+                'https://drive.google.com/',
+                null
+            )">Ver</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <img src="https://i.postimg.cc/pT0KwLp3/presentaciones-basicas.png" alt="Presentación Creativa">
+        <div class="card-content">
+            <h3>Presentación Creativa</h3>
+            <button onclick="abrirProyecto(
+                'Presentación Creativa',
+                'https://i.postimg.cc/pT0KwLp3/presentaciones-basicas.png',
+                'Diseño creativo y profesional.',
+                'https://drive.google.com/',
+                null
+            )">Ver</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <img src="https://i.postimg.cc/BbXV8vkt/creando-ubuntu.png" alt="Tutorial Multimedia">
+        <div class="card-content">
+            <h3>Tutorial Multimedia</h3>
+            <button onclick="abrirProyecto(
+                'Tutorial Multimedia',
+                'https://i.postimg.cc/BbXV8vkt/creando-ubuntu.png',
+                'Aprende paso a paso con video tutorial.',
+                'https://www.youtube.com/watch?v=OL6le6Wze6Q&t',
+                'https://www.youtube.com/watch?v=OL6le6Wze6Q&t'
+            )">Ver</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <img src="https://i.postimg.cc/RhbChTfW/portada.png" alt="Plantilla Extra 3">
+        <div class="card-content">
+            <h3>Plantilla Extra 3</h3>
+            <button onclick="abrirProyecto(
+                'Plantilla Extra 3',
+                'https://i.postimg.cc/RhbChTfW/portada.png',
+                'Documento editable profesional.',
+                'https://drive.google.com/',
+                null
+            )">Ver</button>
+        </div>
+    </div>
+
+</section>
+
+<dialog id="modal">
+    <button class="close-btn" onclick="cerrarModal()">✖</button>
+    <h2 id="titulo"></h2>
+
+    <img id="imagen">
+    <video id="video" controls style="display:none;"></video>
+    <iframe id="youtube" style="display:none; height:350px;" frameborder="0" allowfullscreen></iframe>
+
+    <p id="descripcion"></p>
+    <a id="descarga" target="_blank" style="color:#00ffae;">Descargar</a>
+</dialog>
+
+<script>
+function abrirProyecto(titulo, imagen, descripcion, enlace, media){
+
+    document.getElementById("titulo").innerText = titulo;
+    document.getElementById("imagen").src = imagen;
+    document.getElementById("descripcion").innerText = descripcion;
+    document.getElementById("descarga").href = enlace;
+
+    const video = document.getElementById("video");
+    const youtube = document.getElementById("youtube");
+
+    video.style.display = "none";
+    youtube.style.display = "none";
+    video.src = "";
+    youtube.src = "";
+
+    if(media){
+        if(media.includes("youtube")){
+            const id = media.split("v=")[1].split("&")[0];
+            youtube.src = "https://www.youtube.com/embed/" + id;
+            youtube.style.display = "block";
+        } else {
+            video.src = media;
+            video.style.display = "block";
+        }
+    }
+
+    document.getElementById("modal").showModal();
+}
+
+function cerrarModal(){
+    document.getElementById("modal").close();
+    document.getElementById("video").src = "";
+    document.getElementById("youtube").src = "";
+}
+</script>
+
+</body>
+</html>
