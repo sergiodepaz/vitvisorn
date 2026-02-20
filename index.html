@@ -62,6 +62,36 @@ body{
     font-weight:800;
 }
 
+/* 🔎 BUSCADOR */
+.search-box{
+    padding:25px 5%;
+    display:flex;
+    justify-content:center;
+}
+
+.search-box input{
+    width:100%;
+    max-width:500px;
+    padding:12px 18px;
+    border-radius:30px;
+    border:none;
+    outline:none;
+    font-size:16px;
+    background:#1e293b;
+    color:white;
+    border:2px solid #00d084;
+    transition:0.25s;
+}
+
+.search-box input:focus{
+    border-color:#00ffae;
+    box-shadow:0 0 10px rgba(0,255,174,0.4);
+}
+
+.search-box input::placeholder{
+    color:#94a3b8;
+}
+
 /* GRID DE PROYECTOS */
 .container{
     padding:60px 5%;
@@ -155,6 +185,10 @@ dialog img, video, iframe{
 <section class="hero">
     <h1>Vitvisor Templates</h1>
 </section>
+
+<div class="search-box">
+    <input type="text" id="buscador" placeholder="Buscar plantilla...">
+</div>
 
 <section class="container">
 
@@ -347,6 +381,17 @@ function cerrarModal(){
     document.getElementById("video").src = "";
     document.getElementById("youtube").src = "";
 }
+
+// 🔎 BUSCADOR
+document.getElementById("buscador").addEventListener("keyup", function(){
+    const filtro = this.value.toLowerCase();
+    const cards = document.querySelectorAll(".card");
+
+    cards.forEach(card=>{
+        const texto = card.innerText.toLowerCase();
+        card.style.display = texto.includes(filtro) ? "flex" : "none";
+    });
+});
 </script>
 
 </body>
