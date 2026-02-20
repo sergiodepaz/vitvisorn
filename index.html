@@ -132,6 +132,7 @@ dialog img, video, iframe{width:100%;margin:15px 0;border-radius:8px;}
 </section>
 
 <!-- MODAL -->
+<!-- MODAL -->
 <dialog id="modal">
     <button class="close-btn" onclick="cerrarModal()">✖</button>
     <h2 id="titulo"></h2>
@@ -143,7 +144,15 @@ dialog img, video, iframe{width:100%;margin:15px 0;border-radius:8px;}
     <a id="descarga" target="_blank" style="color:#00ffae;">Descargar</a>
 </dialog>
 
+<!-- BANNER DE COOKIES -->
+<div id="cookie-banner" style="position:fixed;bottom:0;left:0;width:100%;background:#111b21;color:white;padding:15px;text-align:center;display:none;z-index:1000;">
+  Esta web utiliza cookies para mejorar tu experiencia. 
+  <a href="/vitvisorn/politica-cookies.html" style="color:#00ffae;">Más info</a>
+  <button id="accept-cookies" style="margin-left:10px;padding:5px 10px;background:#00d084;border:none;color:white;border-radius:5px;cursor:pointer;">Aceptar</button>
+</div>
+
 <script>
+// FUNCIONES DEL MODAL Y BUSCADOR
 function abrirProyecto(titulo, imagen, descripcion, enlace, media, bloques=[]){
     document.getElementById("titulo").innerText = titulo;
     document.getElementById("imagen").src = imagen;
@@ -216,7 +225,26 @@ document.getElementById("buscador").addEventListener("keyup", function(){
         card.style.display = texto.includes(filtro) ? "flex" : "none";
     });
 });
-</script>
 
+// --- COOKIES ---
+function getCookie(name) {
+    const value = "; " + document.cookie;
+    const parts = value.split("; " + name + "=");
+    if (parts.length === 2) return parts.pop().split(";").shift();
+}
+
+// Mostrar banner si no hay cookie
+window.addEventListener('load', function() {
+    if(!getCookie('cookies_accepted')){
+        document.getElementById('cookie-banner').style.display = 'block';
+    }
+});
+
+// Al aceptar cookies
+document.getElementById('accept-cookies').addEventListener('click', function(){
+    document.cookie = "cookies_accepted=true; path=/; max-age=" + 60*60*24*365;
+    document.getElementById('cookie-banner').style.display = 'none';
+});
+</script>
 </body>
 </html>
