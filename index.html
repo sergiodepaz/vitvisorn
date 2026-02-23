@@ -13,238 +13,352 @@
 <meta property="og:type" content="website">
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Vitvisor Templates">
-<meta name="twitter:description" content="Descarga plantillas profesionales para tus trabajos">
-<meta name="twitter:image" content="https://i.postimg.cc/vBS3WzLT/android_chrome_512x512.png">
-
 
 <title>Vitvisor.com</title>
+
 <link rel="icon" type="image/png" href="https://i.postimg.cc/vBS3WzLT/android_chrome_512x512.png">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-<link rel="apple-touch-icon" sizes="152x152" href="https://i.postimg.cc/vBS3WzLT/android_chrome_512x512.png">
-<link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
+
 <style>
+
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter', sans-serif;}
+
 body{background:#0f172a;color:white;}
-.hero{height:400px;background:url('https://i.postimg.cc/W4VkHkbC/multimedia.png') center/cover no-repeat;display:flex;align-items:center;justify-content:center;position:relative;}
-.hero::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,0.6);}
-.hero h1{position:relative;font-size:3rem;font-weight:800;}
-.search-box{padding:25px 5%;display:flex;justify-content:center;}
-.search-box input{width:100%;max-width:500px;padding:12px 18px;border-radius:30px;border:none;outline:none;font-size:16px;background:#1e293b;color:white;border:2px solid #00d084;transition:0.25s;}
-.search-box input:focus{border-color:#00ffae;box-shadow:0 0 10px rgba(0,255,174,0.4);}
-.container{padding:60px 5%;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px;}
-.card{background:#1e293b;border-radius:12px;overflow:hidden;cursor:pointer;transition:0.4s;display:flex;flex-direction:column;}
+
+.hero{
+height:400px;
+background:url('https://i.postimg.cc/W4VkHkbC/multimedia.png') center/cover no-repeat;
+display:flex;
+align-items:center;
+justify-content:center;
+position:relative;
+}
+
+.hero::after{
+content:"";
+position:absolute;
+inset:0;
+background:rgba(0,0,0,0.6);
+}
+
+.hero h1{
+position:relative;
+font-size:3rem;
+font-weight:800;
+}
+
+.search-box{
+padding:25px 5%;
+display:flex;
+justify-content:center;
+}
+
+.search-box input{
+width:100%;
+max-width:500px;
+padding:12px 18px;
+border-radius:30px;
+border:none;
+outline:none;
+font-size:16px;
+background:#1e293b;
+color:white;
+border:2px solid #00d084;
+}
+
+#categorias{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+justify-content:center;
+padding-bottom:10px;
+}
+
+#categorias button{
+background:#1e293b;
+border:2px solid #00d084;
+color:white;
+padding:6px 14px;
+border-radius:20px;
+cursor:pointer;
+}
+
+.container{
+padding:60px 5%;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
+}
+
+.card{
+background:#1e293b;
+border-radius:12px;
+overflow:hidden;
+cursor:pointer;
+transition:0.4s;
+display:flex;
+flex-direction:column;
+}
+
 .card:hover{transform:translateY(-10px);}
-.card img{width:100%;height:180px;object-fit:cover;}
-.card-content{padding:15px;flex:1;display:flex;flex-direction:column;justify-content:space-between;}
+
+.card img{
+width:100%;
+height:180px;
+object-fit:cover;
+}
+
+.card-content{
+padding:15px;
+flex:1;
+display:flex;
+flex-direction:column;
+justify-content:space-between;
+}
+
 .card-content h3{margin-bottom:10px;}
+
 .card-content p{margin-bottom:12px;color:#cbd5e1;}
-.card-content button{padding:8px 15px;background:#00d084;border:none;border-radius:6px;cursor:pointer;font-weight:600;transition:0.3s;}
-.card-content button:hover{background:#00ffae;}
-dialog{margin:auto;width:600px;max-width:95%;border:none;border-radius:12px;padding:25px;background:#1e293b;color:white;}
+
+.card-content button{
+padding:8px 15px;
+background:#00d084;
+border:none;
+border-radius:6px;
+cursor:pointer;
+font-weight:600;
+}
+
+dialog{
+margin:auto;
+width:600px;
+max-width:95%;
+border:none;
+border-radius:12px;
+padding:25px;
+background:#1e293b;
+color:white;
+}
+
 dialog::backdrop{background:rgba(0,0,0,0.7);}
-dialog img, video, iframe{width:100%;margin:15px 0;border-radius:8px;}
-.close-btn{float:right;background:red;color:white;border:none;padding:6px 10px;border-radius:6px;cursor:pointer;}
+
+dialog img, video, iframe{
+width:100%;
+margin:15px 0;
+border-radius:8px;
+}
+
+.close-btn{
+float:right;
+background:red;
+color:white;
+border:none;
+padding:6px 10px;
+border-radius:6px;
+cursor:pointer;
+}
+
 </style>
 </head>
 <body>
 
 <section class="hero">
-    <h1>Vitvisor Templates</h1>
+<h1>Vitvisor Templates</h1>
 </section>
 
-<!-- BUSCADOR -->
 <div class="search-box">
-    <input type="text" id="buscador" placeholder="Buscar plantilla...">
+<input type="text" id="buscador" placeholder="Buscar plantilla...">
 </div>
+
+<div id="categorias"></div>
 
 <section class="container">
 
-    <!-- CARD 1 -->
-    <div class="card">
-        <img src="https://i.postimg.cc/DZs6z0vz/PLANTILLAS_PARA_MANUALES.png" alt="Plantilla Base">
-        <div class="card-content">
-            <h3>Plantilla Base</h3>
-            <p>Documento editable profesional, ideal para comenzar cualquier proyecto.</p>
-            <button onclick="abrirProyecto(
-                'Plantilla Base',
-                'https://i.postimg.cc/DZs6z0vz/PLANTILLAS_PARA_MANUALES.png',
-                'Esta plantilla esta dedicada a la creacion de manuales de usuario para poder poner capturas e indicarles a los usuarios donde y como deven de hacer las cosas. De manera mas original pero a su vez profesional',
-                'https://drive.google.com/file/d/11349zMGW9uMQRKAXocE3190X7Nd9g-Jo/view?usp=sharing',
-                null,
-                [
-                  {tipo:'imagen', contenido:'https://i.postimg.cc/Px9cHLQf/captura1.png'},
-                  {tipo:'texto', contenido:'lo primero que se puede ver es que la plantilla esta compuesta por cuadros de diferentes colores cada color indica un tipo de texto podemos ver en la imagen de arriba los recuadros grises indican texto sin imagen '},
-                  {tipo:'imagen', contenido:'https://i.postimg.cc/wvwqQkzs/captura2.png'},
-                  {tipo:'texto', contenido:'los siguientes cuadros verdes sirven para poder dar explicaciones y a demas añadir capturas como tu las prefieras '},
-                {tipo:'imagen', contenido:'https://i.postimg.cc/Nfm0Wmkw/captura3.png'},
-                  {tipo:'texto', contenido:'en esta captura se muestra un cuadro azul que indica notas para indicarle a la gente algun tipo de señal o añadido de mas '},
-                 {tipo:'imagen', contenido:'https://i.postimg.cc/vmRtGWpf/captura4.png'},
-                  {tipo:'texto', contenido:'y por ultimo tenemos el cuadro amarillo que sirven para poner advertencia mas visuales mas de cosas que hay que tener cuidado'}
-            
-                ]
-            )">Ver</button>
-        </div>
-    </div>
+<!-- CARD 1 -->
+<div class="card" data-categoria="Plantillas">
+<img src="https://i.postimg.cc/DZs6z0vz/PLANTILLAS_PARA_MANUALES.png">
+<div class="card-content">
+<h3>Plantilla Base</h3>
+<p>Documento editable profesional, ideal para comenzar cualquier proyecto.</p>
+<button onclick="abrirProyecto(
+'Plantilla Base',
+'https://i.postimg.cc/DZs6z0vz/PLANTILLAS_PARA_MANUALES.png',
+'Esta plantilla esta dedicada a la creacion de manuales.',
+'https://drive.google.com/file/d/11349zMGW9uMQRKAXocE3190X7Nd9g-Jo/view?usp=sharing',
+null,
+[
+{tipo:'imagen',contenido:'https://i.postimg.cc/Px9cHLQf/captura1.png'},
+{tipo:'texto',contenido:'Explicación del uso'},
+{tipo:'imagen',contenido:'https://i.postimg.cc/wvwqQkzs/captura2.png'}
+]
+)">Ver</button>
+</div>
+</div>
 
-    <!-- CARD 2 -->
-    <div class="card">
-        <img src="https://i.postimg.cc/y8yk7H4y/PLANTILLA_DE_INVESTIGACION.png" alt="Plantilla de Investigación">
-        <div class="card-content">
-            <h3>Plantilla de Investigación</h3>
-            <p>Formato moderno y profesional para trabajos de investigación académica.</p>
-            <button onclick="abrirProyecto(
-                'Plantilla de Investigación',
-                'https://i.postimg.cc/y8yk7H4y/PLANTILLA_DE_INVESTIGACION.png',
-                'Formato moderno para trabajos de investigación.',
-                'https://drive.google.com/',
-                null,
-                [
-                  {tipo:'texto', contenido:'Objetivo y metodología.'},
-                  {tipo:'imagen', contenido:'https://i.postimg.cc/y8yk7H4y/PLANTILLA_DE_INVESTIGACION.png'},
-                  {tipo:'texto', contenido:'Resultados y análisis.'}
-                ]
-            )">Ver</button>
-        </div>
-    </div>
+<!-- CARD 2 -->
+<div class="card" data-categoria="Plantillas">
+<img src="https://i.postimg.cc/y8yk7H4y/PLANTILLA_DE_INVESTIGACION.png">
+<div class="card-content">
+<h3>Plantilla de Investigación</h3>
+<p>Formato moderno y profesional para trabajos de investigación académica.</p>
+<button onclick="abrirProyecto(
+'Plantilla de Investigación',
+'https://i.postimg.cc/y8yk7H4y/PLANTILLA_DE_INVESTIGACION.png',
+'Formato moderno para trabajos de investigación.',
+'https://drive.google.com/',
+null,
+[
+{tipo:'texto',contenido:'Objetivo y metodología'},
+{tipo:'imagen',contenido:'https://i.postimg.cc/y8yk7H4y/PLANTILLA_DE_INVESTIGACION.png'}
+]
+)">Ver</button>
+</div>
+</div>
 
-    <!-- CARD 3 (VIDEO) -->
-    <div class="card">
-        <img src="https://i.postimg.cc/BbXV8vkt/creando-ubuntu.png" alt="Creación de Máquina Virtual">
-        <div class="card-content">
-            <h3>Creación de Máquina Virtual</h3>
-            <p>Video tutorial de Ubuntu.</p>
-            <button onclick="abrirProyecto(
-                'Creación de Máquina Virtual',
-                'https://i.postimg.cc/BbXV8vkt/creando-ubuntu.png',
-                'Video tutorial de Ubuntu.',
-                'https://www.youtube.com/watch?v=OL6le6Wze6Q',
-                'https://www.youtube.com/watch?v=OL6le6Wze6Q',
-                [
-                  {tipo:'texto', contenido:'Preparar entorno virtual.'},
-                  {tipo:'youtube', contenido:'OL6le6Wze6Q'},
-                  {tipo:'texto', contenido:'Configuración avanzada.'}
-                ]
-            )">Ver</button>
-        </div>
-    </div>
+<!-- CARD 3 -->
+<div class="card" data-categoria="Tutoriales">
+<img src="https://i.postimg.cc/BbXV8vkt/creando-ubuntu.png">
+<div class="card-content">
+<h3>Creación de Máquina Virtual</h3>
+<p>Video tutorial de Ubuntu.</p>
+<button onclick="abrirProyecto(
+'Creación de Máquina Virtual',
+'https://i.postimg.cc/BbXV8vkt/creando-ubuntu.png',
+'Video tutorial de Ubuntu.',
+'https://www.youtube.com/watch?v=OL6le6Wze6Q',
+'https://www.youtube.com/watch?v=OL6le6Wze6Q',
+[
+{tipo:'youtube',contenido:'OL6le6Wze6Q'}
+]
+)">Ver</button>
+</div>
+</div>
 
 </section>
 
-<!-- MODAL -->
-<!-- MODAL -->
 <dialog id="modal">
-    <button class="close-btn" onclick="cerrarModal()">✖</button>
-    <h2 id="titulo"></h2>
-    <img id="imagen">
-    <video id="video" controls style="display:none;"></video>
-    <iframe id="youtube" style="display:none; height:350px;" frameborder="0" allowfullscreen></iframe>
-    <p id="descripcion"></p>
-    <div id="contenidoExtra"></div>
-    <a id="descarga" target="_blank" style="color:#00ffae;">Descargar</a>
+<button class="close-btn" onclick="cerrarModal()">✖</button>
+<h2 id="titulo"></h2>
+<img id="imagen">
+<video id="video" controls style="display:none;"></video>
+<iframe id="youtube" style="display:none;height:350px;"></iframe>
+<p id="descripcion"></p>
+<div id="contenidoExtra"></div>
+<a id="descarga" target="_blank">Descargar</a>
 </dialog>
 
-<!-- BANNER DE COOKIES -->
-<div id="cookie-banner" style="position:fixed;bottom:0;left:0;width:100%;background:#111b21;color:white;padding:15px;text-align:center;display:none;z-index:1000;">
-  Esta web utiliza cookies para mejorar tu experiencia. 
-  <a href="/vitvisorn/politica-cookies.html" style="color:#00ffae;">Más info</a>
-  <button id="accept-cookies" style="margin-left:10px;padding:5px 10px;background:#00d084;border:none;color:white;border-radius:5px;cursor:pointer;">Aceptar</button>
-</div>
-
 <script>
-// FUNCIONES DEL MODAL Y BUSCADOR
+
 function abrirProyecto(titulo, imagen, descripcion, enlace, media, bloques=[]){
-    document.getElementById("titulo").innerText = titulo;
-    document.getElementById("imagen").src = imagen;
-    document.getElementById("descripcion").innerText = descripcion;
-    document.getElementById("descarga").href = enlace;
 
-    const video = document.getElementById("video");
-    const youtube = document.getElementById("youtube");
-    video.style.display = "none";
-    youtube.style.display = "none";
-    video.src = "";
-    youtube.src = "";
+document.getElementById("titulo").innerText=titulo
+document.getElementById("imagen").src=imagen
+document.getElementById("descripcion").innerText=descripcion
+document.getElementById("descarga").href=enlace
 
-    if(media){
-        if(media.includes("youtube")){
-            const id = media.split("v=")[1];
-            youtube.src = "https://www.youtube.com/embed/" + id;
-            youtube.style.display = "block";
-        } else {
-            video.src = media;
-            video.style.display = "block";
-        }
-    }
+const video=document.getElementById("video")
+const youtube=document.getElementById("youtube")
 
-    const contenedor = document.getElementById("contenidoExtra");
-    contenedor.innerHTML = "";
+video.style.display="none"
+youtube.style.display="none"
+video.src=""
+youtube.src=""
 
-    bloques.forEach(b=>{
-        if(b.tipo==="texto"){
-            const p = document.createElement("p");
-            p.innerText = b.contenido;
-            contenedor.appendChild(p);
-        }
-        if(b.tipo==="imagen"){
-            const img = document.createElement("img");
-            img.src = b.contenido;
-            contenedor.appendChild(img);
-        }
-        if(b.tipo==="youtube"){
-            const iframe = document.createElement("iframe");
-            iframe.src = "https://www.youtube.com/embed/" + b.contenido;
-            iframe.style.height="350px";
-            iframe.frameBorder="0";
-            iframe.allowFullscreen=true;
-            contenedor.appendChild(iframe);
-        }
-        if(b.tipo==="video"){
-            const vid = document.createElement("video");
-            vid.src = b.contenido;
-            vid.controls = true;
-            contenedor.appendChild(vid);
-        }
-    });
+if(media){
+if(media.includes("youtube")){
+const id=media.split("v=")[1]
+youtube.src="https://www.youtube.com/embed/"+id
+youtube.style.display="block"
+}else{
+video.src=media
+video.style.display="block"
+}
+}
 
-    document.getElementById("modal").showModal();
+const cont=document.getElementById("contenidoExtra")
+cont.innerHTML=""
+
+bloques.forEach(b=>{
+if(b.tipo==="texto"){
+const p=document.createElement("p")
+p.innerText=b.contenido
+cont.appendChild(p)
+}
+if(b.tipo==="imagen"){
+const img=document.createElement("img")
+img.src=b.contenido
+cont.appendChild(img)
+}
+if(b.tipo==="youtube"){
+const iframe=document.createElement("iframe")
+iframe.src="https://www.youtube.com/embed/"+b.contenido
+iframe.height="350"
+cont.appendChild(iframe)
+}
+})
+
+document.getElementById("modal").showModal()
+
 }
 
 function cerrarModal(){
-    document.getElementById("modal").close();
-    document.getElementById("video").src="";
-    document.getElementById("youtube").src="";
+document.getElementById("modal").close()
 }
 
-// BUSCADOR
-document.getElementById("buscador").addEventListener("keyup", function(){
-    const filtro = this.value.toLowerCase();
-    const cards = document.querySelectorAll(".card");
-    cards.forEach(card=>{
-        const texto = card.innerText.toLowerCase();
-        card.style.display = texto.includes(filtro) ? "flex" : "none";
-    });
-});
+document.getElementById("buscador").addEventListener("keyup",function(){
 
-// --- COOKIES ---
-function getCookie(name) {
-    const value = "; " + document.cookie;
-    const parts = value.split("; " + name + "=");
-    if (parts.length === 2) return parts.pop().split(";").shift();
+const filtro=this.value.toLowerCase()
+const cards=document.querySelectorAll(".card")
+
+cards.forEach(card=>{
+const texto=card.innerText.toLowerCase()
+card.style.display=texto.includes(filtro)?"flex":"none"
+})
+
+})
+
+const contenedorCategorias=document.getElementById("categorias")
+const cards=document.querySelectorAll(".card")
+
+let categorias=new Set()
+
+cards.forEach(card=>{
+categorias.add(card.dataset.categoria)
+})
+
+function mostrarCategoria(cat){
+
+document.querySelectorAll(".card").forEach(card=>{
+
+if(cat==="Todas"){
+card.style.display="flex"
+}else{
+card.style.display=card.dataset.categoria===cat?"flex":"none"
 }
 
-// Mostrar banner si no hay cookie
-window.addEventListener('load', function() {
-    if(!getCookie('cookies_accepted')){
-        document.getElementById('cookie-banner').style.display = 'block';
-    }
-});
+})
 
-// Al aceptar cookies
-document.getElementById('accept-cookies').addEventListener('click', function(){
-    document.cookie = "cookies_accepted=true; path=/; max-age=" + 60*60*24*365;
-    document.getElementById('cookie-banner').style.display = 'none';
-});
+}
+
+function crearMenu(){
+
+const todas=document.createElement("button")
+todas.textContent="Todas"
+todas.onclick=()=>mostrarCategoria("Todas")
+contenedorCategorias.appendChild(todas)
+
+categorias.forEach(cat=>{
+const btn=document.createElement("button")
+btn.textContent=cat
+btn.onclick=()=>mostrarCategoria(cat)
+contenedorCategorias.appendChild(btn)
+})
+
+}
+
+crearMenu()
+
 </script>
+
 </body>
 </html>
