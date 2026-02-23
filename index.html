@@ -708,26 +708,40 @@ card.style.display=card.dataset.categoria===cat?"flex":"none"
 
 }
 
-function crearMenu(){
+function crearMenu() {
+  const todas = document.createElement("button");
+  todas.textContent = "Todas";
+  todas.onclick = () => mostrarCategoria("Todas");
+  contenedorCategorias.appendChild(todas);
 
-const todas=document.createElement("button")
-todas.textContent="Todas"
-todas.onclick=()=>mostrarCategoria("Todas")
-contenedorCategorias.appendChild(todas)
-
-categorias.forEach(cat=>{
-const btn=document.createElement("button")
-btn.textContent=cat
-btn.onclick=()=>mostrarCategoria(cat)
-contenedorCategorias.appendChild(btn)
-})
-
+  categorias.forEach(cat => {
+    const btn = document.createElement("button");
+    btn.textContent = cat;
+    btn.onclick = () => mostrarCategoria(cat);
+    contenedorCategorias.appendChild(btn);
+  });
 }
 
-crearMenu()
-
-});
+crearMenu();
 </script>
 
+<!-- BANNER DE COOKIES -->
+<div id="cookie-banner" style="position: fixed; bottom: 0; width: 100%; background:#1e293b; color:white; padding:15px; text-align:center; z-index:10000; display:none; box-shadow:0 -2px 10px rgba(0,0,0,0.5);">
+  Esta web utiliza cookies para mejorar tu experiencia. 
+  <button id="accept-cookies" style="margin-left:10px; padding:5px 12px; border:none; border-radius:6px; background:#00d084; color:#0f172a; cursor:pointer; font-weight:600;">Aceptar</button>
+</div>
+
+<script>
+// Mostrar banner si no se ha aceptado antes
+if (!document.cookie.includes("cookies_aceptadas=true")) {
+  document.getElementById("cookie-banner").style.display = "block";
+}
+
+// Al aceptar cookies
+document.getElementById("accept-cookies").addEventListener("click", function() {
+  document.cookie = "cookies_aceptadas=true; path=/; max-age=" + 60*60*24*365; // 1 año
+  document.getElementById("cookie-banner").style.display = "none";
+});
+</script>
 </body>
 </html>
