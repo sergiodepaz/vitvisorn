@@ -170,9 +170,7 @@
             border-color: var(--primary-color);
         }
 
-        .post-card.hidden {
-            display: none;
-        }
+        .post-card.hidden { display: none; }
 
         .post-image {
             width: 100%;
@@ -213,7 +211,7 @@
         }
         .read-more:hover { color: var(--accent); }
 
-        /* --- MODAL --- */
+        /* --- MODAL BASE --- */
         .modal {
             display: none;
             position: fixed;
@@ -230,9 +228,9 @@
         .modal-content {
             background-color: var(--white);
             border-radius: 10px;
-            width: 90%;
-            max-width: 750px;
-            max-height: 85vh;
+            width: 95%;
+            max-width: 900px;
+            max-height: 90vh;
             overflow-y: auto;
             box-shadow: 0 10px 40px rgba(0,0,0,0.3);
             animation: slideUp 0.3s ease;
@@ -266,14 +264,259 @@
         }
         .close:hover { opacity: 0.8; transform: rotate(90deg); }
 
-        .modal-body { padding: 25px; }
-        .modal-body img {
+        /* --- MODAL LAYOUTS DIFERENTES --- */
+        
+        /* Layout 1: Alternado Texto-Imagen-Texto-Imagen */
+        .modal-body.layout-alternating .content-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 30px;
+            align-items: center;
+        }
+
+        .modal-body.layout-alternating .content-row.reverse {
+            direction: rtl;
+        }
+
+        .modal-body.layout-alternating .content-row.reverse > * {
+            direction: ltr;
+        }
+
+        .modal-body.layout-alternating .text-content h4 {
+            color: var(--primary-color);
+            margin: 0 0 12px 0;
+            font-size: 1.3rem;
+        }
+
+        .modal-body.layout-alternating .text-content p {
+            color: #444;
+            line-height: 1.7;
+            margin-bottom: 12px;
+        }
+
+        .modal-body.layout-alternating .image-content img {
             width: 100%;
             border-radius: 8px;
-            margin: 0 0 20px 0;
-            max-height: 280px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .modal-body.layout-alternating .info-box {
+            background: linear-gradient(135deg, #f8f9ff, #eef4ff);
+            border-left: 4px solid var(--primary-color);
+            padding: 15px 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 15px 0;
+        }
+
+        /* Layout 2: Video + Contenido */
+        .modal-body.layout-video .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            background: #000;
+            border-radius: 8px;
+            margin-bottom: 25px;
+        }
+
+        .modal-body.layout-video .video-wrapper iframe,
+        .modal-body.layout-video .video-wrapper video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .modal-body.layout-video .intro-text {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            padding: 20px;
+            background: var(--secondary-color);
+            border-radius: 8px;
+        }
+
+        .modal-body.layout-video .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .modal-body.layout-video .gallery-item {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .modal-body.layout-video .gallery-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .modal-body.layout-video .gallery-item img {
+            width: 100%;
+            height: 150px;
             object-fit: cover;
         }
+
+        .modal-body.layout-video .gallery-caption {
+            padding: 10px;
+            background: var(--secondary-color);
+            text-align: center;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .modal-body.layout-video .details-section {
+            margin: 25px 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #fff8f0, #fff3cd);
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+        }
+
+        .modal-body.layout-video .details-section h4 {
+            color: var(--primary-color);
+            margin-bottom: 12px;
+        }
+
+        .modal-body.layout-video .details-section ul {
+            margin-left: 20px;
+        }
+
+        .modal-body.layout-video .details-section li {
+            margin-bottom: 8px;
+            color: #444;
+        }
+
+        /* Layout 3: Con Código */
+        .modal-body.layout-code .code-section {
+            margin: 20px 0;
+        }
+
+        .modal-body.layout-code .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            border: 1px solid #333;
+            line-height: 1.6;
+        }
+
+        .modal-body.layout-code .code-block .comment { color: #6a9955; }
+        .modal-body.layout-code .code-block .tag { color: #569cd6; }
+        .modal-body.layout-code .code-block .attr { color: #9cdcfe; }
+        .modal-body.layout-code .code-block .value { color: #ce9178; }
+        .modal-body.layout-code .code-block .keyword { color: #c586c0; }
+
+        /* Layout 4: Timeline/Pasos */
+        .modal-body.layout-timeline .timeline {
+            position: relative;
+            padding-left: 40px;
+            margin: 25px 0;
+        }
+
+        .modal-body.layout-timeline .timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--primary-color), var(--accent));
+            border-radius: 3px;
+        }
+
+        .modal-body.layout-timeline .timeline-item {
+            position: relative;
+            margin-bottom: 25px;
+            padding: 20px;
+            background: var(--secondary-color);
+            border-radius: 8px;
+        }
+
+        .modal-body.layout-timeline .timeline-item::before {
+            content: attr(data-step);
+            position: absolute;
+            left: -33px;
+            top: 20px;
+            width: 32px;
+            height: 32px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 8px rgba(0,74,173,0.3);
+        }
+
+        .modal-body.layout-timeline .timeline-item h4 {
+            color: var(--primary-color);
+            margin-bottom: 8px;
+        }
+
+        .modal-body.layout-timeline .timeline-item p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* Layout 5: Tabs */
+        .modal-body.layout-tabs .tabs-container {
+            margin: 20px 0;
+        }
+
+        .modal-body.layout-tabs .tabs-header {
+            display: flex;
+            gap: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .modal-body.layout-tabs .tab-btn {
+            padding: 10px 20px;
+            background: none;
+            border: none;
+            color: #666;
+            font-weight: 600;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .modal-body.layout-tabs .tab-btn.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+        }
+
+        .modal-body.layout-tabs .tab-content {
+            display: none;
+        }
+
+        .modal-body.layout-tabs .tab-content.active {
+            display: block;
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Estilos comunes para todos los modales */
+        .modal-body { padding: 25px; }
         .modal-body h4 {
             color: var(--primary-color);
             margin: 20px 0 12px 0;
@@ -363,16 +606,41 @@
             .hero p { font-size: 1rem; }
             .hero { height: 50vh; }
             .about-content { flex-direction: column; }
-            .modal-content { width: 95%; margin: 10px; }
+            .modal-content { width: 98%; margin: 5px; }
             .modal-header h3 { font-size: 1.3rem; padding-right: 30px; }
-            .category-filter { gap: 8px; }
-            .filter-btn { padding: 6px 15px; font-size: 0.9rem; }
+            
+            /* Responsive para layouts de modal */
+            .modal-body.layout-alternating .content-row,
+            .modal-body.layout-alternating .content-row.reverse {
+                grid-template-columns: 1fr;
+                direction: ltr;
+            }
+            
+            .modal-body.layout-video .gallery {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-body.layout-tabs .tabs-header {
+                flex-direction: column;
+                border-bottom: none;
+            }
+            
+            .modal-body.layout-tabs .tab-btn {
+                border-bottom: 2px solid var(--secondary-color);
+                border-left: 3px solid transparent;
+            }
+            
+            .modal-body.layout-tabs .tab-btn.active {
+                border-left-color: var(--primary-color);
+                border-bottom-color: var(--secondary-color);
+            }
         }
 
         @media (max-width: 480px) {
             .container { padding: 2rem 15px; }
             .section-title { font-size: 1.8rem; }
             .post-title { font-size: 1.2rem; }
+            .modal-body { padding: 20px 15px; }
         }
     </style>
 </head>
@@ -400,16 +668,15 @@
     <section id="blog" class="container">
         <h2 class="section-title">Recursos Disponibles</h2>
         
-        <!-- Filtro de categorías (se genera automáticamente con JS) -->
         <div class="category-filter" id="categoryFilter">
-            <!-- Los botones se generan dinámicamente -->
+            <!-- Se genera dinámicamente -->
         </div>
         
         <p class="results-count" id="resultsCount">Mostrando <span id="visibleCount">0</span> de <span id="totalCount">0</span> recursos</p>
         
         <div class="blog-grid" id="blogGrid">
 
-            <!-- Entrada 1 -->
+            <!-- Entrada 1: Modal con Layout Alternado -->
             <article class="post-card" data-category="web">
                 <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=600&q=80" alt="HTML CSS" class="post-image">
                 <div class="post-content">
@@ -421,7 +688,7 @@
                 </div>
             </article>
 
-            <!-- Entrada 2 -->
+            <!-- Entrada 2: Modal con Video -->
             <article class="post-card" data-category="sistemas">
                 <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=600&q=80" alt="Ubuntu" class="post-image">
                 <div class="post-content">
@@ -433,7 +700,7 @@
                 </div>
             </article>
 
-            <!-- Entrada 3 -->
+            <!-- Entrada 3: Modal con Timeline -->
             <article class="post-card" data-category="hardware">
                 <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=600&q=80" alt="Hardware" class="post-image">
                 <div class="post-content">
@@ -445,7 +712,7 @@
                 </div>
             </article>
 
-            <!-- Entrada 4 -->
+            <!-- Entrada 4: Modal con Código -->
             <article class="post-card" data-category="web">
                 <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=600&q=80" alt="HTML Avanzado" class="post-image">
                 <div class="post-content">
@@ -457,7 +724,7 @@
                 </div>
             </article>
 
-            <!-- Entrada 5 -->
+            <!-- Entrada 5: Modal con Tabs -->
             <article class="post-card" data-category="redes">
                 <img src="https://images.unsplash.com/photo-1507721999472-8ed4421c4af2?auto=format&fit=crop&w=600&q=80" alt="VPN" class="post-image">
                 <div class="post-content">
@@ -469,7 +736,7 @@
                 </div>
             </article>
 
-            <!-- Entrada 6 -->
+            <!-- Entrada 6: Modal con Video + Galería -->
             <article class="post-card" data-category="multimedia">
                 <img src="https://images.unsplash.com/photo-1536240478700-b869070f9279?auto=format&fit=crop&w=600&q=80" alt="Video" class="post-image">
                 <div class="post-content">
@@ -481,36 +748,12 @@
                 </div>
             </article>
 
-            <!-- Entrada 7 - NUEVA CATEGORÍA: Python -->
-            <article class="post-card" data-category="programacion">
-                <img src="https://images.unsplash.com/photo-1526379095098-d400fd0bf935?auto=format&fit=crop&w=600&q=80" alt="Python" class="post-image">
-                <div class="post-content">
-                    <span class="post-category">Programación</span>
-                    <span class="post-date">Python</span>
-                    <h3 class="post-title">Python desde Cero</h3>
-                    <p class="post-excerpt">Aprende programación con el lenguaje más versátil y demandado.</p>
-                    <button class="read-more" onclick="openModal('modal7')">Ver más →</button>
-                </div>
-            </article>
-
-            <!-- Entrada 8 - NUEVA CATEGORÍA: Bases de Datos -->
-            <article class="post-card" data-category="bases-datos">
-                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=600&q=80" alt="SQL" class="post-image">
-                <div class="post-content">
-                    <span class="post-category">Bases de Datos</span>
-                    <span class="post-date">SQL</span>
-                    <h3 class="post-title">SQL Esencial</h3>
-                    <p class="post-excerpt">Domina el lenguaje de bases de datos con ejemplos prácticos.</p>
-                    <button class="read-more" onclick="openModal('modal8')">Ver más →</button>
-                </div>
-            </article>
-
         </div>
     </section>
 
-    <!-- MODALES CON CONTENIDO -->
+    <!-- MODALES CON DIFERENTES LAYOUTS -->
     
-    <!-- Modal 1: HTML & CSS -->
+    <!-- Modal 1: Layout Alternado (Texto-Imagen-Texto-Imagen) -->
     <div id="modal1" class="modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -518,30 +761,55 @@
                 <span class="category">Categoría: Web • Nivel: Principiante</span>
                 <span class="close" onclick="closeModal('modal1')">&times;</span>
             </div>
-            <div class="modal-body">
-                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80" alt="HTML CSS">
-                <h4>📚 Descripción</h4>
-                <p>Aprende a crear tu primera página web con estilo profesional desde cero. Este recurso te guiará paso a paso en los fundamentos del desarrollo web.</p>
+            <div class="modal-body layout-alternating">
                 
-                <h4>✅ Contenido Incluido:</h4>
-                <ul>
-                    <li>Estructura básica de HTML5 y etiquetas semánticas</li>
-                    <li>Fundamentos de CSS3: selectores, propiedades y box model</li>
-                    <li>Colores, fuentes, tipografía y espaciado</li>
-                    <li>Posicionamiento básico y diseño responsive</li>
-                    <li>Creación de un proyecto práctico: portafolio personal</li>
-                </ul>
+                <div class="content-row">
+                    <div class="text-content">
+                        <h4>📚 Fundamentos del Desarrollo Web</h4>
+                        <p>Aprende a crear tu primera página web con estilo profesional desde cero. Este recurso te guiará paso a paso en los fundamentos del desarrollo web moderno.</p>
+                        <p>Descubrirás cómo estructurar contenido semánticamente con HTML5 y aplicar estilos modernos con CSS3, creando diseños que se adapten a cualquier dispositivo.</p>
+                    </div>
+                    <div class="image-content">
+                        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80" alt="HTML CSS">
+                    </div>
+                </div>
 
-                <h4>🎯 ¿Qué aprenderás?</h4>
-                <p>Al finalizar, podrás crear páginas web estáticas con diseño profesional. Entenderás la relación entre HTML (estructura) y CSS (presentación), y aplicarás buenas prácticas de accesibilidad.</p>
+                <div class="content-row reverse">
+                    <div class="text-content">
+                        <h4>✅ Contenido Detallado</h4>
+                        <ul>
+                            <li>Estructura básica de HTML5 y etiquetas semánticas</li>
+                            <li>Fundamentos de CSS3: selectores, propiedades y box model</li>
+                            <li>Colores, fuentes, tipografía y espaciado</li>
+                            <li>Posicionamiento básico y diseño responsive</li>
+                            <li>Creación de un proyecto práctico: portafolio personal</li>
+                        </ul>
+                    </div>
+                    <div class="image-content">
+                        <img src="https://images.unsplash.com/photo-1507721999472-8ed4421c4af2?auto=format&fit=crop&w=800&q=80" alt="Código Web">
+                    </div>
+                </div>
 
-                <h4>🛠️ Requisitos:</h4>
-                <ul>
-                    <li>Computadora con conexión a internet</li>
-                    <li>Editor de texto (VS Code recomendado)</li>
-                    <li>Navegador web actualizado</li>
-                    <li><strong>No se requieren conocimientos previos</strong></li>
-                </ul>
+                <div class="info-box">
+                    <strong>🎯 ¿Qué aprenderás?</strong><br>
+                    Al finalizar, podrás crear páginas web estáticas con diseño profesional. Entenderás la relación entre HTML (estructura) y CSS (presentación), y aplicarás buenas prácticas de accesibilidad web.
+                </div>
+
+                <div class="content-row">
+                    <div class="text-content">
+                        <h4>🛠️ Requisitos y Herramientas</h4>
+                        <ul>
+                            <li>Computadora con conexión a internet</li>
+                            <li>Editor de texto (VS Code recomendado)</li>
+                            <li>Navegador web actualizado (Chrome, Firefox o Edge)</li>
+                            <li><strong>No se requieren conocimientos previos</strong></li>
+                        </ul>
+                    </div>
+                    <div class="image-content">
+                        <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80" alt="Herramientas">
+                    </div>
+                </div>
+
             </div>
             <div class="modal-footer">
                 <button class="btn" onclick="closeModal('modal1')">Cerrar</button>
@@ -549,7 +817,7 @@
         </div>
     </div>
 
-    <!-- Modal 2: Ubuntu VM -->
+    <!-- Modal 2: Layout con Video -->
     <div id="modal2" class="modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -557,16 +825,21 @@
                 <span class="category">Categoría: Sistemas • Nivel: Principiante</span>
                 <span class="close" onclick="closeModal('modal2')">&times;</span>
             </div>
-            <div class="modal-body">
-                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80" alt="Ubuntu">
-                <h4>🎬 Video Tutorial Completo</h4>
-                <p>Aprende a crear e instalar una máquina virtual con Ubuntu desde cero. Ideal para principiantes que quieren aprender Linux sin riesgo.</p>
+            <div class="modal-body layout-video">
                 
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Tutorial Ubuntu" allowfullscreen></iframe>
+                </div>
+
+                <div class="intro-text">
+                    <strong>🎬 Tutorial Completo en Video:</strong> Aprende a crear e instalar una máquina virtual con Ubuntu desde cero. Ideal para principiantes que quieren aprender Linux sin riesgo.
+                </div>
+
                 <h4>📋 Contenido del Tutorial:</h4>
                 <ul>
-                    <li>Descarga e instalación de VirtualBox</li>
-                    <li>Configuración óptima de la máquina virtual</li>
-                    <li>Descarga de Ubuntu Desktop LTS</li>
+                    <li>Descarga e instalación de VirtualBox 7.0</li>
+                    <li>Configuración óptima de la máquina virtual (RAM, CPU, almacenamiento)</li>
+                    <li>Descarga de Ubuntu Desktop 24.04 LTS</li>
                     <li>Proceso de instalación paso a paso</li>
                     <li>Configuración inicial del sistema</li>
                     <li>Primeros comandos básicos de terminal</li>
@@ -574,16 +847,45 @@
                     <li>Configuración de carpetas compartidas</li>
                 </ul>
 
-                <h4>💡 Beneficios:</h4>
-                <p>Trabajar con máquinas virtuales te permite experimentar con diferentes sistemas operativos sin afectar tu computadora principal.</p>
+                <div class="gallery">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=600&q=80" alt="VirtualBox">
+                        <div class="gallery-caption">Configuración VirtualBox</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1629654297299-c8506221ca97?auto=format&fit=crop&w=600&q=80" alt="Instalación">
+                        <div class="gallery-caption">Proceso de Instalación</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1611348523409-2f81bfa02f19?auto=format&fit=crop&w=600&q=80" alt="Ubuntu">
+                        <div class="gallery-caption">Ubuntu Desktop</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=600&q=80" alt="Terminal">
+                        <div class="gallery-caption">Terminal Linux</div>
+                    </div>
+                </div>
 
-                <h4>⚙️ Requisitos:</h4>
-                <ul>
-                    <li>4GB de RAM mínimo (8GB recomendado)</li>
-                    <li>20GB de espacio libre en disco</li>
-                    <li>Procesador con virtualización activada en BIOS</li>
-                    <li>Conexión a internet</li>
-                </ul>
+                <div class="details-section">
+                    <h4>💡 Beneficios de usar Máquinas Virtuales:</h4>
+                    <ul>
+                        <li>Experimentar con diferentes sistemas operativos sin riesgo</li>
+                        <li>Probar software en entornos aislados</li>
+                        <li>Aprender administración de sistemas de forma segura</li>
+                        <li>Crear snapshots y backups fácilmente</li>
+                    </ul>
+                </div>
+
+                <div class="details-section" style="background: linear-gradient(135deg, #f0fff4, #d4edda); border-left-color: var(--success);">
+                    <h4>⚙️ Requisitos del Sistema:</h4>
+                    <ul>
+                        <li>4GB de RAM mínimo (8GB recomendado)</li>
+                        <li>20GB de espacio libre en disco</li>
+                        <li>Procesador con virtualización activada en BIOS</li>
+                        <li>Conexión a internet para descargas</li>
+                    </ul>
+                </div>
+
             </div>
             <div class="modal-footer">
                 <button class="btn" onclick="closeModal('modal2')">Cerrar</button>
@@ -591,7 +893,7 @@
         </div>
     </div>
 
-    <!-- Modal 3: Montaje de PC -->
+    <!-- Modal 3: Layout Timeline/Pasos -->
     <div id="modal3" class="modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -599,32 +901,79 @@
                 <span class="category">Categoría: Hardware • Nivel: Intermedio</span>
                 <span class="close" onclick="closeModal('modal3')">&times;</span>
             </div>
-            <div class="modal-body">
-                <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=800&q=80" alt="PC Gaming">
-                <h4>🔧 Ensambla tu Propia Computadora</h4>
-                <p>Guía detallada paso a paso para ensamblar un ordenador desde cero. Aprende a seleccionar componentes y montarlos correctamente.</p>
+            <div class="modal-body layout-timeline">
                 
-                <h4>📦 Componentes que aprenderás a instalar:</h4>
-                <ul>
-                    <li>Placa base (motherboard) y compatibilidad</li>
-                    <li>Procesador (CPU) y sistema de refrigeración</li>
-                    <li>Memoria RAM: tipos y configuración dual channel</li>
-                    <li>Tarjeta gráfica (GPU) y alimentación</li>
-                    <li>Almacenamiento: SSD NVMe y HDD</li>
-                    <li>Fuente de alimentación: cálculo de wattage</li>
-                    <li>Caja / Gabinete y flujo de aire</li>
-                </ul>
+                <p style="font-size: 1.1rem; color: #555; margin-bottom: 25px; padding: 20px; background: var(--secondary-color); border-radius: 8px;">
+                    <strong>🔧 Guía paso a paso para ensamblar tu propio ordenador desde cero.</strong> Aprende a seleccionar componentes compatibles y montarlos correctamente.
+                </p>
 
-                <h4>🔄 Pasos del Proceso:</h4>
-                <ol>
-                    <li>Preparación del área de trabajo y herramientas</li>
-                    <li>Instalación de CPU y RAM en la placa base</li>
-                    <li>Montaje de la placa en la caja</li>
-                    <li>Conexión de la fuente de alimentación</li>
-                    <li>Instalación de GPU y almacenamiento</li>
-                    <li>Gestión profesional de cables</li>
-                    <li>Primer encendido y configuración de BIOS</li>
-                </ol>
+                <h4 style="margin-bottom: 20px;">📦 Componentes Principales:</h4>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-bottom: 30px;">
+                    <div style="padding: 15px; background: var(--secondary-color); border-radius: 8px;">
+                        <strong>Placa Base</strong><br>
+                        <small>Motherboard y compatibilidad</small>
+                    </div>
+                    <div style="padding: 15px; background: var(--secondary-color); border-radius: 8px;">
+                        <strong>Procesador</strong><br>
+                        <small>CPU y sistema de refrigeración</small>
+                    </div>
+                    <div style="padding: 15px; background: var(--secondary-color); border-radius: 8px;">
+                        <strong>Memoria RAM</strong><br>
+                        <small>Tipos y configuración dual channel</small>
+                    </div>
+                    <div style="padding: 15px; background: var(--secondary-color); border-radius: 8px;">
+                        <strong>Tarjeta Gráfica</strong><br>
+                        <small>GPU y alimentación</small>
+                    </div>
+                </div>
+
+                <h4 style="margin-bottom: 25px;">🔄 Proceso de Ensamblaje:</h4>
+                
+                <div class="timeline">
+                    <div class="timeline-item" data-step="1">
+                        <h4>Preparación del Área de Trabajo</h4>
+                        <p>Reúne todas las herramientas necesarias: destornilladores, pulsera antiestática, superficie limpia y bien iluminada. Organiza todos los componentes antes de comenzar.</p>
+                    </div>
+
+                    <div class="timeline-item" data-step="2">
+                        <h4>Instalación de CPU y RAM</h4>
+                        <p>Instala el procesador en el socket de la placa base con cuidado, aplicando pasta térmica si es necesario. Luego instala los módulos de RAM en los slots correspondientes activando el dual channel.</p>
+                    </div>
+
+                    <div class="timeline-item" data-step="3">
+                        <h4>Montaje de la Placa en la Caja</h4>
+                        <p>Coloca los separadores en la caja, instala la placa base y fíjala con los tornillos. Conecta el panel frontal (USB, audio, power switch).</p>
+                    </div>
+
+                    <div class="timeline-item" data-step="4">
+                        <h4>Instalación de la Fuente de Alimentación</h4>
+                        <p>Monta la fuente en la caja y conecta los cables principales: 24-pin ATX, 8-pin CPU, y deja preparados los cables PCIe para la GPU.</p>
+                    </div>
+
+                    <div class="timeline-item" data-step="5">
+                        <h4>Instalación de GPU y Almacenamiento</h4>
+                        <p>Instala la tarjeta gráfica en el slot PCIe x16, conecta los cables de alimentación. Luego instala los SSDs NVMe o HDDs en sus bahías correspondientes.</p>
+                    </div>
+
+                    <div class="timeline-item" data-step="6">
+                        <h4>Gestión de Cables</h4>
+                        <p>Organiza todos los cables usando bridas, deja espacio para el flujo de aire. Conecta los cables de datos SATA si es necesario.</p>
+                    </div>
+
+                    <div class="timeline-item" data-step="7">
+                        <h4>Primer Encendido y BIOS</h4>
+                        <p>Conecta monitor, teclado y ratón. Enciende el equipo y entra en la BIOS para verificar temperaturas, configurar XMP para la RAM y establecer el orden de boot.</p>
+                    </div>
+                </div>
+
+                <div style="padding: 20px; background: linear-gradient(135deg, #fff3cd, #ffeaa7); border-radius: 8px; border-left: 4px solid #fdcb6e;">
+                    <strong>⚠️ Consejos Importantes:</strong><br>
+                    • Siempre trabaja en una superficie antiestática<br>
+                    • Usa una pulsera antiestática si es posible<br>
+                    • Nunca forces los componentes<br>
+                    • Verifica la compatibilidad antes de comprar
+                </div>
+
             </div>
             <div class="modal-footer">
                 <button class="btn" onclick="closeModal('modal3')">Cerrar</button>
@@ -632,7 +981,7 @@
         </div>
     </div>
 
-    <!-- Modal 4: HTML Avanzado -->
+    <!-- Modal 4: Layout con Código -->
     <div id="modal4" class="modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -640,20 +989,83 @@
                 <span class="category">Categoría: Web • Nivel: Intermedio</span>
                 <span class="close" onclick="closeModal('modal4')">&times;</span>
             </div>
-            <div class="modal-body">
-                <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80" alt="HTML Avanzado">
-                <h4>🚀 Estructuras Complejas en HTML</h4>
-                <p>Domina las técnicas avanzadas de HTML5 para crear sitios web profesionales, accesibles y optimizados para SEO.</p>
+            <div class="modal-body layout-code">
                 
+                <p style="font-size: 1.1rem; color: #555; margin-bottom: 25px;">
+                    <strong>🚀 Domina las técnicas avanzadas de HTML5</strong> para crear sitios web profesionales, accesibles y optimizados para SEO.
+                </p>
+
                 <h4>📚 Temas Avanzados:</h4>
                 <ul>
-                    <li>HTML5 semántico avanzado: article, section, aside, figure</li>
+                    <li>HTML5 semántico avanzado: article, section, aside, figure, figcaption</li>
                     <li>Microdatos y Schema.org para SEO estructurado</li>
-                    <li>ARIA labels y roles para accesibilidad WCAG</li>
+                    <li>ARIA labels y roles para accesibilidad WCAG 2.1</li>
                     <li>Formularios avanzados con validación nativa</li>
                     <li>APIs de HTML5: LocalStorage, Geolocation, Canvas</li>
                     <li>Elementos multimedia: audio, video, source, track</li>
                 </ul>
+
+                <h4>🔍 Ejemplo de Código: Estructura Semántica</h4>
+                <div class="code-section">
+                    <div class="code-block">
+<span class="comment">&lt;!-- Estructura HTML5 semántica con accesibilidad --&gt;</span>
+<span class="tag">&lt;!DOCTYPE</span> <span class="attr">html</span><span class="tag">&gt;</span>
+<span class="tag">&lt;html</span> <span class="attr">lang=</span><span class="value">"es"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;head&gt;</span>
+    <span class="tag">&lt;meta</span> <span class="attr">charset=</span><span class="value">"UTF-8"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;meta</span> <span class="attr">name=</span><span class="value">"viewport"</span> <span class="attr">content=</span><span class="value">"width=device-width"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;title&gt;</span>Mi Sitio Web<span class="tag">&lt;/title&gt;</span>
+<span class="tag">&lt;/head&gt;</span>
+<span class="tag">&lt;body&gt;</span>
+    <span class="tag">&lt;header</span> <span class="attr">role=</span><span class="value">"banner"</span><span class="tag">&gt;</span>
+        <span class="tag">&lt;nav</span> <span class="attr">aria-label=</span><span class="value">"Menú principal"</span><span class="tag">&gt;</span>
+            <span class="tag">&lt;ul&gt;</span>
+                <span class="tag">&lt;li&gt;&lt;a</span> <span class="attr">href=</span><span class="value">"#inicio"</span> <span class="attr">aria-current=</span><span class="value">"page"</span><span class="tag">&gt;</span>Inicio<span class="tag">&lt;/a&gt;&lt;/li&gt;</span>
+                <span class="tag">&lt;li&gt;&lt;a</span> <span class="attr">href=</span><span class="value">"#servicios"</span><span class="tag">&gt;</span>Servicios<span class="tag">&lt;/a&gt;&lt;/li&gt;</span>
+            <span class="tag">&lt;/ul&gt;</span>
+        <span class="tag">&lt;/nav&gt;</span>
+    <span class="tag">&lt;/header&gt;</span>
+    
+    <span class="tag">&lt;main&gt;</span>
+        <span class="tag">&lt;article&gt;</span>
+            <span class="tag">&lt;h1&gt;</span>Título del Artículo<span class="tag">&lt;/h1&gt;</span>
+            <span class="tag">&lt;p&gt;</span>Contenido...<span class="tag">&lt;/p&gt;</span>
+        <span class="tag">&lt;/article&gt;</span>
+    <span class="tag">&lt;/main&gt;</span>
+    
+    <span class="tag">&lt;footer</span> <span class="attr">role=</span><span class="value">"contentinfo"</span><span class="tag">&gt;</span>
+        <span class="tag">&lt;p&gt;</span>&copy; 2024<span class="tag">&lt;/p&gt;</span>
+    <span class="tag">&lt;/footer&gt;</span>
+<span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span>
+                    </div>
+                </div>
+
+                <h4>🎯 Proyectos Prácticos:</h4>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin: 20px 0;">
+                    <div style="padding: 15px; background: #f8f9ff; border-radius: 8px; border-left: 3px solid var(--primary-color);">
+                        <strong>Menús Multinivel Accesibles</strong><br>
+                        <small>Navegación con teclado y screen readers</small>
+                    </div>
+                    <div style="padding: 15px; background: #f8f9ff; border-radius: 8px; border-left: 3px solid var(--primary-color);">
+                        <strong>Tablas de Datos Avanzadas</strong><br>
+                        <small>Con sorting y filtrado</small>
+                    </div>
+                    <div style="padding: 15px; background: #f8f9ff; border-radius: 8px; border-left: 3px solid var(--primary-color);">
+                        <strong>Galerías Responsive</strong><br>
+                        <small>Imágenes accesibles con lazy loading</small>
+                    </div>
+                    <div style="padding: 15px; background: #f8f9ff; border-radius: 8px; border-left: 3px solid var(--primary-color);">
+                        <strong>Formularios Multipaso</strong><br>
+                        <small>Validación en tiempo real</small>
+                    </div>
+                </div>
+
+                <div style="padding: 20px; background: linear-gradient(135deg, #f0fff4, #d4edda); border-radius: 8px; border-left: 4px solid var(--success);">
+                    <strong>♿ Accesibilidad Web (WCAG 2.1):</strong><br>
+                    Aprende a hacer tus sitios web accesibles para todos los usuarios, incluyendo aquellos que utilizan lectores de pantalla, navegación por teclado o tienen discapacidades visuales.
+                </div>
+
             </div>
             <div class="modal-footer">
                 <button class="btn" onclick="closeModal('modal4')">Cerrar</button>
@@ -661,7 +1073,7 @@
         </div>
     </div>
 
-    <!-- Modal 5: VPN -->
+    <!-- Modal 5: Layout con Tabs -->
     <div id="modal5" class="modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -669,28 +1081,116 @@
                 <span class="category">Categoría: Redes • Nivel: Intermedio</span>
                 <span class="close" onclick="closeModal('modal5')">&times;</span>
             </div>
-            <div class="modal-body">
-                <img src="https://images.unsplash.com/photo-1507721999472-8ed4421c4af2?auto=format&fit=crop&w=800&q=80" alt="VPN">
-                <h4>🔐 Conexión Segura a Internet</h4>
-                <p>Aprende a configurar y usar VPNs para proteger tu privacidad y conectarte de forma segura desde cualquier lugar del mundo.</p>
+            <div class="modal-body layout-tabs">
                 
-                <h4>📋 Contenido:</h4>
-                <ul>
-                    <li>¿Qué es una VPN y cómo funciona el túnel encriptado?</li>
-                    <li>Tipos de protocolos: OpenVPN, WireGuard, IKEv2, L2TP</li>
-                    <li>Configuración de VPN cliente en Windows 10/11</li>
-                    <li>Configuración de VPN en Linux (Ubuntu/Debian)</li>
-                    <li>VPN en routers domésticos compatibles</li>
-                    <li>Creación de tu propio servidor VPN con OpenVPN</li>
-                </ul>
+                <p style="font-size: 1.1rem; color: #555; margin-bottom: 20px;">
+                    <strong>🔐 Aprende a configurar y usar VPNs</strong> para proteger tu privacidad y conectarte de forma segura.
+                </p>
 
-                <h4>✅ Beneficios de usar VPN:</h4>
-                <ul>
-                    <li>Encriptación de datos en tránsito</li>
-                    <li>Ocultar tu dirección IP real</li>
-                    <li>Acceso a contenido georrestringido</li>
-                    <li>Navegación segura en redes WiFi públicas</li>
-                </ul>
+                <div class="tabs-container">
+                    <div class="tabs-header">
+                        <button class="tab-btn active" onclick="switchTab('modal5', 'tab1')">📋 Conceptos Básicos</button>
+                        <button class="tab-btn" onclick="switchTab('modal5', 'tab2')">⚙️ Configuración</button>
+                        <button class="tab-btn" onclick="switchTab('modal5', 'tab3')">🛡️ Seguridad</button>
+                        <button class="tab-btn" onclick="switchTab('modal5', 'tab4')">📱 Dispositivos</button>
+                    </div>
+
+                    <div id="tab1" class="tab-content active">
+                        <h4>¿Qué es una VPN?</h4>
+                        <p>Una VPN (Virtual Private Network) crea un túnel encriptado entre tu dispositivo e internet, protegiendo tus datos de miradas indiscretas.</p>
+                        
+                        <h4>Tipos de Protocolos:</h4>
+                        <ul>
+                            <li><strong>OpenVPN:</strong> Código abierto, muy seguro y configurable</li>
+                            <li><strong>WireGuard:</strong> Moderno, rápido y con menos código</li>
+                            <li><strong>IKEv2/IPSec:</strong> Ideal para móviles, reconexión rápida</li>
+                            <li><strong>L2TP/IPSec:</strong> Compatible universalmente</li>
+                        </ul>
+
+                        <div style="padding: 15px; background: var(--secondary-color); border-radius: 8px; margin-top: 15px;">
+                            <strong>💡 ¿Cómo funciona?</strong><br>
+                            Tu tráfico → Encriptación → Túnel VPN → Servidor VPN → Internet<br>
+                            (Todo encriptado y seguro)
+                        </div>
+                    </div>
+
+                    <div id="tab2" class="tab-content">
+                        <h4>Configuración Paso a Paso:</h4>
+                        
+                        <h5>Windows 10/11:</h5>
+                        <ol>
+                            <li>Configuración → Red e Internet → VPN</li>
+                            <li>Añadir conexión VPN</li>
+                            <li>Seleccionar proveedor: Windows (integrado)</li>
+                            <li>Introducir datos del servidor VPN</li>
+                            <li>Guardar y conectar</li>
+                        </ol>
+
+                        <h5>Linux (Ubuntu):</h5>
+                        <div class="code-section">
+                            <div class="code-block" style="padding: 15px; font-size: 0.85rem;">
+<span class="comment"># Instalar OpenVPN</span>
+sudo apt update
+sudo apt install openvpn
+
+<span class="comment"># Descargar configuración</span>
+sudo openvpn --config cliente.ovpn
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="tab3" class="tab-content">
+                        <h4>Características de Seguridad:</h4>
+                        <ul>
+                            <li><strong>Encriptación AES-256:</strong> Nivel militar de seguridad</li>
+                            <li><strong>Kill Switch:</strong> Corta internet si la VPN falla</li>
+                            <li><strong>DNS Leak Protection:</strong> Evita fugas de DNS</li>
+                            <li><strong>Split Tunneling:</strong> Divide tráfico VPN/no VPN</li>
+                            <li><strong>Perfect Forward Secrecy:</strong> Claves únicas por sesión</li>
+                        </ul>
+
+                        <div style="padding: 15px; background: linear-gradient(135deg, #f0fff4, #d4edda); border-radius: 8px; margin-top: 15px;">
+                            <strong>✅ Beneficios:</strong><br>
+                            • Encriptación de datos en tránsito<br>
+                            • Ocultar tu dirección IP real<br>
+                            • Acceso a contenido georrestringido<br>
+                            • Navegación segura en WiFi público
+                        </div>
+                    </div>
+
+                    <div id="tab4" class="tab-content">
+                        <h4>Configuración por Dispositivo:</h4>
+                        
+                        <div style="margin: 15px 0;">
+                            <strong>📱 Android/iOS:</strong>
+                            <ul>
+                                <li>Descargar app del proveedor VPN</li>
+                                <li>Iniciar sesión y conectar</li>
+                                <li>O configurar manualmente en Ajustes</li>
+                            </ul>
+                        </div>
+
+                        <div style="margin: 15px 0;">
+                            <strong>🖥️ Router:</strong>
+                            <ul>
+                                <li>Acceder a panel de administración (192.168.1.1)</li>
+                                <li>Sección VPN Client</li>
+                                <li>Subir archivo .ovpn</li>
+                                <li>Conectar</li>
+                            </ul>
+                        </div>
+
+                        <div style="margin: 15px 0;">
+                            <strong>🐧 Linux:</strong>
+                            <ul>
+                                <li>Network Manager → VPN</li>
+                                <li>Importar configuración</li>
+                                <li>Conectar desde menú de red</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
             </div>
             <div class="modal-footer">
                 <button class="btn" onclick="closeModal('modal5')">Cerrar</button>
@@ -698,7 +1198,7 @@
         </div>
     </div>
 
-    <!-- Modal 6: Edición de Video -->
+    <!-- Modal 6: Layout Video + Galería + Detalles -->
     <div id="modal6" class="modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -706,97 +1206,93 @@
                 <span class="category">Categoría: Multimedia • Nivel: Intermedio</span>
                 <span class="close" onclick="closeModal('modal6')">&times;</span>
             </div>
-            <div class="modal-body">
-                <img src="https://images.unsplash.com/photo-1536240478700-b869070f9279?auto=format&fit=crop&w=800&q=80" alt="Edición de Video">
-                <h4>🎬 Crea Videos Profesionales con Software Gratuito</h4>
-                <p>Aprende edición de video desde cero utilizando herramientas gratuitas y de código abierto de nivel profesional.</p>
+            <div class="modal-body layout-video">
                 
-                <h4>💻 Software que aprenderás:</h4>
-                <ul>
-                    <li>DaVinci Resolve (versión gratuita completa)</li>
-                    <li>Shotcut: editor ligero y potente</li>
-                    <li>OpenShot: ideal para principiantes</li>
-                    <li>Kdenlive: edición avanzada en Linux</li>
-                </ul>
+                <div class="video-wrapper">
+                    <video controls poster="https://images.unsplash.com/photo-1536240478700-b869070f9279?auto=format&fit=crop&w=1200&q=80">
+                        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                        Tu navegador no soporta el elemento de video.
+                    </video>
+                </div>
 
-                <h4>📚 Temas del Curso:</h4>
+                <div class="intro-text">
+                    <strong>🎬 Curso Completo de Edición:</strong> Aprende a crear videos profesionales utilizando software gratuito y de código abierto de nivel profesional.
+                </div>
+
+                <h4>💻 Software que Aprenderás:</h4>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin: 20px 0;">
+                    <div style="padding: 12px; background: #1e1e1e; color: white; border-radius: 6px; text-align: center;">
+                        <strong>DaVinci Resolve</strong><br>
+                        <small style="color: #aaa;">Versión gratuita completa</small>
+                    </div>
+                    <div style="padding: 12px; background: #1e1e1e; color: white; border-radius: 6px; text-align: center;">
+                        <strong>Shotcut</strong><br>
+                        <small style="color: #aaa;">Ligero y potente</small>
+                    </div>
+                    <div style="padding: 12px; background: #1e1e1e; color: white; border-radius: 6px; text-align: center;">
+                        <strong>OpenShot</strong><br>
+                        <small style="color: #aaa;">Ideal principiantes</small>
+                    </div>
+                    <div style="padding: 12px; background: #1e1e1e; color: white; border-radius: 6px; text-align: center;">
+                        <strong>Kdenlive</strong><br>
+                        <small style="color: #aaa;">Edición avanzada Linux</small>
+                    </div>
+                </div>
+
+                <h4>📚 Temario del Curso:</h4>
                 <ul>
                     <li>Importación y organización de material multimedia</li>
                     <li>Línea de tiempo: cortes, trimming y ripple edit</li>
                     <li>Transiciones profesionales y efectos visuales</li>
-                    <li>Corrección de color básica y grading</li>
+                    <li>Corrección de color básica y grading avanzado</li>
                     <li>Edición de audio: limpieza, normalización y mezcla</li>
-                    <li>Exportación: codecs, formatos y optimización para YouTube/TikTok</li>
+                    <li>Títulos animados, lower thirds y gráficos</li>
+                    <li>Exportación: codecs, formatos y optimización para YouTube/TikTok/Instagram</li>
                 </ul>
+
+                <div class="gallery">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=600&q=80" alt="Edición">
+                        <div class="gallery-caption">Línea de Tiempo</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1535016120720-40c646be5580?auto=format&fit=crop&w=600&q=80" alt="Color">
+                        <div class="gallery-caption">Corrección de Color</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1598550476439-6847785fcea6?auto=format&fit=crop&w=600&q=80" alt="Audio">
+                        <div class="gallery-caption">Edición de Audio</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=600&q=80" alt="Export">
+                        <div class="gallery-caption">Exportación</div>
+                    </div>
+                </div>
+
+                <div class="details-section">
+                    <h4>🎯 Proyectos Prácticos que Realizarás:</h4>
+                    <ul>
+                        <li><strong>Video Promocional:</strong> 60 segundos con música y transiciones</li>
+                        <li><strong>Tutorial Educativo:</strong> Con pantalla compartida y voz en off</li>
+                        <li><strong>Reel para Redes:</strong> Formato vertical optimizado para TikTok/Instagram</li>
+                        <li><strong>Documental Corto:</strong> Narrativa visual con entrevistas</li>
+                    </ul>
+                </div>
+
+                <div class="details-section" style="background: linear-gradient(135deg, #fff8f0, #fff3cd); border-left-color: var(--accent);">
+                    <h4>💡 Consejos Profesionales:</h4>
+                    <ul>
+                        <li>Composición visual: regla de tercios y leading lines</li>
+                        <li>Ritmo de edición: mantener la atención del espectador</li>
+                        <li>Storytelling: contar historias que conecten</li>
+                        <li>Color theory: paletas que transmitan emociones</li>
+                        <li>Atención desde el primer segundo (hook)</li>
+                    </ul>
+                </div>
+
             </div>
             <div class="modal-footer">
                 <button class="btn" onclick="closeModal('modal6')">Cerrar</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal 7: Python -->
-    <div id="modal7" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>Python desde Cero</h3>
-                <span class="category">Categoría: Programación • Nivel: Principiante</span>
-                <span class="close" onclick="closeModal('modal7')">&times;</span>
-            </div>
-            <div class="modal-body">
-                <img src="https://images.unsplash.com/photo-1526379095098-d400fd0bf935?auto=format&fit=crop&w=800&q=80" alt="Python">
-                <h4>🐍 Aprende Programación con Python</h4>
-                <p>Iníciate en el mundo de la programación con Python, el lenguaje más versátil y demandado del mercado.</p>
-                
-                <h4>📚 Contenido del Curso:</h4>
-                <ul>
-                    <li>Sintaxis básica: variables, tipos de datos y operadores</li>
-                    <li>Estructuras de control: if, for, while y funciones</li>
-                    <li>Estructuras de datos: listas, tuplas, diccionarios y sets</li>
-                    <li>Manejo de archivos: lectura y escritura de TXT, CSV y JSON</li>
-                    <li>Librerías esenciales: datetime, random, os, requests</li>
-                    <li>Proyecto final: Organizador automático de archivos</li>
-                </ul>
-
-                <h4>🎯 ¿Por qué Python?</h4>
-                <p>Python es ideal para automatización, análisis de datos, desarrollo web, inteligencia artificial y scripting. Su sintaxis clara lo hace perfecto para principiantes.</p>
-            </div>
-            <div class="modal-footer">
-                <button class="btn" onclick="closeModal('modal7')">Cerrar</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal 8: SQL -->
-    <div id="modal8" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>SQL Esencial</h3>
-                <span class="category">Categoría: Bases de Datos • Nivel: Intermedio</span>
-                <span class="close" onclick="closeModal('modal8')">&times;</span>
-            </div>
-            <div class="modal-body">
-                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80" alt="SQL">
-                <h4>🗄️ Domina el Lenguaje de Bases de Datos</h4>
-                <p>Aprende a consultar, insertar, actualizar y gestionar datos en bases de datos relacionales con SQL.</p>
-                
-                <h4>📋 Contenido:</h4>
-                <ul>
-                    <li>Fundamentos de bases de datos relacionales</li>
-                    <li>Comandos DDL: CREATE, ALTER, DROP</li>
-                    <li>Consultas SELECT con filtros WHERE</li>
-                    <li>JOINs: INNER, LEFT, RIGHT, FULL</li>
-                    <li>Agregaciones: COUNT, SUM, AVG, GROUP BY</li>
-                    <li>Subconsultas y consultas anidadas</li>
-                    <li>Índices y optimización de consultas</li>
-                    <li>Proyecto: Diseño de base de datos para e-commerce</li>
-                </ul>
-
-                <h4>🛠️ Herramientas:</h4>
-                <p>Practicarás con MySQL, PostgreSQL y SQLite. Todos los ejemplos son compatibles con los principales sistemas de gestión de bases de datos.</p>
-            </div>
-            <div class="modal-footer">
-                <button class="btn" onclick="closeModal('modal8')">Cerrar</button>
             </div>
         </div>
     </div>
@@ -832,7 +1328,7 @@
             ¿Tienes dudas o sugerencias? Envíanos un mensaje a <strong>vitvisor28@gmail.com</strong>
         </p>
         <div class="contact-form">
-            <form action="https://formspree.io/f/xgoldllk" method="POST">
+            <form action="https://formspree.io/f/TU_ID_AQUI" method="POST">
                 <div class="form-group">
                     <label for="nombre">Nombre Completo *</label>
                     <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
@@ -849,12 +1345,8 @@
                     <label for="mensaje">Mensaje *</label>
                     <textarea id="mensaje" name="mensaje" rows="5" placeholder="Escribe tu mensaje aquí..." required></textarea>
                 </div>
-                <input type="hidden" name="_next" value="https://tusitio.com/gracias.html">
                 <button type="submit" class="submit-btn">✉️ Enviar Mensaje</button>
             </form>
-            <p style="text-align:center; margin-top:15px; font-size:0.9rem; color:#888;">
-                🔒 Tus datos están protegidos. No compartimos tu información.
-            </p>
         </div>
     </section>
 
@@ -867,25 +1359,18 @@
     <!-- JAVASCRIPT -->
     <script>
         // ============================================
-        // SISTEMA DE FILTRO DE CATEGORÍAS DINÁMICO
+        // SISTEMA DE FILTRO DE CATEGORÍAS
         // ============================================
-        
         document.addEventListener('DOMContentLoaded', function() {
-            // 1. Obtener todas las categorías únicas de las entradas
             const posts = document.querySelectorAll('.post-card');
             const categories = new Set();
             
             posts.forEach(post => {
                 const category = post.dataset.category;
-                if (category) {
-                    categories.add(category);
-                }
+                if (category) categories.add(category);
             });
             
-            // 2. Generar botones de filtro automáticamente
             const filterContainer = document.getElementById('categoryFilter');
-            
-            // Botón "Todos"
             const allBtn = document.createElement('button');
             allBtn.textContent = '📚 Todos';
             allBtn.className = 'filter-btn all active';
@@ -893,11 +1378,9 @@
             allBtn.onclick = () => filterPosts('all', allBtn);
             filterContainer.appendChild(allBtn);
             
-            // Botones por categoría (orden alfabético)
             const sortedCategories = Array.from(categories).sort();
             sortedCategories.forEach(cat => {
                 const btn = document.createElement('button');
-                // Capitalizar primera letra
                 const catName = cat.charAt(0).toUpperCase() + cat.slice(1).replace('-', ' ');
                 btn.textContent = catName;
                 btn.className = 'filter-btn';
@@ -906,22 +1389,16 @@
                 filterContainer.appendChild(btn);
             });
             
-            // 3. Actualizar contador de resultados
             updateResultsCount();
         });
         
-        // Función para filtrar entradas por categoría
         function filterPosts(category, clickedBtn) {
             const posts = document.querySelectorAll('.post-card');
             let visibleCount = 0;
             
-            // Actualizar estado activo de botones
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
             clickedBtn.classList.add('active');
             
-            // Filtrar entradas
             posts.forEach(post => {
                 if (category === 'all' || post.dataset.category === category) {
                     post.classList.remove('hidden');
@@ -931,16 +1408,13 @@
                 }
             });
             
-            // Actualizar contador
             updateResultsCount(visibleCount, posts.length);
             
-            // Scroll suave hacia las entradas si se filtró en móvil
             if (window.innerWidth < 768) {
                 document.getElementById('blogGrid').scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
         }
         
-        // Función para actualizar el contador de resultados
         function updateResultsCount(visible = null, total = null) {
             const visibleCount = visible !== null ? visible : 
                 document.querySelectorAll('.post-card:not(.hidden)').length;
@@ -950,11 +1424,10 @@
             document.getElementById('visibleCount').textContent = visibleCount;
             document.getElementById('totalCount').textContent = totalCount;
         }
-        
+
         // ============================================
         // FUNCIONES PARA MODALES
         // ============================================
-        
         function openModal(modalId) {
             document.getElementById(modalId).classList.add('show');
             document.body.style.overflow = 'hidden';
@@ -965,7 +1438,20 @@
             document.body.style.overflow = 'auto';
         }
 
-        // Cerrar modal al hacer clic fuera del contenido
+        // Función para tabs
+        function switchTab(modalId, tabId) {
+            const modal = document.getElementById(modalId);
+            const tabs = modal.querySelectorAll('.tab-content');
+            const buttons = modal.querySelectorAll('.tab-btn');
+            
+            tabs.forEach(tab => tab.classList.remove('active'));
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            document.getElementById(tabId).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Cerrar modal al hacer clic fuera
         window.onclick = function(event) {
             if (event.target.classList.contains('modal')) {
                 event.target.classList.remove('show');
@@ -983,7 +1469,7 @@
             }
         });
 
-        // Smooth scroll para enlaces del menú
+        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
