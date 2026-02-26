@@ -1,748 +1,999 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="vitvisor es una pagina web donde se puede descargar algunas plantillas para tu trabajos y mas ">
-<meta name="keywords" content="plantillas, manuales, documentos, Vitvisor, descargas">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vitvisor - Recursos Didácticos</title>
+    <style>
+        /* --- ESTILOS GENERALES --- */
+        :root {
+            --primary-color: #004aad;
+            --secondary-color: #f4f4f4;
+            --text-color: #333;
+            --white: #ffffff;
+            --accent: #ff9800;
+            --success: #28a745;
+        }
 
-<meta property="og:title" content="Vitvisor Templates">
-<meta property="og:description" content="Descarga plantillas profesionales para tus trabajos">
-<meta property="og:image" content="https://i.postimg.cc/vBS3WzLT/android_chrome_512x512.png">
-<meta property="og:url" content="https://sergiodepaz.github.io/vitvisorn/">
-<meta property="og:type" content="website">
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-<meta name="twitter:card" content="summary_large_image">
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--white);
+        }
 
-<title>Vitvisor.com</title>
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
 
-<link rel="icon" type="image/png" href="https://i.postimg.cc/vBS3WzLT/android_chrome_512x512.png">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+        /* --- NAVEGACIÓN --- */
+        .navbar {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
 
-<style>
+        .logo { font-size: 1.5rem; font-weight: bold; letter-spacing: 1px; }
+        .nav-links { display: flex; gap: 20px; }
+        .nav-links a:hover { color: var(--accent); transition: 0.3s; }
 
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter', sans-serif;}
+        /* --- HERO --- */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            padding: 0 20px;
+        }
 
-body{background:#0f172a;color:white;}
+        .hero h1 { font-size: 2.8rem; margin-bottom: 15px; }
+        .hero p { font-size: 1.15rem; max-width: 700px; margin-bottom: 25px; }
 
-.hero{
-height:400px;
-background:url('https://i.postimg.cc/W4VkHkbC/multimedia.png') center/cover no-repeat;
-display:flex;
-align-items:center;
-justify-content:center;
-position:relative;
-}
+        .btn {
+            padding: 12px 30px;
+            background-color: var(--accent);
+            color: var(--white);
+            border-radius: 5px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+        .btn:hover { background-color: #e68900; transform: translateY(-2px); }
 
-.hero::after{
-content:"";
-position:absolute;
-inset:0;
-background:rgba(0,0,0,0.6);
-}
+        /* --- CONTENEDOR --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 20px;
+        }
 
-.hero h1{
-position:relative;
-font-size:3rem;
-font-weight:800;
-}
+        h2.section-title {
+            text-align: center;
+            font-size: 2.3rem;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+            position: relative;
+        }
+        h2.section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: var(--accent);
+            margin: 10px auto 0;
+        }
 
-.search-box{
-padding:25px 5%;
-display:flex;
-justify-content:center;
-}
+        /* --- FILTRO DE CATEGORÍAS --- */
+        .category-filter {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 3rem;
+            padding: 15px;
+            background: var(--secondary-color);
+            border-radius: 8px;
+        }
 
-.search-box input{
-width:100%;
-max-width:500px;
-padding:12px 18px;
-border-radius:30px;
-border:none;
-outline:none;
-font-size:16px;
-background:#1e293b;
-color:white;
-border:2px solid #00d084;
-}
+        .filter-btn {
+            padding: 8px 20px;
+            background: var(--white);
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            border-radius: 25px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
 
-#categorias{
-display:flex;
-gap:10px;
-flex-wrap:wrap;
-justify-content:center;
-padding-bottom:10px;
-}
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--primary-color);
+            color: var(--white);
+        }
 
-#categorias button{
-background:#1e293b;
-border:2px solid #00d084;
-color:white;
-padding:6px 14px;
-border-radius:20px;
-cursor:pointer;
-}
+        .filter-btn.all {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: var(--white);
+        }
+        .filter-btn.all:hover,
+        .filter-btn.all.active {
+            background: #e68900;
+        }
 
-.container{
-padding:60px 5%;
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:30px;
-}
+        .results-count {
+            text-align: center;
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
 
-.card{
-background:#1e293b;
-border-radius:12px;
-overflow:hidden;
-cursor:pointer;
-transition:0.4s;
-display:flex;
-flex-direction:column;
-}
+        /* --- BLOG GRID --- */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
 
-.card:hover{transform:translateY(-10px);}
+        .post-card {
+            background: var(--white);
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
 
-.card img{
-width:100%;
-height:180px;
-object-fit:cover;
-}
+        .post-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,74,173,0.15);
+            border-color: var(--primary-color);
+        }
 
-.card-content{
-padding:15px;
-flex:1;
-display:flex;
-flex-direction:column;
-justify-content:space-between;
-}
+        .post-card.hidden {
+            display: none;
+        }
 
-.card-content h3{margin-bottom:10px;}
+        .post-image {
+            width: 100%;
+            height: 190px;
+            object-fit: cover;
+        }
 
-.card-content p{margin-bottom:12px;color:#cbd5e1;}
+        .post-content { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; }
+        
+        .post-category {
+            display: inline-block;
+            background: var(--secondary-color);
+            color: var(--primary-color);
+            padding: 4px 14px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            width: fit-content;
+            text-transform: capitalize;
+        }
 
-.card-content button{
-padding:8px 15px;
-background:#00d084;
-border:none;
-border-radius:6px;
-cursor:pointer;
-font-weight:600;
-}
+        .post-date { font-size: 0.85rem; color: #777; margin-bottom: 8px; }
+        .post-title { font-size: 1.35rem; margin: 5px 0 12px; color: var(--primary-color); line-height: 1.3; }
+        .post-excerpt { margin-bottom: 18px; color: #555; flex-grow: 1; }
 
-dialog{
-margin:auto;
-width:600px;
-max-width:95%;
-border:none;
-border-radius:12px;
-padding:25px;
-background:#1e293b;
-color:white;
-}
+        .read-more {
+            color: var(--primary-color);
+            font-weight: bold;
+            border-bottom: 2px solid var(--accent);
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-size: 1rem;
+            padding: 0;
+            align-self: flex-start;
+            margin-top: auto;
+        }
+        .read-more:hover { color: var(--accent); }
 
-dialog::backdrop{background:rgba(0,0,0,0.7);}
+        /* --- MODAL --- */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            overflow: auto;
+        }
+        .modal.show { display: flex; justify-content: center; align-items: center; }
 
-dialog img, video, iframe{
-width:100%;
-margin:15px 0;
-border-radius:8px;
-}
+        .modal-content {
+            background-color: var(--white);
+            border-radius: 10px;
+            width: 90%;
+            max-width: 750px;
+            max-height: 85vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            animation: slideUp 0.3s ease;
+        }
 
-.close-btn{
-float:right;
-background:red;
-color:white;
-border:none;
-padding:6px 10px;
-border-radius:6px;
-cursor:pointer;
-}
+        @keyframes slideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
 
-</style>
+        .modal-header {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 20px 25px;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        .modal-header h3 { font-size: 1.5rem; margin-bottom: 5px; }
+        .modal-header .category { font-size: 0.9rem; opacity: 0.9; }
+
+        .close {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            color: var(--white);
+            font-size: 2rem;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .close:hover { opacity: 0.8; transform: rotate(90deg); }
+
+        .modal-body { padding: 25px; }
+        .modal-body img {
+            width: 100%;
+            border-radius: 8px;
+            margin: 0 0 20px 0;
+            max-height: 280px;
+            object-fit: cover;
+        }
+        .modal-body h4 {
+            color: var(--primary-color);
+            margin: 20px 0 12px 0;
+            font-size: 1.25rem;
+        }
+        .modal-body p { margin-bottom: 14px; color: #444; }
+        .modal-body ul, .modal-body ol {
+            margin: 12px 0 18px 25px;
+            color: #444;
+        }
+        .modal-body li { margin-bottom: 8px; }
+        .modal-body ul li::before {
+            content: '✓';
+            color: var(--success);
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .modal-footer {
+            padding: 18px 25px;
+            background-color: var(--secondary-color);
+            border-radius: 0 0 10px 10px;
+            text-align: right;
+        }
+
+        /* --- SOBRE NOSOTROS --- */
+        .about-section { background-color: var(--secondary-color); padding: 4rem 0; }
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        .about-text { flex: 1; min-width: 300px; }
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            height: 300px;
+            background: #ddd url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80') center/cover;
+            border-radius: 8px;
+        }
+
+        /* --- CONTACTO --- */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--white);
+            padding: 30px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 5px; font-weight: bold; }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-family: inherit;
+        }
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .submit-btn:hover { background-color: #00337a; }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #222;
+            color: #aaa;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .navbar { flex-direction: column; gap: 15px; }
+            .hero h1 { font-size: 2rem; }
+            .hero p { font-size: 1rem; }
+            .hero { height: 50vh; }
+            .about-content { flex-direction: column; }
+            .modal-content { width: 95%; margin: 10px; }
+            .modal-header h3 { font-size: 1.3rem; padding-right: 30px; }
+            .category-filter { gap: 8px; }
+            .filter-btn { padding: 6px 15px; font-size: 0.9rem; }
+        }
+
+        @media (max-width: 480px) {
+            .container { padding: 2rem 15px; }
+            .section-title { font-size: 1.8rem; }
+            .post-title { font-size: 1.2rem; }
+        }
+    </style>
 </head>
 <body>
 
-<section class="hero">
-<h1>Vitvisor</h1>
-</section>
+    <!-- NAVEGACIÓN -->
+    <nav class="navbar">
+        <div class="logo">🎓 VITVISOR</div>
+        <ul class="nav-links">
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#blog">Recursos</a></li>
+            <li><a href="#nosotros">Nosotros</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
+    </nav>
 
-<div class="search-box">
-<input type="text" id="buscador" placeholder="Buscar plantilla...">
-</div>
+    <!-- HERO -->
+    <header id="inicio" class="hero">
+        <h1>Vitvisor - Recursos Didácticos</h1>
+        <p>Plataforma educativa con plantillas, tutoriales y guías sobre informática, programación, hardware y más.</p>
+        <button class="btn" onclick="document.getElementById('blog').scrollIntoView({behavior:'smooth'})">Explorar Recursos</button>
+    </header>
 
-<div id="categorias"></div>
+    <!-- BLOG CON FILTRO -->
+    <section id="blog" class="container">
+        <h2 class="section-title">Recursos Disponibles</h2>
+        
+        <!-- Filtro de categorías (se genera automáticamente con JS) -->
+        <div class="category-filter" id="categoryFilter">
+            <!-- Los botones se generan dinámicamente -->
+        </div>
+        
+        <p class="results-count" id="resultsCount">Mostrando <span id="visibleCount">0</span> de <span id="totalCount">0</span> recursos</p>
+        
+        <div class="blog-grid" id="blogGrid">
 
-<section class="container">
+            <!-- Entrada 1 -->
+            <article class="post-card" data-category="web">
+                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=600&q=80" alt="HTML CSS" class="post-image">
+                <div class="post-content">
+                    <span class="post-category">Web</span>
+                    <span class="post-date">HTML & CSS</span>
+                    <h3 class="post-title">HTML & CSS Básico</h3>
+                    <p class="post-excerpt">Crea tu primera página web con estilo profesional desde cero.</p>
+                    <button class="read-more" onclick="openModal('modal1')">Ver más →</button>
+                </div>
+            </article>
 
-<!-- CARD 1 -->
-<div class="card" data-categoria="Bienvenida">
-<img src="https://i.postimg.cc/DZs6z0vz/PLANTILLAS_PARA_MANUALES.png">
-<div class="card-content">
-<h3>Bienvenidos</h3>
-<button onclick="abrirProyecto(
-'BIENVENIDOS',
-'https://i.postimg.cc/DZs6z0vz/PLANTILLAS_PARA_MANUALES.png',
-'Hola a todos y bienvenidos a tu web donde aprenderas todo tipo de cosas sobre la informatica. Esta pagina a sido creada de la idea de querer compartir los conocimientos que he ido aprendiendo a lo largo del grado medio que he estudiado espero que se os sea de utilidad ',
-'https://drive.google.com/',
-null,
-[
-{tipo:'texto',contenido:'EN ESTE BLOG OS ENCONTRAREIS MUCHAS COSAS:'},
-{tipo:'imagen',contenido:'https://i.postimg.cc/W4VkHkbC/multimedia.png'},
-{tipo:'texto',contenido:'Contenido multimedia: Os encontrareis todo tipo de contenido multimeda en el que vereis imagenes, videos e incluso plantillas que podreis personalizar '},
-{tipo:'imagen',contenido:'https://i.postimg.cc/zXyBCDJ7/videos.png'},
-{tipo:'texto',contenido:'videos: dentro del apartado de videos tendreis acceso al canal de youtube donde aprendereis a hacer un monton de cosas no te las pierdas'},
-{tipo:'imagen',contenido:'https://i.postimg.cc/FzrvH4Z6/videojuegos.png'},
-{tipo:'texto',contenido:'videojuegos: En este blog tambien podremos encontrar videojuegos porque jugando tambien se aprende'},
-{tipo:'imagen',contenido:'https://i.postimg.cc/kGgxF2st/lenguaje-de-marcas-p.png'},
-{tipo:'texto',contenido:'cursos: en la pagina tambien encontraras cursos de diferentes cosas'},
-]
-)">Ver</button>
-</div>
-</div>
+            <!-- Entrada 2 -->
+            <article class="post-card" data-category="sistemas">
+                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=600&q=80" alt="Ubuntu" class="post-image">
+                <div class="post-content">
+                    <span class="post-category">Sistemas</span>
+                    <span class="post-date">Linux</span>
+                    <h3 class="post-title">Máquina Virtual Ubuntu</h3>
+                    <p class="post-excerpt">Video tutorial completo de Ubuntu para principiantes.</p>
+                    <button class="read-more" onclick="openModal('modal2')">Ver más →</button>
+                </div>
+            </article>
 
-<!-- CARD 2 -->
-<div class="card" data-categoria="Lenguaje de marcas">
-<img src="https://i.postimg.cc/SR2Bsx9t/lenguaje-de-marcas.png">
-<div class="card-content">
-<h3>Plantilla de Investigación</h3>
-<p>Formato moderno y profesional para trabajos de investigación académica.</p>
-<button onclick="abrirProyecto(
-'Plantilla de Investigación',
-'https://i.postimg.cc/y8yk7H4y/PLANTILLA_DE_INVESTIGACION.png',
-'Formato moderno para trabajos de investigación.',
-'https://drive.google.com/',
-null,
-[
-{tipo:'texto',contenido:'Objetivo y metodología'},
-{tipo:'imagen',contenido:'https://i.postimg.cc/y8yk7H4y/PLANTILLA_DE_INVESTIGACION.png'}
-]
-)">Ver</button>
-</div>
-</div>
+            <!-- Entrada 3 -->
+            <article class="post-card" data-category="hardware">
+                <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=600&q=80" alt="Hardware" class="post-image">
+                <div class="post-content">
+                    <span class="post-category">Hardware</span>
+                    <span class="post-date">Ensamblaje</span>
+                    <h3 class="post-title">Montaje de PC</h3>
+                    <p class="post-excerpt">Guía paso a paso para ensamblar un ordenador desde cero.</p>
+                    <button class="read-more" onclick="openModal('modal3')">Ver más →</button>
+                </div>
+            </article>
 
-<!-- CARD 3 -->
-<div class="card" data-categoria="Sistemas Operativos">
-<img src="https://i.postimg.cc/BbXV8vkt/creando-ubuntu.png">
-<div class="card-content">
-<h3>Creación de Máquina Virtual</h3>
-<p>Video tutorial de Ubuntu.</p>
-<button onclick="abrirProyecto(
-'Creación de Máquina Virtual',
-'https://i.postimg.cc/BbXV8vkt/creando-ubuntu.png',
-'Video tutorial de Ubuntu.',
-'https://www.youtube.com/watch?v=OL6le6Wze6Q',
-'https://www.youtube.com/watch?v=OL6le6Wze6Q',
-[
-{tipo:'youtube',contenido:'OL6le6Wze6Q'}
-]
-)">Ver</button>
-</div>
-</div>
+            <!-- Entrada 4 -->
+            <article class="post-card" data-category="web">
+                <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=600&q=80" alt="HTML Avanzado" class="post-image">
+                <div class="post-content">
+                    <span class="post-category">Web</span>
+                    <span class="post-date">HTML5</span>
+                    <h3 class="post-title">Guía HTML Avanzada</h3>
+                    <p class="post-excerpt">Aprende a crear estructuras complejas en HTML.</p>
+                    <button class="read-more" onclick="openModal('modal4')">Ver más →</button>
+                </div>
+            </article>
 
-<!-- CARD 4 -->
-<div class="card" data-categoria="Sistemas Operativos">
-<img src="https://i.postimg.cc/DZs6z0vz/PLANTILLAS_PARA_MANUALES.png">
-<div class="card-content">
-<h3>Plantilla Base</h3>
-<p>Documento editable profesional, ideal para comenzar cualquier proyecto.</p>
-<button onclick="abrirProyecto(
-'Plantilla Base',
-'https://i.postimg.cc/DZs6z0vz/PLANTILLAS_PARA_MANUALES.png',
-'Esta plantilla esta dedicada a la creacion de manuales.',
-'https://drive.google.com/file/d/11349zMGW9uMQRKAXocE3190X7Nd9g-Jo/view?usp=sharing',
-null,
-[
-{tipo:'imagen',contenido:'https://i.postimg.cc/Px9cHLQf/captura1.png'},
-{tipo:'texto',contenido:'Explicación del uso'},
-{tipo:'imagen',contenido:'https://i.postimg.cc/wvwqQkzs/captura2.png'}
-]
-)">Ver</button>
-</div>
-</div>
+            <!-- Entrada 5 -->
+            <article class="post-card" data-category="redes">
+                <img src="https://images.unsplash.com/photo-1507721999472-8ed4421c4af2?auto=format&fit=crop&w=600&q=80" alt="VPN" class="post-image">
+                <div class="post-content">
+                    <span class="post-category">Redes</span>
+                    <span class="post-date">Seguridad</span>
+                    <h3 class="post-title">Configuración VPN</h3>
+                    <p class="post-excerpt">Conéctate de forma segura a internet desde cualquier lugar.</p>
+                    <button class="read-more" onclick="openModal('modal5')">Ver más →</button>
+                </div>
+            </article>
 
+            <!-- Entrada 6 -->
+            <article class="post-card" data-category="multimedia">
+                <img src="https://images.unsplash.com/photo-1536240478700-b869070f9279?auto=format&fit=crop&w=600&q=80" alt="Video" class="post-image">
+                <div class="post-content">
+                    <span class="post-category">Multimedia</span>
+                    <span class="post-date">Edición</span>
+                    <h3 class="post-title">Edición de Video</h3>
+                    <p class="post-excerpt">Aprende a crear videos profesionales con software gratuito.</p>
+                    <button class="read-more" onclick="openModal('modal6')">Ver más →</button>
+                </div>
+            </article>
 
-<!-- CARD 5 -->
-<div class="card" data-categoria="Lenguaje de marcas">
-<img src="https://i.postimg.cc/SR2Bsx9t/lenguaje-de-marcas.png">
-<div class="card-content">
-<h3>Creación de Máquina Virtual</h3>
-<p>Video tutorial de Ubuntu.</p>
-<button onclick="abrirProyecto(
-'Creación de Máquina Virtual',
-'https://i.postimg.cc/BbXV8vkt/creando-ubuntu.png',
-'Video tutorial de Ubuntu.',
-'https://www.youtube.com/watch?v=OL6le6Wze6Q',
-'https://www.youtube.com/watch?v=OL6le6Wze6Q',
-[
-{tipo:'youtube',contenido:'OL6le6Wze6Q'}
-]
-)">Ver</button>
-</div>
-</div>
+            <!-- Entrada 7 - NUEVA CATEGORÍA: Python -->
+            <article class="post-card" data-category="programacion">
+                <img src="https://images.unsplash.com/photo-1526379095098-d400fd0bf935?auto=format&fit=crop&w=600&q=80" alt="Python" class="post-image">
+                <div class="post-content">
+                    <span class="post-category">Programación</span>
+                    <span class="post-date">Python</span>
+                    <h3 class="post-title">Python desde Cero</h3>
+                    <p class="post-excerpt">Aprende programación con el lenguaje más versátil y demandado.</p>
+                    <button class="read-more" onclick="openModal('modal7')">Ver más →</button>
+                </div>
+            </article>
 
-<!-- CARD 6 -->
-<div class="card" data-categoria="Lenguaje de marcas">
-<img src="https://i.postimg.cc/SR2Bsx9t/lenguaje-de-marcas.png">
-<div class="card-content">
-<h3>Creación de Máquina Virtual</h3>
-<p>Video tutorial de Ubuntu.</p>
-<button onclick="abrirProyecto(
-'Creación de Máquina Virtual',
-'https://i.postimg.cc/BbXV8vkt/creando-ubuntu.png',
-'Video tutorial de Ubuntu.',
-'https://www.youtube.com/watch?v=OL6le6Wze6Q',
-'https://www.youtube.com/watch?v=OL6le6Wze6Q',
-[
-{tipo:'youtube',contenido:'OL6le6Wze6Q'}
-]
-)">Ver</button>
-</div>
-</div>
+            <!-- Entrada 8 - NUEVA CATEGORÍA: Bases de Datos -->
+            <article class="post-card" data-category="bases-datos">
+                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=600&q=80" alt="SQL" class="post-image">
+                <div class="post-content">
+                    <span class="post-category">Bases de Datos</span>
+                    <span class="post-date">SQL</span>
+                    <h3 class="post-title">SQL Esencial</h3>
+                    <p class="post-excerpt">Domina el lenguaje de bases de datos con ejemplos prácticos.</p>
+                    <button class="read-more" onclick="openModal('modal8')">Ver más →</button>
+                </div>
+            </article>
 
-<!-- CARD 7 -->
-<div class="card" data-categoria="Lenguaje de marcas">
-<img src="https://i.postimg.cc/SR2Bsx9t/lenguaje-de-marcas.png">
-<div class="card-content">
-<h3>Creación de Máquina Virtual</h3>
-<p>Video tutorial de Ubuntu.</p>
-<button onclick="abrirProyecto(
-'Creación de Máquina Virtual',
-'https://i.postimg.cc/BbXV8vkt/creando-ubuntu.png',
-'Video tutorial de Ubuntu.',
-'https://www.youtube.com/watch?v=OL6le6Wze6Q',
-'https://www.youtube.com/watch?v=OL6le6Wze6Q',
-[
-{tipo:'youtube',contenido:'OL6le6Wze6Q'}
-]
-)">Ver</button>
-</div>
-</div>
+        </div>
+    </section>
 
-<!-- CARD 12 -->
-<div class="card" data-categoria="Hardware">
-<img src="https://i.postimg.cc/W4VkHkbC/multimedia.png">
-<div class="card-content">
-<h3>Guía de Placa Base</h3>
-<p>Conoce todo sobre la instalación y componentes de la motherboard.</p>
-<button onclick="abrirProyecto(
-'Guía de Placa Base',
-'https://i.postimg.cc/dVt6Hk1B/placa-base.png',
-'Tutorial completo de instalación y tipos de placas base.',
-'https://www.youtube.com/watch?v=mb12345',
-'https://www.youtube.com/watch?v=mb12345',
-[
-{tipo:'youtube',contenido:'mb12345'},
-{tipo:'texto',contenido:'Incluye slots, puertos, BIOS y compatibilidad de componentes'}
-]
-)">Ver</button>
-</div>
-</div>
+    <!-- MODALES CON CONTENIDO -->
+    
+    <!-- Modal 1: HTML & CSS -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>HTML & CSS Básico</h3>
+                <span class="category">Categoría: Web • Nivel: Principiante</span>
+                <span class="close" onclick="closeModal('modal1')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80" alt="HTML CSS">
+                <h4>📚 Descripción</h4>
+                <p>Aprende a crear tu primera página web con estilo profesional desde cero. Este recurso te guiará paso a paso en los fundamentos del desarrollo web.</p>
+                
+                <h4>✅ Contenido Incluido:</h4>
+                <ul>
+                    <li>Estructura básica de HTML5 y etiquetas semánticas</li>
+                    <li>Fundamentos de CSS3: selectores, propiedades y box model</li>
+                    <li>Colores, fuentes, tipografía y espaciado</li>
+                    <li>Posicionamiento básico y diseño responsive</li>
+                    <li>Creación de un proyecto práctico: portafolio personal</li>
+                </ul>
 
-<!-- CARD 11 -->
-<div class="card" data-categoria="Redes">
-<img src="https://i.postimg.cc/W4VkHkbC/multimedia.png">
-<div class="card-content">
-<h3>Configuración VPN</h3>
-<p>Conéctate de forma segura a internet desde cualquier lugar.</p>
-<button onclick="abrirProyecto(
-'Configuración VPN',
-'https://i.postimg.cc/2y9B5x7t/vpn.png',
-'Aprende a configurar una VPN en Windows y Linux.',
-'https://www.youtube.com/watch?v=vpn1234',
-'https://www.youtube.com/watch?v=vpn1234',
-[
-{tipo:'youtube',contenido:'vpn1234'},
-{tipo:'texto',contenido:'Incluye instalación de clientes y comprobación de conexión segura'}
-]
-)">Ver</button>
-</div>
-</div>
+                <h4>🎯 ¿Qué aprenderás?</h4>
+                <p>Al finalizar, podrás crear páginas web estáticas con diseño profesional. Entenderás la relación entre HTML (estructura) y CSS (presentación), y aplicarás buenas prácticas de accesibilidad.</p>
 
-<!-- CARD 10 -->
-<div class="card" data-categoria="Programación">
-<img src="https://i.postimg.cc/W4VkHkbC/multimedia.png">
-<div class="card-content">
-<h3>HTML & CSS Básico</h3>
-<p>Crea tu primera página web con estilo profesional.</p>
-<button onclick="abrirProyecto(
-'HTML & CSS Básico',
-'https://i.postimg.cc/tC2yXk3d/html-css.png',
-'Aprende a estructurar páginas web y aplicar estilos básicos.',
-'https://www.youtube.com/watch?v=web1234',
-'https://www.youtube.com/watch?v=web1234',
-[
-{tipo:'youtube',contenido:'web1234'},
-{tipo:'texto',contenido:'Incluye etiquetas HTML, clases, IDs y selectores CSS'}
-]
-)">Ver</button>
-</div>
-</div>
+                <h4>🛠️ Requisitos:</h4>
+                <ul>
+                    <li>Computadora con conexión a internet</li>
+                    <li>Editor de texto (VS Code recomendado)</li>
+                    <li>Navegador web actualizado</li>
+                    <li><strong>No se requieren conocimientos previos</strong></li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button class="btn" onclick="closeModal('modal1')">Cerrar</button>
+            </div>
+        </div>
+    </div>
 
-<!-- CARD 9 -->
-<div class="card" data-categoria="Multimedia">
-<img src="https://i.postimg.cc/W4VkHkbC/multimedia.png">
-<div class="card-content">
-<h3>Edición de Video</h3>
-<p>Aprende a crear videos profesionales con software gratuito.</p>
-<button onclick="abrirProyecto(
-'Edición de Video',
-'https://i.postimg.cc/J7vXf1kY/edicion-video.png',
-'Tutorial de edición con herramientas como DaVinci Resolve.',
-'https://www.youtube.com/watch?v=qrst6789',
-'https://www.youtube.com/watch?v=qrst6789',
-[
-{tipo:'youtube',contenido:'qrst6789'},
-{tipo:'imagen',contenido:'https://i.postimg.cc/VsF8r9Xd/linea-tiempo.png'},
-{tipo:'texto',contenido:'Aprende sobre cortes, efectos, transiciones y exportación de videos'}
-]
-)">Ver</button>
-</div>
-</div>
+    <!-- Modal 2: Ubuntu VM -->
+    <div id="modal2" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Máquina Virtual - Ubuntu</h3>
+                <span class="category">Categoría: Sistemas • Nivel: Principiante</span>
+                <span class="close" onclick="closeModal('modal2')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80" alt="Ubuntu">
+                <h4>🎬 Video Tutorial Completo</h4>
+                <p>Aprende a crear e instalar una máquina virtual con Ubuntu desde cero. Ideal para principiantes que quieren aprender Linux sin riesgo.</p>
+                
+                <h4>📋 Contenido del Tutorial:</h4>
+                <ul>
+                    <li>Descarga e instalación de VirtualBox</li>
+                    <li>Configuración óptima de la máquina virtual</li>
+                    <li>Descarga de Ubuntu Desktop LTS</li>
+                    <li>Proceso de instalación paso a paso</li>
+                    <li>Configuración inicial del sistema</li>
+                    <li>Primeros comandos básicos de terminal</li>
+                    <li>Instalación de Guest Additions</li>
+                    <li>Configuración de carpetas compartidas</li>
+                </ul>
 
-<!-- CARD 8 -->
-<div class="card" data-categoria="Hardware">
-<img src="https://i.postimg.cc/W4VkHkbC/multimedia.png">
-<div class="card-content">
-<h3>Montaje de PC</h3>
-<p>Guía paso a paso para ensamblar un ordenador desde cero.</p>
-<button onclick="abrirProyecto(
-'Montaje de PC',
-'https://i.postimg.cc/4NwXqFqV/pc-armado.png',
-'Aprende a montar un PC correctamente con esta guía.',
-'https://www.youtube.com/watch?v=abcd1234',
-'https://www.youtube.com/watch?v=abcd1234',
-[
-{tipo:'youtube',contenido:'abcd1234'},
-{tipo:'imagen',contenido:'https://i.postimg.cc/5tZx1H8G/piezas-pc.png'},
-{tipo:'texto',contenido:'Conoce las piezas y herramientas necesarias para montar tu PC'}
-]
-)">Ver</button>
-</div>
-</div>
+                <h4>💡 Beneficios:</h4>
+                <p>Trabajar con máquinas virtuales te permite experimentar con diferentes sistemas operativos sin afectar tu computadora principal.</p>
 
-<!-- CARD 13 -->
-<div class="card" data-categoria="Lenguaje de marcas">
-<img src="https://i.postimg.cc/SR2Bsx9t/lenguaje-de-marcas.png">
-<div class="card-content">
-<h3>Guía HTML Avanzada</h3>
-<p>Aprende a crear estructuras complejas en HTML.</p>
-<button onclick="abrirProyecto(
-'Guía HTML Avanzada',
-'https://i.postimg.cc/SR2Bsx9t/lenguaje-de-marcas.png',
-'Tutorial sobre etiquetas avanzadas y buenas prácticas.',
-'https://www.youtube.com/watch?v=HTML123',
-'https://www.youtube.com/watch?v=HTML123',
-[
-{tipo:'youtube',contenido:'HTML123'},
-{tipo:'texto',contenido:'Aprende a usar tablas, formularios y elementos semánticos'}
-]
-)">Ver</button>
-</div>
-</div>
+                <h4>⚙️ Requisitos:</h4>
+                <ul>
+                    <li>4GB de RAM mínimo (8GB recomendado)</li>
+                    <li>20GB de espacio libre en disco</li>
+                    <li>Procesador con virtualización activada en BIOS</li>
+                    <li>Conexión a internet</li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button class="btn" onclick="closeModal('modal2')">Cerrar</button>
+            </div>
+        </div>
+    </div>
 
-<!-- CARD 14 -->
-<div class="card" data-categoria="Lenguaje de marcas">
-<img src="https://i.postimg.cc/SR2Bsx9t/lenguaje-de-marcas.png">
-<div class="card-content">
-<h3>CSS Profesional</h3>
-<p>Aplicación de estilos avanzados en páginas web.</p>
-<button onclick="abrirProyecto(
-'CSS Profesional',
-'https://i.postimg.cc/SR2Bsx9t/lenguaje-de-marcas.png',
-'Tutorial sobre animaciones, grids y flexbox.',
-'https://www.youtube.com/watch?v=CSS123',
-'https://www.youtube.com/watch?v=CSS123',
-[
-{tipo:'youtube',contenido:'CSS123'},
-{tipo:'texto',contenido:'Aprende a hacer páginas responsivas y visualmente atractivas'}
-]
-)">Ver</button>
-</div>
-</div>
+    <!-- Modal 3: Montaje de PC -->
+    <div id="modal3" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Montaje de PC - Guía Completa</h3>
+                <span class="category">Categoría: Hardware • Nivel: Intermedio</span>
+                <span class="close" onclick="closeModal('modal3')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=800&q=80" alt="PC Gaming">
+                <h4>🔧 Ensambla tu Propia Computadora</h4>
+                <p>Guía detallada paso a paso para ensamblar un ordenador desde cero. Aprende a seleccionar componentes y montarlos correctamente.</p>
+                
+                <h4>📦 Componentes que aprenderás a instalar:</h4>
+                <ul>
+                    <li>Placa base (motherboard) y compatibilidad</li>
+                    <li>Procesador (CPU) y sistema de refrigeración</li>
+                    <li>Memoria RAM: tipos y configuración dual channel</li>
+                    <li>Tarjeta gráfica (GPU) y alimentación</li>
+                    <li>Almacenamiento: SSD NVMe y HDD</li>
+                    <li>Fuente de alimentación: cálculo de wattage</li>
+                    <li>Caja / Gabinete y flujo de aire</li>
+                </ul>
 
-<!-- CARD 15 -->
-<div class="card" data-categoria="Sistemas Operativos">
-<img src="https://i.postimg.cc/BbXV8vkt/creando-ubuntu.png">
-<div class="card-content">
-<h3>Ubuntu Intermedio</h3>
-<p>Conceptos intermedios sobre el uso de Ubuntu.</p>
-<button onclick="abrirProyecto(
-'Ubuntu Intermedio',
-'https://i.postimg.cc/BbXV8vkt/creando-ubuntu.png',
-'Aprende comandos de terminal, instalación de software y personalización.',
-'https://www.youtube.com/watch?v=UBU123',
-'https://www.youtube.com/watch?v=UBU123',
-[
-{tipo:'youtube',contenido:'UBU123'},
-{tipo:'texto',contenido:'Incluye gestión de paquetes y administración de usuarios'}
-]
-)">Ver</button>
-</div>
-</div>
+                <h4>🔄 Pasos del Proceso:</h4>
+                <ol>
+                    <li>Preparación del área de trabajo y herramientas</li>
+                    <li>Instalación de CPU y RAM en la placa base</li>
+                    <li>Montaje de la placa en la caja</li>
+                    <li>Conexión de la fuente de alimentación</li>
+                    <li>Instalación de GPU y almacenamiento</li>
+                    <li>Gestión profesional de cables</li>
+                    <li>Primer encendido y configuración de BIOS</li>
+                </ol>
+            </div>
+            <div class="modal-footer">
+                <button class="btn" onclick="closeModal('modal3')">Cerrar</button>
+            </div>
+        </div>
+    </div>
 
-<!-- CARD 16 -->
-<div class="card" data-categoria="Bienvenida">
-<img src="https://i.postimg.cc/DZs6z0vz/PLANTILLAS_PARA_MANUALES.png">
-<div class="card-content">
-<h3>Manual de Introducción</h3>
-<p>Todo lo que necesitas saber para empezar.</p>
-<button onclick="abrirProyecto(
-'Manual de Introducción',
-'https://i.postimg.cc/DZs6z0vz/PLANTILLAS_PARA_MANUALES.png',
-'Guía inicial para nuevos usuarios de la web.',
-'https://drive.google.com/',
-null,
-[
-{tipo:'texto',contenido:'Descubre las secciones principales de la web.'},
-{tipo:'imagen',contenido:'https://i.postimg.cc/W4VkHkbC/multimedia.png'},
-{tipo:'texto',contenido:'Contenido multimedia disponible: imágenes, videos y plantillas.'}
-]
-)">Ver</button>
-</div>
-</div>
+    <!-- Modal 4: HTML Avanzado -->
+    <div id="modal4" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Guía HTML Avanzada</h3>
+                <span class="category">Categoría: Web • Nivel: Intermedio</span>
+                <span class="close" onclick="closeModal('modal4')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80" alt="HTML Avanzado">
+                <h4>🚀 Estructuras Complejas en HTML</h4>
+                <p>Domina las técnicas avanzadas de HTML5 para crear sitios web profesionales, accesibles y optimizados para SEO.</p>
+                
+                <h4>📚 Temas Avanzados:</h4>
+                <ul>
+                    <li>HTML5 semántico avanzado: article, section, aside, figure</li>
+                    <li>Microdatos y Schema.org para SEO estructurado</li>
+                    <li>ARIA labels y roles para accesibilidad WCAG</li>
+                    <li>Formularios avanzados con validación nativa</li>
+                    <li>APIs de HTML5: LocalStorage, Geolocation, Canvas</li>
+                    <li>Elementos multimedia: audio, video, source, track</li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button class="btn" onclick="closeModal('modal4')">Cerrar</button>
+            </div>
+        </div>
+    </div>
 
-<!-- CARD 17 -->
-<div class="card" data-categoria="Sistemas Operativos">
-<img src="https://i.postimg.cc/DZs6z0vz/PLANTILLAS_PARA_MANUALES.png">
-<div class="card-content">
-<h3>Plantilla de Proyecto</h3>
-<p>Documento base para empezar cualquier proyecto.</p>
-<button onclick="abrirProyecto(
-'Plantilla de Proyecto',
-'https://i.postimg.cc/DZs6z0vz/PLANTILLAS_PARA_MANUALES.png',
-'Usa esta plantilla para organizar tus manuales y proyectos.',
-'https://drive.google.com/',
-null,
-[
-{tipo:'imagen',contenido:'https://i.postimg.cc/Px9cHLQf/captura1.png'},
-{tipo:'texto',contenido:'Incluye instrucciones de uso y secciones editables.'},
-{tipo:'imagen',contenido:'https://i.postimg.cc/wvwqQkzs/captura2.png'}
-]
-)">Ver</button>
-</div>
-</div>
+    <!-- Modal 5: VPN -->
+    <div id="modal5" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Configuración VPN</h3>
+                <span class="category">Categoría: Redes • Nivel: Intermedio</span>
+                <span class="close" onclick="closeModal('modal5')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <img src="https://images.unsplash.com/photo-1507721999472-8ed4421c4af2?auto=format&fit=crop&w=800&q=80" alt="VPN">
+                <h4>🔐 Conexión Segura a Internet</h4>
+                <p>Aprende a configurar y usar VPNs para proteger tu privacidad y conectarte de forma segura desde cualquier lugar del mundo.</p>
+                
+                <h4>📋 Contenido:</h4>
+                <ul>
+                    <li>¿Qué es una VPN y cómo funciona el túnel encriptado?</li>
+                    <li>Tipos de protocolos: OpenVPN, WireGuard, IKEv2, L2TP</li>
+                    <li>Configuración de VPN cliente en Windows 10/11</li>
+                    <li>Configuración de VPN en Linux (Ubuntu/Debian)</li>
+                    <li>VPN en routers domésticos compatibles</li>
+                    <li>Creación de tu propio servidor VPN con OpenVPN</li>
+                </ul>
 
-<!-- CARD 18 -->
-<div class="card" data-categoria="Sistemas Operativos">
-<img src="https://i.postimg.cc/BbXV8vkt/creando-ubuntu.png">
-<div class="card-content">
-<h3>Ubuntu para Servidores</h3>
-<p>Configuración básica de un servidor Ubuntu.</p>
-<button onclick="abrirProyecto(
-'Ubuntu para Servidores',
-'https://i.postimg.cc/BbXV8vkt/creando-ubuntu.png',
-'Instalación y configuración de servicios básicos en Ubuntu Server.',
-'https://www.youtube.com/watch?v=UBU456',
-'https://www.youtube.com/watch?v=UBU456',
-[
-{tipo:'youtube',contenido:'UBU456'},
-{tipo:'texto',contenido:'Incluye instalación de Apache, MySQL y configuraciones de red.'}
-]
-)">Ver</button>
-</div>
-</div>
+                <h4>✅ Beneficios de usar VPN:</h4>
+                <ul>
+                    <li>Encriptación de datos en tránsito</li>
+                    <li>Ocultar tu dirección IP real</li>
+                    <li>Acceso a contenido georrestringido</li>
+                    <li>Navegación segura en redes WiFi públicas</li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button class="btn" onclick="closeModal('modal5')">Cerrar</button>
+            </div>
+        </div>
+    </div>
 
-<!-- CARD 19 -->
-<div class="card" data-categoria="Lenguaje de marcas">
-<img src="https://i.postimg.cc/SR2Bsx9t/lenguaje-de-marcas.png">
-<div class="card-content">
-<h3>Plantilla Blog</h3>
-<p>Diseño web moderno para blogs personales.</p>
-<button onclick="abrirProyecto(
-'Plantilla Blog',
-'https://i.postimg.cc/SR2Bsx9t/lenguaje-de-marcas.png',
-'Tutorial para crear un blog desde cero usando plantillas HTML y CSS.',
-'https://www.youtube.com/watch?v=BLOG123',
-'https://www.youtube.com/watch?v=BLOG123',
-[
-{tipo:'youtube',contenido:'BLOG123'},
-{tipo:'texto',contenido:'Personaliza colores, fuentes y estructura de tu blog fácilmente.'}
-]
-)">Ver</button>
-</div>
-</div>
+    <!-- Modal 6: Edición de Video -->
+    <div id="modal6" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Edición de Video Profesional</h3>
+                <span class="category">Categoría: Multimedia • Nivel: Intermedio</span>
+                <span class="close" onclick="closeModal('modal6')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <img src="https://images.unsplash.com/photo-1536240478700-b869070f9279?auto=format&fit=crop&w=800&q=80" alt="Edición de Video">
+                <h4>🎬 Crea Videos Profesionales con Software Gratuito</h4>
+                <p>Aprende edición de video desde cero utilizando herramientas gratuitas y de código abierto de nivel profesional.</p>
+                
+                <h4>💻 Software que aprenderás:</h4>
+                <ul>
+                    <li>DaVinci Resolve (versión gratuita completa)</li>
+                    <li>Shotcut: editor ligero y potente</li>
+                    <li>OpenShot: ideal para principiantes</li>
+                    <li>Kdenlive: edición avanzada en Linux</li>
+                </ul>
 
-<!-- CARD 20 -->
-<div class="card" data-categoria="Bienvenida">
-<img src="https://i.postimg.cc/DZs6z0vz/PLANTILLAS_PARA_MANUALES.png">
-<div class="card-content">
-<h3>Recursos Didácticos</h3>
-<p>Material de apoyo para aprender informática.</p>
-<button onclick="abrirProyecto(
-'Recursos Didácticos',
-'https://i.postimg.cc/DZs6z0vz/PLANTILLAS_PARA_MANUALES.png',
-'Colección de recursos: manuales, plantillas y multimedia.',
-'https://drive.google.com/',
-null,
-[
-{tipo:'imagen',contenido:'https://i.postimg.cc/W4VkHkbC/multimedia.png'},
-{tipo:'texto',contenido:'Ideal para complementar el aprendizaje del blog.'}
-]
-)">Ver</button>
-</div>
-</div>
+                <h4>📚 Temas del Curso:</h4>
+                <ul>
+                    <li>Importación y organización de material multimedia</li>
+                    <li>Línea de tiempo: cortes, trimming y ripple edit</li>
+                    <li>Transiciones profesionales y efectos visuales</li>
+                    <li>Corrección de color básica y grading</li>
+                    <li>Edición de audio: limpieza, normalización y mezcla</li>
+                    <li>Exportación: codecs, formatos y optimización para YouTube/TikTok</li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button class="btn" onclick="closeModal('modal6')">Cerrar</button>
+            </div>
+        </div>
+    </div>
 
-<!-- CARD 21 -->
-<div class="card" data-categoria="Sistemas Operativos">
-<img src="https://i.postimg.cc/BbXV8vkt/creando-ubuntu.png">
-<div class="card-content">
-<h3>Ubuntu Avanzado</h3>
-<p>Trucos y consejos para usuarios avanzados de Ubuntu.</p>
-<button onclick="abrirProyecto(
-'Ubuntu Avanzado',
-'https://i.postimg.cc/BbXV8vkt/creando-ubuntu.png',
-'Optimiza tu sistema Ubuntu con herramientas y configuraciones avanzadas.',
-'https://www.youtube.com/watch?v=UBU789',
-'https://www.youtube.com/watch?v=UBU789',
-[
-{tipo:'youtube',contenido:'UBU789'},
-{tipo:'texto',contenido:'Incluye automatización de tareas, scripts y gestión de paquetes'}
-]
-)">Ver</button>
-</div>
-</div>
+    <!-- Modal 7: Python -->
+    <div id="modal7" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Python desde Cero</h3>
+                <span class="category">Categoría: Programación • Nivel: Principiante</span>
+                <span class="close" onclick="closeModal('modal7')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <img src="https://images.unsplash.com/photo-1526379095098-d400fd0bf935?auto=format&fit=crop&w=800&q=80" alt="Python">
+                <h4>🐍 Aprende Programación con Python</h4>
+                <p>Iníciate en el mundo de la programación con Python, el lenguaje más versátil y demandado del mercado.</p>
+                
+                <h4>📚 Contenido del Curso:</h4>
+                <ul>
+                    <li>Sintaxis básica: variables, tipos de datos y operadores</li>
+                    <li>Estructuras de control: if, for, while y funciones</li>
+                    <li>Estructuras de datos: listas, tuplas, diccionarios y sets</li>
+                    <li>Manejo de archivos: lectura y escritura de TXT, CSV y JSON</li>
+                    <li>Librerías esenciales: datetime, random, os, requests</li>
+                    <li>Proyecto final: Organizador automático de archivos</li>
+                </ul>
 
-</section>
+                <h4>🎯 ¿Por qué Python?</h4>
+                <p>Python es ideal para automatización, análisis de datos, desarrollo web, inteligencia artificial y scripting. Su sintaxis clara lo hace perfecto para principiantes.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn" onclick="closeModal('modal7')">Cerrar</button>
+            </div>
+        </div>
+    </div>
 
-<dialog id="modal">
-<button class="close-btn" onclick="cerrarModal()">✖</button>
-<h2 id="titulo"></h2>
-<img id="imagen">
-<video id="video" controls style="display:none;"></video>
-<iframe id="youtube" style="display:none;height:350px;"></iframe>
-<p id="descripcion"></p>
-<div id="contenidoExtra"></div>
-<a id="descarga" target="_blank">Descargar</a>
-</dialog>
+    <!-- Modal 8: SQL -->
+    <div id="modal8" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>SQL Esencial</h3>
+                <span class="category">Categoría: Bases de Datos • Nivel: Intermedio</span>
+                <span class="close" onclick="closeModal('modal8')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80" alt="SQL">
+                <h4>🗄️ Domina el Lenguaje de Bases de Datos</h4>
+                <p>Aprende a consultar, insertar, actualizar y gestionar datos en bases de datos relacionales con SQL.</p>
+                
+                <h4>📋 Contenido:</h4>
+                <ul>
+                    <li>Fundamentos de bases de datos relacionales</li>
+                    <li>Comandos DDL: CREATE, ALTER, DROP</li>
+                    <li>Consultas SELECT con filtros WHERE</li>
+                    <li>JOINs: INNER, LEFT, RIGHT, FULL</li>
+                    <li>Agregaciones: COUNT, SUM, AVG, GROUP BY</li>
+                    <li>Subconsultas y consultas anidadas</li>
+                    <li>Índices y optimización de consultas</li>
+                    <li>Proyecto: Diseño de base de datos para e-commerce</li>
+                </ul>
 
-<script>
+                <h4>🛠️ Herramientas:</h4>
+                <p>Practicarás con MySQL, PostgreSQL y SQLite. Todos los ejemplos son compatibles con los principales sistemas de gestión de bases de datos.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn" onclick="closeModal('modal8')">Cerrar</button>
+            </div>
+        </div>
+    </div>
 
-function abrirProyecto(titulo, imagen, descripcion, enlace, media, bloques=[]){
+    <!-- SOBRE NOSOTROS -->
+    <section id="nosotros" class="about-section">
+        <div class="container">
+            <h2 class="section-title">Sobre Vitvisor</h2>
+            <div class="about-content">
+                <div class="about-image"></div>
+                <div class="about-text">
+                    <h3>Nuestra Misión</h3>
+                    <p>Vitvisor es una plataforma web educativa dedicada a proporcionar recursos didácticos de calidad sobre informática y tecnología. Ofrecemos plantillas profesionales, tutoriales en video y guías detalladas.</p>
+                    <br>
+                    <h3>Áreas de Conocimiento:</h3>
+                    <ul>
+                        <li>✓ Lenguaje de Marcas (HTML, CSS, XML)</li>
+                        <li>✓ Sistemas Operativos (Ubuntu, Windows)</li>
+                        <li>✓ Hardware y Montaje de PCs</li>
+                        <li>✓ Redes y Seguridad Informática</li>
+                        <li>✓ Programación Web</li>
+                        <li>✓ Multimedia y Edición de Video</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
 
-document.getElementById("titulo").innerText=titulo
-document.getElementById("imagen").src=imagen
-document.getElementById("descripcion").innerText=descripcion
-document.getElementById("descarga").href=enlace
+    <!-- CONTACTO -->
+    <section id="contacto" class="container">
+        <h2 class="section-title">Contáctanos</h2>
+        <p style="text-align:center; margin-bottom:25px; color:#666;">
+            ¿Tienes dudas o sugerencias? Envíanos un mensaje a <strong>vitvisor28@gmail.com</strong>
+        </p>
+        <div class="contact-form">
+            <form action="https://formspree.io/f/xgoldllk" method="POST">
+                <div class="form-group">
+                    <label for="nombre">Nombre Completo *</label>
+                    <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Correo Electrónico *</label>
+                    <input type="email" id="email" name="email" placeholder="tucorreo@ejemplo.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="asunto">Asunto</label>
+                    <input type="text" id="asunto" name="asunto" placeholder="Motivo de tu mensaje">
+                </div>
+                <div class="form-group">
+                    <label for="mensaje">Mensaje *</label>
+                    <textarea id="mensaje" name="mensaje" rows="5" placeholder="Escribe tu mensaje aquí..." required></textarea>
+                </div>
+                <input type="hidden" name="_next" value="https://tusitio.com/gracias.html">
+                <button type="submit" class="submit-btn">✉️ Enviar Mensaje</button>
+            </form>
+            <p style="text-align:center; margin-top:15px; font-size:0.9rem; color:#888;">
+                🔒 Tus datos están protegidos. No compartimos tu información.
+            </p>
+        </div>
+    </section>
 
-const video=document.getElementById("video")
-const youtube=document.getElementById("youtube")
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2024 Vitvisor - Recursos Didácticos de Informática. Todos los derechos reservados.</p>
+        <p>📧 Contacto: vitvisor28@gmail.com</p>
+    </footer>
 
-video.style.display="none"
-youtube.style.display="none"
-video.src=""
-youtube.src=""
+    <!-- JAVASCRIPT -->
+    <script>
+        // ============================================
+        // SISTEMA DE FILTRO DE CATEGORÍAS DINÁMICO
+        // ============================================
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // 1. Obtener todas las categorías únicas de las entradas
+            const posts = document.querySelectorAll('.post-card');
+            const categories = new Set();
+            
+            posts.forEach(post => {
+                const category = post.dataset.category;
+                if (category) {
+                    categories.add(category);
+                }
+            });
+            
+            // 2. Generar botones de filtro automáticamente
+            const filterContainer = document.getElementById('categoryFilter');
+            
+            // Botón "Todos"
+            const allBtn = document.createElement('button');
+            allBtn.textContent = '📚 Todos';
+            allBtn.className = 'filter-btn all active';
+            allBtn.dataset.filter = 'all';
+            allBtn.onclick = () => filterPosts('all', allBtn);
+            filterContainer.appendChild(allBtn);
+            
+            // Botones por categoría (orden alfabético)
+            const sortedCategories = Array.from(categories).sort();
+            sortedCategories.forEach(cat => {
+                const btn = document.createElement('button');
+                // Capitalizar primera letra
+                const catName = cat.charAt(0).toUpperCase() + cat.slice(1).replace('-', ' ');
+                btn.textContent = catName;
+                btn.className = 'filter-btn';
+                btn.dataset.filter = cat;
+                btn.onclick = () => filterPosts(cat, btn);
+                filterContainer.appendChild(btn);
+            });
+            
+            // 3. Actualizar contador de resultados
+            updateResultsCount();
+        });
+        
+        // Función para filtrar entradas por categoría
+        function filterPosts(category, clickedBtn) {
+            const posts = document.querySelectorAll('.post-card');
+            let visibleCount = 0;
+            
+            // Actualizar estado activo de botones
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            clickedBtn.classList.add('active');
+            
+            // Filtrar entradas
+            posts.forEach(post => {
+                if (category === 'all' || post.dataset.category === category) {
+                    post.classList.remove('hidden');
+                    visibleCount++;
+                } else {
+                    post.classList.add('hidden');
+                }
+            });
+            
+            // Actualizar contador
+            updateResultsCount(visibleCount, posts.length);
+            
+            // Scroll suave hacia las entradas si se filtró en móvil
+            if (window.innerWidth < 768) {
+                document.getElementById('blogGrid').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+        
+        // Función para actualizar el contador de resultados
+        function updateResultsCount(visible = null, total = null) {
+            const visibleCount = visible !== null ? visible : 
+                document.querySelectorAll('.post-card:not(.hidden)').length;
+            const totalCount = total !== null ? total : 
+                document.querySelectorAll('.post-card').length;
+            
+            document.getElementById('visibleCount').textContent = visibleCount;
+            document.getElementById('totalCount').textContent = totalCount;
+        }
+        
+        // ============================================
+        // FUNCIONES PARA MODALES
+        // ============================================
+        
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
 
-if(media){
-if(media.includes("youtube")){
-const id=media.split("v=")[1]
-youtube.src="https://www.youtube.com/embed/"+id
-youtube.style.display="block"
-}else{
-video.src=media
-video.style.display="block"
-}
-}
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
 
-const cont=document.getElementById("contenidoExtra")
-cont.innerHTML=""
+        // Cerrar modal al hacer clic fuera del contenido
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.classList.remove('show');
+                document.body.style.overflow = 'auto';
+            }
+        }
 
-bloques.forEach(b=>{
-if(b.tipo==="texto"){
-const p=document.createElement("p")
-p.innerText=b.contenido
-cont.appendChild(p)
-}
-if(b.tipo==="imagen"){
-const img=document.createElement("img")
-img.src=b.contenido
-cont.appendChild(img)
-}
-if(b.tipo==="youtube"){
-const iframe=document.createElement("iframe")
-iframe.src="https://www.youtube.com/embed/"+b.contenido
-iframe.height="350"
-cont.appendChild(iframe)
-}
-})
+        // Cerrar modal con tecla ESC
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                document.querySelectorAll('.modal.show').forEach(modal => {
+                    modal.classList.remove('show');
+                });
+                document.body.style.overflow = 'auto';
+            }
+        });
 
-document.getElementById("modal").showModal()
+        // Smooth scroll para enlaces del menú
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
 
-}
-
-function cerrarModal(){
-document.getElementById("modal").close()
-}
-
-document.getElementById("buscador").addEventListener("keyup",function(){
-
-const filtro=this.value.toLowerCase()
-const cards=document.querySelectorAll(".card")
-
-cards.forEach(card=>{
-const texto=card.innerText.toLowerCase()
-card.style.display=texto.includes(filtro)?"flex":"none"
-})
-
-})
-
-const contenedorCategorias=document.getElementById("categorias")
-const cards=document.querySelectorAll(".card")
-
-let categorias=new Set()
-
-cards.forEach(card=>{
-categorias.add(card.dataset.categoria)
-})
-
-function mostrarCategoria(cat){
-
-document.querySelectorAll(".card").forEach(card=>{
-
-if(cat==="Todas"){
-card.style.display="flex"
-}else{
-card.style.display=card.dataset.categoria===cat?"flex":"none"
-}
-
-})
-
-}
-
-function crearMenu() {
-  const todas = document.createElement("button");
-  todas.textContent = "Todas";
-  todas.onclick = () => mostrarCategoria("Todas");
-  contenedorCategorias.appendChild(todas);
-
-  categorias.forEach(cat => {
-    const btn = document.createElement("button");
-    btn.textContent = cat;
-    btn.onclick = () => mostrarCategoria(cat);
-    contenedorCategorias.appendChild(btn);
-  });
-}
-
-crearMenu();
-</script>
-
-<!-- BANNER DE COOKIES -->
-<div id="cookie-banner" style="position: fixed; bottom: 0; width: 100%; background:#1e293b; color:white; padding:15px; text-align:center; z-index:10000; display:none; box-shadow:0 -2px 10px rgba(0,0,0,0.5);">
-  Esta web utiliza cookies para mejorar tu experiencia. 
-  <button id="accept-cookies" style="margin-left:10px; padding:5px 12px; border:none; border-radius:6px; background:#00d084; color:#0f172a; cursor:pointer; font-weight:600;">Aceptar</button>
-   <a href="politica-cookies.html" style="margin-left:10px; color:#00d084; text-decoration:underline; font-weight:600;">Ver Cookies</a>
-</div>
-
-<script>
-// Mostrar banner si no se ha aceptado antes
-if (!document.cookie.includes("cookies_aceptadas=true")) {
-  document.getElementById("cookie-banner").style.display = "block";
-}
-
-// Al aceptar cookies
-document.getElementById("accept-cookies").addEventListener("click", function() {
-  document.cookie = "cookies_aceptadas=true; path=/; max-age=" + 60*60*24*365; // 1 año
-  document.getElementById("cookie-banner").style.display = "none";
-});
-</script>
 </body>
 </html>
