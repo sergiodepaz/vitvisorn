@@ -1114,24 +1114,42 @@
                     </div>
                 </article>
 
-                <!-- Card 3 -->
-                <article class="card" data-category="sistemas" data-id="2">
+                <!-- Card 3: PRIMER CAPÍTULO HTML -->
+                <article class="card" data-category="web" data-id="2">
                     <div class="card-image">
-                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=600&q=80" alt="Ubuntu">
+                        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=600&q=80" alt="Capítulo 1 HTML">
+                        <span class="card-badge">Capítulo 1</span>
                     </div>
                     <div class="card-content">
-                        <span class="card-category">Sistemas</span>
-                        <h3 class="card-title">Máquina Virtual Ubuntu</h3>
-                        <p class="card-excerpt">Video tutorial completo de instalación y configuración de Ubuntu para principiantes.</p>
+                        <span class="card-category">Lenguaje de Marcas</span>
+                        <h3 class="card-title">Capítulo 1: Estructura Básica HTML</h3>
+                        <p class="card-excerpt">Aprende la estructura fundamental de un documento HTML: DOCTYPE, html, head, body y las etiquetas esenciales para comenzar.</p>
                         <div class="card-footer">
-                            <span class="card-meta">⏱️ 3-4 horas</span>
+                            <span class="card-meta">⏱️ 45 min</span>
                             <button class="card-link" onclick="openModal('modal2')">Ver más →</button>
                         </div>
                     </div>
                 </article>
 
-                <!-- Card 4 -->
-                <article class="card" data-category="hardware" data-id="3">
+                <!-- Card 4: MÁQUINA VIRTUAL LINUX -->
+                <article class="card" data-category="sistemas" data-id="3">
+                    <div class="card-image">
+                        <img src="https://i.postimg.cc/BbXV8vkt/creando_ubuntu.png" alt="Crear Máquina Linux">
+                        <span class="card-badge">Video Tutorial</span>
+                    </div>
+                    <div class="card-content">
+                        <span class="card-category">Sistemas</span>
+                        <h3 class="card-title">Creación de Máquina Virtual Linux</h3>
+                        <p class="card-excerpt">Tutorial en video paso a paso para crear tu propia máquina virtual con Ubuntu usando VirtualBox. ¡Sin riesgos para tu sistema!</p>
+                        <div class="card-footer">
+                            <span class="card-meta">🎬 25 min</span>
+                            <button class="card-link" onclick="openModal('modal3')">Ver más →</button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Card 5: MONTAJE PC -->
+                <article class="card" data-category="hardware" data-id="4">
                     <div class="card-image">
                         <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=600&q=80" alt="Hardware">
                         <span class="card-badge">Nuevo</span>
@@ -1142,13 +1160,13 @@
                         <p class="card-excerpt">Guía paso a paso para ensamblar tu propio ordenador desde cero como un profesional.</p>
                         <div class="card-footer">
                             <span class="card-meta">⏱️ 5-7 horas</span>
-                            <button class="card-link" onclick="openModal('modal3')">Ver más →</button>
+                            <button class="card-link" onclick="openModal('modal4')">Ver más →</button>
                         </div>
                     </div>
                 </article>
 
-                <!-- Card 5 -->
-                <article class="card" data-category="web" data-id="4">
+                <!-- Card 6: HTML AVANZADO -->
+                <article class="card" data-category="web" data-id="5">
                     <div class="card-image">
                         <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=600&q=80" alt="HTML Avanzado">
                     </div>
@@ -1158,22 +1176,6 @@
                         <p class="card-excerpt">Domina HTML5 semántico, accesibilidad y SEO para crear sitios profesionales.</p>
                         <div class="card-footer">
                             <span class="card-meta">⏱️ 6-8 horas</span>
-                            <button class="card-link" onclick="openModal('modal4')">Ver más →</button>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Card 6 -->
-                <article class="card" data-category="redes" data-id="5">
-                    <div class="card-image">
-                        <img src="https://images.unsplash.com/photo-1507721999472-8ed4421c4af2?auto=format&fit=crop&w=600&q=80" alt="VPN">
-                    </div>
-                    <div class="card-content">
-                        <span class="card-category">Redes</span>
-                        <h3 class="card-title">Configuración VPN</h3>
-                        <p class="card-excerpt">Conéctate de forma segura a internet desde cualquier lugar del mundo.</p>
-                        <div class="card-footer">
-                            <span class="card-meta">⏱️ 4-5 horas</span>
                             <button class="card-link" onclick="openModal('modal5')">Ver más →</button>
                         </div>
                     </div>
@@ -1329,69 +1331,149 @@
         </div>
     </div>
 
-    <!-- Modal 2 -->
+    <!-- Modal 2: CAPÍTULO 1 HTML -->
     <div id="modal2" class="modal">
         <div class="modal-content">
             <div class="modal-header">
                 <div>
-                    <h3>Máquina Virtual - Ubuntu</h3>
-                    <span class="category">Sistemas • Principiante</span>
+                    <h3>Capítulo 1: Estructura Básica HTML</h3>
+                    <span class="category">Lenguaje de Marcas • Principiante</span>
                 </div>
                 <button class="modal-close" onclick="closeModal('modal2')">&times;</button>
             </div>
-            <div class="modal-body layout-video">
-                <div class="video-wrapper">
-                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Tutorial Ubuntu" allowfullscreen></iframe>
-                </div>
-                <div class="intro">
-                    <strong>🎬 Tutorial en Video:</strong> Aprende a instalar y configurar Ubuntu en VirtualBox paso a paso. Perfecto para principiantes que quieren aprender Linux sin riesgos.
-                </div>
-                <h4>📋 Contenido del Tutorial:</h4>
-                <ul>
-                    <li>Descarga e instalación de VirtualBox</li>
-                    <li>Configuración óptima de la máquina virtual</li>
-                    <li>Descarga e instalación de Ubuntu Desktop</li>
-                    <li>Configuración inicial del sistema</li>
-                    <li>Primeros comandos de terminal</li>
-                    <li>Instalación de Guest Additions</li>
-                </ul>
-                <div class="gallery">
-                    <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=600&q=80" alt="VirtualBox">
-                        <div class="gallery-caption">Configuración</div>
+            <div class="modal-body layout-alternating">
+                <div class="content-row">
+                    <div class="text">
+                        <h4>🔰 Lo Primero: La Estructura</h4>
+                        <p>Todo documento HTML comienza con una estructura básica que los navegadores necesitan para interpretar correctamente tu contenido. Aprende cada parte y su función.</p>
                     </div>
-                    <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1629654297299-c8506221ca97?auto=format&fit=crop&w=600&q=80" alt="Instalación">
-                        <div class="gallery-caption">Instalación</div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1611348523409-2f81bfa02f19?auto=format&fit=crop&w=600&q=80" alt="Ubuntu">
-                        <div class="gallery-caption">Ubuntu Desktop</div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=600&q=80" alt="Terminal">
-                        <div class="gallery-caption">Terminal</div>
+                    <div class="image">
+                        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80" alt="Estructura HTML">
                     </div>
                 </div>
-                <div class="details">
-                    <strong>💡 Beneficio:</strong> Experimenta con Linux sin modificar tu sistema principal. Ideal para aprender, probar software o desarrollar en diferentes entornos.
+                <div class="content-row reverse">
+                    <div class="text">
+                        <h4>📋 Partes de un Documento HTML</h4>
+                        <ul>
+                            <li><strong>&lt;!DOCTYPE html&gt;</strong>: Declara la versión HTML5</li>
+                            <li><strong>&lt;html lang="es"&gt;</strong>: Elemento raíz con idioma</li>
+                            <li><strong>&lt;head&gt;</strong>: Metadatos, título, enlaces a CSS</li>
+                            <li><strong>&lt;meta charset="UTF-8"&gt;</strong>: Codificación de caracteres</li>
+                            <li><strong>&lt;title&gt;</strong>: Título que aparece en la pestaña</li>
+                            <li><strong>&lt;body&gt;</strong>: Contenido visible de la página</li>
+                        </ul>
+                    </div>
+                    <div class="image">
+                        <img src="https://images.unsplash.com/photo-1507721999472-8ed4421c4af2?auto=format&fit=crop&w=800&q=80" alt="Código">
+                    </div>
+                </div>
+                <div class="info-box">
+                    <strong>💡 Práctica:</strong> Copia la estructura básica, guárdala como <code>index.html</code> y ábrela en tu navegador. ¡Ya tienes tu primera página web!
+                </div>
+                <h4>🔍 Ejemplo Completo:</h4>
+                <div class="code-block">
+<span class="tag">&lt;!DOCTYPE</span> <span class="attr">html</span><span class="tag">&gt;</span>
+<span class="tag">&lt;html</span> <span class="attr">lang=</span><span class="value">"es"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;head&gt;</span>
+  <span class="tag">&lt;meta</span> <span class="attr">charset=</span><span class="value">"UTF-8"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;meta</span> <span class="attr">name=</span><span class="value">"viewport"</span> <span class="attr">content=</span><span class="value">"width=device-width"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;title&gt;</span>Mi Primera Página<span class="tag">&lt;/title&gt;</span>
+<span class="tag">&lt;/head&gt;</span>
+<span class="tag">&lt;body&gt;</span>
+  <span class="tag">&lt;h1&gt;</span>¡Hola Mundo!<span class="tag">&lt;/h1&gt;</span>
+  <span class="tag">&lt;p&gt;</span>Esta es mi primera página web.<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span>
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="btn-secondary" onclick="closeModal('modal2')">Cerrar</button>
+                <button class="btn-secondary" onclick="closeModal('modal2')">Siguiente Capítulo →</button>
             </div>
         </div>
     </div>
 
-    <!-- Modal 3 -->
+    <!-- Modal 3: MÁQUINA VIRTUAL LINUX -->
     <div id="modal3" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div>
+                    <h3>Creación de Máquina Virtual Linux</h3>
+                    <span class="category">Sistemas • Principiante</span>
+                </div>
+                <button class="modal-close" onclick="closeModal('modal3')">&times;</button>
+            </div>
+            <div class="modal-body layout-video">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Tutorial Ubuntu VirtualBox" allowfullscreen></iframe>
+                </div>
+                <div class="intro">
+                    <strong>🎬 Tutorial en Video:</strong> Aprende paso a paso a crear tu propia máquina virtual con Ubuntu usando VirtualBox. Ideal para practicar Linux sin afectar tu sistema principal.
+                </div>
+                
+                <h4>📋 Lo que Aprenderás:</h4>
+                <ul>
+                    <li>Descargar e instalar VirtualBox en Windows/macOS/Linux</li>
+                    <li>Configurar recursos: RAM, CPU, almacenamiento dinámico</li>
+                    <li>Descargar Ubuntu Desktop LTS oficial</li>
+                    <li>Crear la máquina virtual paso a paso</li>
+                    <li>Instalar Ubuntu con particionado automático</li>
+                    <li>Configuración inicial: usuario, idioma, actualizaciones</li>
+                    <li>Instalar Guest Additions para mejor integración</li>
+                    <li>Configurar carpetas compartidas entre sistemas</li>
+                </ul>
+
+                <div class="gallery">
+                    <div class="gallery-item">
+                        <img src="https://i.postimg.cc/BbXV8vkt/creando_ubuntu.png" alt="Creando Ubuntu">
+                        <div class="gallery-caption">Configuración Inicial</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1629654297299-c8506221ca97?auto=format&fit=crop&w=600&q=80" alt="Instalación">
+                        <div class="gallery-caption">Proceso de Instalación</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1611348523409-2f81bfa02f19?auto=format&fit=crop&w=600&q=80" alt="Ubuntu Desktop">
+                        <div class="gallery-caption">Ubuntu Listo</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=600&q=80" alt="Terminal">
+                        <div class="gallery-caption">Primeros Comandos</div>
+                    </div>
+                </div>
+
+                <div class="details">
+                    <strong>💡 Beneficios:</strong>
+                    <ul>
+                        <li>Experimenta con Linux sin riesgo para tu sistema</li>
+                        <li>Practica comandos de terminal en entorno seguro</li>
+                        <li>Desarrolla en diferentes entornos simultáneamente</li>
+                        <li>Crea snapshots para recuperar configuraciones</li>
+                    </ul>
+                </div>
+
+                <div style="background:rgba(0,240,255,0.1);border:1px solid rgba(0,240,255,0.3);border-left:4px solid var(--primary);padding:1.5rem;border-radius:12px;margin-top:1.5rem">
+                    <strong>⚙️ Requisitos Mínimos:</strong><br>
+                    • 4GB de RAM (8GB recomendado)<br>
+                    • 25GB de espacio libre en disco<br>
+                    • Procesador con virtualización activada<br>
+                    • Conexión a internet para descargas
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeModal('modal3')">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 4: MONTAJE PC -->
+    <div id="modal4" class="modal">
         <div class="modal-content">
             <div class="modal-header">
                 <div>
                     <h3>Montaje de PC</h3>
                     <span class="category">Hardware • Intermedio</span>
                 </div>
-                <button class="modal-close" onclick="closeModal('modal3')">&times;</button>
+                <button class="modal-close" onclick="closeModal('modal4')">&times;</button>
             </div>
             <div class="modal-body layout-timeline">
                 <p style="margin-bottom:2rem;color:var(--text-muted);font-size:1.1rem">Guía completa paso a paso para ensamblar tu propio ordenador como un profesional.</p>
@@ -1428,20 +1510,20 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="btn-secondary" onclick="closeModal('modal3')">Cerrar</button>
+                <button class="btn-secondary" onclick="closeModal('modal4')">Cerrar</button>
             </div>
         </div>
     </div>
 
-    <!-- Modal 4 -->
-    <div id="modal4" class="modal">
+    <!-- Modal 5: HTML AVANZADO -->
+    <div id="modal5" class="modal">
         <div class="modal-content">
             <div class="modal-header">
                 <div>
                     <h3>Guía HTML Avanzada</h3>
                     <span class="category">Web Development • Intermedio</span>
                 </div>
-                <button class="modal-close" onclick="closeModal('modal4')">&times;</button>
+                <button class="modal-close" onclick="closeModal('modal5')">&times;</button>
             </div>
             <div class="modal-body layout-code">
                 <h4>🚀 HTML5 Semántico y Accesible</h4>
@@ -1480,69 +1562,6 @@
                     <li>Elementos multimedia: audio, video, source, track</li>
                     <li>Optimización SEO on-page y meta tags avanzados</li>
                 </ul>
-            </div>
-            <div class="modal-footer">
-                <button class="btn-secondary" onclick="closeModal('modal4')">Cerrar</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal 5 -->
-    <div id="modal5" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <div>
-                    <h3>Configuración VPN</h3>
-                    <span class="category">Redes • Intermedio</span>
-                </div>
-                <button class="modal-close" onclick="closeModal('modal5')">&times;</button>
-            </div>
-            <div class="modal-body layout-tabs">
-                <div class="tabs">
-                    <button class="tab-btn active" onclick="switchTab('modal5', 't1')">Conceptos</button>
-                    <button class="tab-btn" onclick="switchTab('modal5', 't2')">Configuración</button>
-                    <button class="tab-btn" onclick="switchTab('modal5', 't3')">Seguridad</button>
-                </div>
-                
-                <div id="t1" class="tab-content active">
-                    <h4>🔐 ¿Qué es una VPN?</h4>
-                    <p style="color:var(--text-muted)">Una VPN (Virtual Private Network) crea un túnel encriptado entre tu dispositivo e internet, protegiendo tus datos de miradas indiscretas y permitiendo acceso seguro desde cualquier lugar.</p>
-                    
-                    <h4 style="margin-top:1.5rem">Protocolos Principales:</h4>
-                    <ul>
-                        <li><strong>OpenVPN:</strong> Código abierto, muy seguro y configurable. El estándar de la industria.</li>
-                        <li><strong>WireGuard:</strong> Moderno, rápido y con menos código. La nueva generación.</li>
-                        <li><strong>IKEv2/IPSec:</strong> Ideal para móviles, reconexión rápida al cambiar de red.</li>
-                        <li><strong>L2TP/IPSec:</strong> Compatible universalmente, buen equilibrio seguridad/velocidad.</li>
-                    </ul>
-                </div>
-                
-                <div id="t2" class="tab-content">
-                    <h4>⚙️ Configuración Paso a Paso:</h4>
-                    <ul>
-                        <li>Descargar cliente VPN o usar el integrado del sistema</li>
-                        <li>Importar archivo de configuración (.ovpn para OpenVPN)</li>
-                        <li>Introducir credenciales de usuario</li>
-                        <li>Seleccionar servidor y protocolo</li>
-                        <li>Conectar y verificar en ipleak.net</li>
-                        <li>Configurar kill switch y DNS leak protection</li>
-                    </ul>
-                    <div style="background:var(--bg-card);border:1px solid var(--border);padding:1.5rem;border-radius:12px;margin-top:1.5rem">
-                        <strong>💡 Tip:</strong> Siempre verifica que tu IP real no se filtre usando herramientas como ipleak.net o dnsleaktest.com
-                    </div>
-                </div>
-                
-                <div id="t3" class="tab-content">
-                    <h4>🛡️ Características de Seguridad:</h4>
-                    <ul>
-                        <li><strong>Encriptación AES-256:</strong> Nivel militar, imposible de crackear</li>
-                        <li><strong>Kill Switch:</strong> Corta internet automáticamente si la VPN falla</li>
-                        <li><strong>Protección DNS Leak:</strong> Evita fugas de consultas DNS</li>
-                        <li><strong>Perfect Forward Secrecy:</strong> Claves únicas por sesión</li>
-                        <li><strong>Autenticación 2FA:</strong> Doble factor de autenticación</li>
-                        <li><strong>No-logs Policy:</strong> Sin registro de actividad</li>
-                    </ul>
-                </div>
             </div>
             <div class="modal-footer">
                 <button class="btn-secondary" onclick="closeModal('modal5')">Cerrar</button>
