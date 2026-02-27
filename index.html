@@ -143,11 +143,22 @@
             justify-content: center;
             padding: 8rem 2rem 4rem;
             position: relative;
+            background: linear-gradient(135deg, rgba(10,10,15,0.9), rgba(10,10,15,0.95)), 
+                        url('https://i.postimg.cc/RhbChTfW/portada.png') center/cover no-repeat;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(0,240,255,0.1), rgba(112,0,255,0.1));
         }
 
         .hero-content {
             max-width: 900px;
             text-align: center;
+            position: relative;
+            z-index: 1;
         }
 
         .hero-badge {
@@ -1042,8 +1053,8 @@
                 <span>✨</span>
                 Recursos Educativos del Futuro
             </div>
-            <h1>Aprende Tecnología con Estilo</h1>
-            <p>Descubre tutoriales, guías y plantillas profesionales sobre programación, hardware, redes y más. Contenido actualizado listo para transformar tu conocimiento.</p>
+            <h1>Bienvenido a Vitvisor</h1>
+            <p>Tu plataforma de aprendizaje tecnológico con recursos profesionales, tutoriales interactivos y guías prácticas. ¡Comienza tu viaje educativo hoy!</p>
             <div class="hero-buttons">
                 <button class="btn-primary" onclick="document.getElementById('recursos').scrollIntoView({behavior:'smooth'})">
                     Explorar Recursos →
@@ -1069,16 +1080,33 @@
             </div>
 
             <div class="grid" id="grid">
-                <!-- Card 1 -->
+                <!-- Card 1: BIENVENIDA -->
+                <article class="card" data-category="inicio" data-id="0">
+                    <div class="card-image">
+                        <img src="https://i.postimg.cc/RhbChTfW/portada.png" alt="Bienvenido">
+                        <span class="card-badge">Inicio</span>
+                    </div>
+                    <div class="card-content">
+                        <span class="card-category">Bienvenida</span>
+                        <h3 class="card-title">¡Bienvenido a Vitvisor! 🎓</h3>
+                        <p class="card-excerpt">Descubre una nueva forma de aprender tecnología. Explora nuestros recursos, tutoriales y guías diseñadas para impulsar tu crecimiento profesional.</p>
+                        <div class="card-footer">
+                            <span class="card-meta">🚀 Comienza aquí</span>
+                            <button class="card-link" onclick="openModal('modal0')">Ver más →</button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Card 2: CURSO HTML -->
                 <article class="card" data-category="web" data-id="1">
                     <div class="card-image">
-                        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=600&q=80" alt="HTML CSS">
+                        <img src="https://i.postimg.cc/SR2Bsx9t/lenguaje_de_marcas.png" alt="Curso HTML">
                         <span class="card-badge">Popular</span>
                     </div>
                     <div class="card-content">
-                        <span class="card-category">Web Development</span>
-                        <h3 class="card-title">HTML & CSS Básico</h3>
-                        <p class="card-excerpt">Crea tu primera página web con estilo profesional desde cero con las últimas técnicas.</p>
+                        <span class="card-category">Lenguaje de Marcas</span>
+                        <h3 class="card-title">Bienvenido al Curso de HTML</h3>
+                        <p class="card-excerpt">Aprende HTML desde cero: estructura, etiquetas, semántica y buenas prácticas. Crea tu primera página web profesional.</p>
                         <div class="card-footer">
                             <span class="card-meta">⏱️ 4-6 horas</span>
                             <button class="card-link" onclick="openModal('modal1')">Ver más →</button>
@@ -1086,7 +1114,7 @@
                     </div>
                 </article>
 
-                <!-- Card 2 -->
+                <!-- Card 3 -->
                 <article class="card" data-category="sistemas" data-id="2">
                     <div class="card-image">
                         <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=600&q=80" alt="Ubuntu">
@@ -1102,7 +1130,7 @@
                     </div>
                 </article>
 
-                <!-- Card 3 -->
+                <!-- Card 4 -->
                 <article class="card" data-category="hardware" data-id="3">
                     <div class="card-image">
                         <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=600&q=80" alt="Hardware">
@@ -1119,7 +1147,7 @@
                     </div>
                 </article>
 
-                <!-- Card 4 -->
+                <!-- Card 5 -->
                 <article class="card" data-category="web" data-id="4">
                     <div class="card-image">
                         <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=600&q=80" alt="HTML Avanzado">
@@ -1135,7 +1163,7 @@
                     </div>
                 </article>
 
-                <!-- Card 5 -->
+                <!-- Card 6 -->
                 <article class="card" data-category="redes" data-id="5">
                     <div class="card-image">
                         <img src="https://images.unsplash.com/photo-1507721999472-8ed4421c4af2?auto=format&fit=crop&w=600&q=80" alt="VPN">
@@ -1151,22 +1179,6 @@
                     </div>
                 </article>
 
-                <!-- Card 6 -->
-                <article class="card" data-category="multimedia" data-id="6">
-                    <div class="card-image">
-                        <img src="https://images.unsplash.com/photo-1536240478700-b869070f9279?auto=format&fit=crop&w=600&q=80" alt="Video">
-                        <span class="card-badge">Trending</span>
-                    </div>
-                    <div class="card-content">
-                        <span class="card-category">Multimedia</span>
-                        <h3 class="card-title">Edición de Video</h3>
-                        <p class="card-excerpt">Aprende a crear videos profesionales con software gratuito de nivel Hollywood.</p>
-                        <div class="card-footer">
-                            <span class="card-meta">⏱️ 8-10 horas</span>
-                            <button class="card-link" onclick="openModal('modal6')">Ver más →</button>
-                        </div>
-                    </div>
-                </article>
             </div>
         </section>
 
@@ -1225,43 +1237,90 @@
 
     <!-- MODALS -->
     
-    <!-- Modal 1 -->
+    <!-- Modal 0: BIENVENIDA -->
+    <div id="modal0" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div>
+                    <h3>¡Bienvenido a Vitvisor! 🎓</h3>
+                    <span class="category">Inicio • Tu viaje comienza aquí</span>
+                </div>
+                <button class="modal-close" onclick="closeModal('modal0')">&times;</button>
+            </div>
+            <div class="modal-body layout-alternating">
+                <div class="content-row">
+                    <div class="text">
+                        <h4>✨ Tu Plataforma de Aprendizaje</h4>
+                        <p>Vitvisor es tu destino para aprender tecnología de forma práctica y efectiva. Hemos creado recursos educativos diseñados para estudiantes, profesionales y autodidactas que quieren crecer en el mundo digital.</p>
+                    </div>
+                    <div class="image">
+                        <img src="https://i.postimg.cc/RhbChTfW/portada.png" alt="Bienvenido Vitvisor">
+                    </div>
+                </div>
+                <div class="content-row reverse">
+                    <div class="text">
+                        <h4>🎯 ¿Qué encontrarás aquí?</h4>
+                        <ul>
+                            <li>Tutoriales paso a paso con ejemplos reales</li>
+                            <li>Plantillas profesionales listas para usar</li>
+                            <li>Guías detalladas de hardware y software</li>
+                            <li>Proyectos prácticos para consolidar conocimientos</li>
+                            <li>Contenido actualizado con las últimas tecnologías</li>
+                        </ul>
+                    </div>
+                    <div class="image">
+                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80" alt="Aprendizaje">
+                    </div>
+                </div>
+                <div class="info-box">
+                    <strong>🚀 Primeros pasos:</strong> Explora nuestros recursos, filtra por categoría y haz clic en "Ver más" para acceder al contenido completo de cada curso.
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeModal('modal0')">¡Comenzar!</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 1: CURSO HTML -->
     <div id="modal1" class="modal">
         <div class="modal-content">
             <div class="modal-header">
                 <div>
-                    <h3>HTML & CSS Básico</h3>
-                    <span class="category">Web Development • Principiante</span>
+                    <h3>Bienvenido al Curso de HTML</h3>
+                    <span class="category">Lenguaje de Marcas • Principiante</span>
                 </div>
                 <button class="modal-close" onclick="closeModal('modal1')">&times;</button>
             </div>
             <div class="modal-body layout-alternating">
                 <div class="content-row">
                     <div class="text">
-                        <h4>📚 Fundamentos del Desarrollo Web</h4>
-                        <p>Aprende a crear tu primera página web con estilo profesional desde cero. Este recurso te guiará en los fundamentos del desarrollo web moderno con las mejores prácticas.</p>
+                        <h4>📚 Fundamentos de HTML</h4>
+                        <p>Aprende el lenguaje que construye la web. Este curso te guiará desde los conceptos básicos hasta la creación de páginas web profesionales con estructura semántica y buenas prácticas.</p>
                     </div>
                     <div class="image">
-                        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80" alt="HTML CSS">
+                        <img src="https://i.postimg.cc/SR2Bsx9t/lenguaje_de_marcas.png" alt="Curso HTML">
                     </div>
                 </div>
                 <div class="content-row reverse">
                     <div class="text">
-                        <h4>✅ Contenido Detallado</h4>
+                        <h4>✅ Contenido del Curso</h4>
                         <ul>
-                            <li>Estructura HTML5 y etiquetas semánticas</li>
-                            <li>Fundamentos de CSS3: selectores y box model</li>
-                            <li>Colores, fuentes y tipografía moderna</li>
-                            <li>Diseño responsive y mobile-first</li>
-                            <li>Proyecto práctico: portafolio personal</li>
+                            <li>Introducción a HTML5 y su importancia</li>
+                            <li>Estructura básica de un documento HTML</li>
+                            <li>Etiquetas esenciales: head, body, header, nav, main, footer</li>
+                            <li>Texto, enlaces, imágenes y multimedia</li>
+                            <li>Listas, tablas y formularios</li>
+                            <li>Etiquetas semánticas y accesibilidad</li>
+                            <li>Proyecto final: Página web personal</li>
                         </ul>
                     </div>
                     <div class="image">
-                        <img src="https://images.unsplash.com/photo-1507721999472-8ed4421c4af2?auto=format&fit=crop&w=800&q=80" alt="Código">
+                        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80" alt="Código HTML">
                     </div>
                 </div>
                 <div class="info-box">
-                    <strong>🎯 Resultado:</strong> Podrás crear páginas web estáticas con diseño profesional, responsive y buenas prácticas de accesibilidad web.
+                    <strong>🎯 Resultado:</strong> Al finalizar, podrás crear páginas web bien estructuradas, comprensibles para navegadores y motores de búsqueda, preparadas para aplicar estilos CSS.
                 </div>
             </div>
             <div class="modal-footer">
@@ -1487,71 +1546,6 @@
             </div>
             <div class="modal-footer">
                 <button class="btn-secondary" onclick="closeModal('modal5')">Cerrar</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal 6 -->
-    <div id="modal6" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <div>
-                    <h3>Edición de Video Profesional</h3>
-                    <span class="category">Multimedia • Intermedio</span>
-                </div>
-                <button class="modal-close" onclick="closeModal('modal6')">&times;</button>
-            </div>
-            <div class="modal-body layout-video">
-                <div class="video-wrapper">
-                    <video controls poster="https://images.unsplash.com/photo-1536240478700-b869070f9279?auto=format&fit=crop&w=1200&q=80">
-                        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-                    </video>
-                </div>
-                <div class="intro">
-                    <strong>🎬 Curso Completo:</strong> Aprende edición de video profesional con software gratuito como DaVinci Resolve, Shotcut y Kdenlive. De principiante a experto.
-                </div>
-                
-                <h4>💻 Software que Aprenderás:</h4>
-                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin:1.5rem 0">
-                    <div style="padding:1.25rem;background:linear-gradient(135deg,rgba(0,240,255,0.1),rgba(112,0,255,0.1));border:1px solid rgba(0,240,255,0.3);border-radius:12px;text-align:center">
-                        <strong style="color:var(--primary);font-size:1.1rem">DaVinci Resolve</strong><br>
-                        <small style="color:var(--text-muted)">Gratuito • Profesional</small>
-                    </div>
-                    <div style="padding:1.25rem;background:linear-gradient(135deg,rgba(0,240,255,0.1),rgba(112,0,255,0.1));border:1px solid rgba(0,240,255,0.3);border-radius:12px;text-align:center">
-                        <strong style="color:var(--primary);font-size:1.1rem">Shotcut</strong><br>
-                        <small style="color:var(--text-muted)">Open Source • Ligero</small>
-                    </div>
-                    <div style="padding:1.25rem;background:linear-gradient(135deg,rgba(0,240,255,0.1),rgba(112,0,255,0.1));border:1px solid rgba(0,240,255,0.3);border-radius:12px;text-align:center">
-                        <strong style="color:var(--primary);font-size:1.1rem">OpenShot</strong><br>
-                        <small style="color:var(--text-muted)">Principiantes • Simple</small>
-                    </div>
-                </div>
-
-                <div class="gallery">
-                    <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=600&q=80" alt="Timeline">
-                        <div class="gallery-caption">Línea de Tiempo</div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1535016120720-40c646be5580?auto=format&fit=crop&w=600&q=80" alt="Color">
-                        <div class="gallery-caption">Corrección de Color</div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1598550476439-6847785fcea6?auto=format&fit=crop&w=600&q=80" alt="Audio">
-                        <div class="gallery-caption">Edición de Audio</div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=600&q=80" alt="Export">
-                        <div class="gallery-caption">Exportación</div>
-                    </div>
-                </div>
-
-                <div class="details">
-                    <strong>🎯 Proyectos Prácticos:</strong> Video promocional de 60 segundos, tutorial educativo con pantalla compartida, reel para redes sociales (TikTok/Instagram), y documental corto con entrevistas.
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn-secondary" onclick="closeModal('modal6')">Cerrar</button>
             </div>
         </div>
     </div>
