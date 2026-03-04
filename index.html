@@ -3,1684 +3,384 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vitvisor - Recursos Didácticos</title>
-    <link rel="icon" type="image/png" href="https://i.postimg.cc/vBS3WzLT/android_chrome_512x512.png">
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
+    <title>Vitvisor - Álbum de Conocimiento Tecnológico</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* --- VARIABLES & RESET --- */
-        :root {
-            --bg-dark: #0a0a0f;
-            --bg-card: rgba(255, 255, 255, 0.03);
-            --primary: #00f0ff;
-            --secondary: #7000ff;
-            --accent: #ff00aa;
-            --text: #ffffff;
-            --text-muted: rgba(255, 255, 255, 0.6);
-            --border: rgba(255, 255, 255, 0.1);
-            --glow-primary: 0 0 40px rgba(0, 240, 255, 0.3);
-            --glow-secondary: 0 0 40px rgba(112, 0, 255, 0.3);
-        }
-
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--bg-dark);
-            color: var(--text);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* Animated Background */
-        .bg-animation {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1;
-            background: 
-                radial-gradient(circle at 20% 50%, rgba(112, 0, 255, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(0, 240, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 20%, rgba(255, 0, 170, 0.1) 0%, transparent 50%);
-            animation: bgPulse 15s ease-in-out infinite;
-        }
-
-        @keyframes bgPulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.7; transform: scale(1.1); }
-        }
-
-        .grid-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: 
-                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-            background-size: 50px 50px;
-            z-index: -1;
-        }
-
-        a { text-decoration: none; color: inherit; transition: all 0.3s; }
-        ul { list-style: none; }
-
-        /* --- HEADER --- */
-        .header {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            z-index: 1000;
-            padding: 1.5rem 3rem;
-            background: rgba(10, 10, 15, 0.8);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .header-inner {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .logo-icon {
-            width: 45px; height: 45px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 12px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.5rem;
-            box-shadow: var(--glow-primary);
-            -webkit-text-fill-color: white;
-        }
-
-        .nav {
-            display: flex;
-            gap: 2.5rem;
-        }
-
-        .nav a {
-            font-weight: 500;
-            color: var(--text-muted);
-            position: relative;
-            padding: 0.5rem 0;
-        }
-
-        .nav a::before {
-            content: '';
-            position: absolute;
-            bottom: 0; left: 0;
-            width: 0; height: 2px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            transition: width 0.3s;
-        }
-
-        .nav a:hover {
-            color: var(--text);
-        }
-
-        .nav a:hover::before {
-            width: 100%;
-        }
-
-        /* --- HERO --- */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 8rem 2rem 4rem;
-            position: relative;
-            background: linear-gradient(135deg, rgba(10,10,15,0.9), rgba(10,10,15,0.95)), 
-                        url('https://i.postimg.cc/RhbChTfW/portada.png') center/cover no-repeat;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(0,240,255,0.1), rgba(112,0,255,0.1));
-        }
-
-        .hero-content {
-            max-width: 900px;
-            text-align: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1.25rem;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 50px;
-            font-size: 0.9rem;
-            color: var(--primary);
-            margin-bottom: 2rem;
-            backdrop-filter: blur(10px);
-        }
-
-        .hero h1 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
-            font-weight: 700;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, #fff 0%, var(--primary) 50%, var(--secondary) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            color: var(--text-muted);
-            max-width: 600px;
-            margin: 0 auto 2.5rem;
-            line-height: 1.8;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn-primary {
-            padding: 1rem 2.5rem;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: var(--bg-dark);
-            border: none;
-            border-radius: 12px;
-            font-weight: 600;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: var(--glow-primary);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 0 60px rgba(0, 240, 255, 0.5);
-        }
-
-        .btn-secondary {
-            padding: 1rem 2.5rem;
-            background: transparent;
-            color: var(--text);
-            border: 2px solid var(--border);
-            border-radius: 12px;
-            font-weight: 600;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            backdrop-filter: blur(10px);
-        }
-
-        .btn-secondary:hover {
-            border-color: var(--primary);
-            background: rgba(0, 240, 255, 0.1);
-        }
-
-        /* --- SECTIONS --- */
-        .section {
-            padding: 6rem 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .section-header h2 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 700;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, #fff, var(--primary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .section-header p {
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* --- FILTERS --- */
-        .filters {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 3rem;
-            flex-wrap: wrap;
-        }
-
-        .filter-btn {
-            padding: 0.75rem 1.5rem;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 50px;
-            color: var(--text-muted);
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s;
-            backdrop-filter: blur(10px);
-        }
-
-        .filter-btn:hover,
-        .filter-btn.active {
-            background: linear-gradient(135deg, rgba(0, 240, 255, 0.2), rgba(112, 0, 255, 0.2));
-            border-color: var(--primary);
-            color: var(--text);
-            box-shadow: var(--glow-primary);
-        }
-
-        /* --- GRID --- */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-
-        .card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 24px;
-            overflow: hidden;
-            backdrop-filter: blur(20px);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(135deg, rgba(0, 240, 255, 0.1), rgba(112, 0, 255, 0.1));
-            opacity: 0;
-            transition: opacity 0.3s;
-            pointer-events: none;
-            border-radius: 24px;
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(0, 240, 255, 0.3);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), var(--glow-primary);
-        }
-
-        .card:hover::before {
-            opacity: 1;
-        }
-
-        .card-image {
-            position: relative;
-            height: 220px;
-            overflow: hidden;
-        }
-
-        .card-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-
-        .card:hover .card-image img {
-            transform: scale(1.1);
-        }
-
-        .card-badge {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            padding: 0.4rem 1rem;
-            background: linear-gradient(135deg, var(--accent), var(--secondary));
-            border-radius: 50px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            box-shadow: 0 4px 15px rgba(255, 0, 170, 0.4);
-        }
-
-        .card-content {
-            padding: 1.75rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .card-category {
-            display: inline-block;
-            padding: 0.35rem 0.85rem;
-            background: rgba(0, 240, 255, 0.1);
-            border: 1px solid rgba(0, 240, 255, 0.3);
-            border-radius: 8px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--primary);
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .card-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.4rem;
-            font-weight: 600;
-            margin-bottom: 0.75rem;
-            color: var(--text);
-        }
-
-        .card-excerpt {
-            color: var(--text-muted);
-            margin-bottom: 1.5rem;
-            line-height: 1.7;
-        }
-
-        .card-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 1.25rem;
-            border-top: 1px solid var(--border);
-        }
-
-        .card-meta {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        .card-link {
-            color: var(--primary);
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: gap 0.3s;
-        }
-
-        .card-link:hover {
-            gap: 0.75rem;
-        }
-
-        /* --- MODAL --- */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            left: 0; top: 0;
-            width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            backdrop-filter: blur(10px);
-            padding: 2rem;
-            overflow: auto;
-        }
-
-        .modal.show {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal-content {
-            background: linear-gradient(135deg, rgba(20, 20, 30, 0.95), rgba(10, 10, 15, 0.95));
-            border: 1px solid var(--border);
-            border-radius: 30px;
-            width: 100%;
-            max-width: 900px;
-            max-height: 90vh;
-            overflow-y: auto;
-            box-shadow: 0 0 100px rgba(0, 240, 255, 0.2);
-            animation: modalIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        @keyframes modalIn {
-            from {
-                opacity: 0;
-                transform: scale(0.9) translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1) translateY(0);
-            }
-        }
-
-        .modal-header {
-            padding: 2rem;
-            background: linear-gradient(135deg, rgba(0, 240, 255, 0.1), rgba(112, 0, 255, 0.1));
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-        }
-
-        .modal-header h3 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(135deg, #fff, var(--primary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .modal-header .category {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-
-        .modal-close {
-            width: 45px; height: 45px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            color: var(--text);
-            font-size: 1.8rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .modal-close:hover {
-            background: rgba(255, 0, 170, 0.2);
-            border-color: var(--accent);
-            transform: rotate(90deg);
-        }
-
-        .modal-body {
-            padding: 2rem;
-        }
-
-        /* Modal Layouts */
-        .layout-alternating .content-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2.5rem;
-            margin-bottom: 2.5rem;
-            align-items: center;
-        }
-
-        .layout-alternating .content-row.reverse {
-            direction: rtl;
-        }
-
-        .layout-alternating .content-row.reverse > * {
-            direction: ltr;
-        }
-
-        .layout-alternating .text h4 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.3rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .layout-alternating .text p {
-            color: var(--text-muted);
-            line-height: 1.8;
-            margin-bottom: 1rem;
-        }
-
-        .layout-alternating .text ul {
-            color: var(--text-muted);
-            margin-left: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .layout-alternating .text ul li {
-            margin-bottom: 0.5rem;
-        }
-
-        .layout-alternating .text ul li::marker {
-            color: var(--primary);
-        }
-
-        .layout-alternating .image img {
-            width: 100%;
-            border-radius: 16px;
-            border: 1px solid var(--border);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-        }
-
-        .layout-alternating .info-box {
-            background: linear-gradient(135deg, rgba(0, 240, 255, 0.1), rgba(112, 0, 255, 0.1));
-            border: 1px solid rgba(0, 240, 255, 0.3);
-            border-left: 4px solid var(--primary);
-            padding: 1.5rem;
-            border-radius: 12px;
-            margin: 2rem 0;
-        }
-
-        .layout-video .video-wrapper {
-            position: relative;
-            padding-bottom: 56.25%;
-            background: #000;
-            border-radius: 16px;
-            overflow: hidden;
-            margin-bottom: 2rem;
-            border: 1px solid var(--border);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-        }
-
-        .layout-video .video-wrapper iframe,
-        .layout-video .video-wrapper video {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            border: none;
-        }
-
-        .layout-video .intro {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            padding: 1.5rem;
-            border-radius: 12px;
-            margin-bottom: 2rem;
-            color: var(--text-muted);
-        }
-
-        .layout-video .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.25rem;
-            margin: 2rem 0;
-        }
-
-        .layout-video .gallery-item {
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid var(--border);
-            transition: all 0.3s;
-        }
-
-        .layout-video .gallery-item:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary);
-            box-shadow: var(--glow-primary);
-        }
-
-        .layout-video .gallery-item img {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-        }
-
-        .layout-video .gallery-caption {
-            padding: 0.75rem;
-            text-align: center;
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            background: var(--bg-card);
-        }
-
-        .layout-video .details {
-            background: linear-gradient(135deg, rgba(255, 0, 170, 0.1), rgba(112, 0, 255, 0.1));
-            border: 1px solid rgba(255, 0, 170, 0.3);
-            border-left: 4px solid var(--accent);
-            padding: 1.5rem;
-            border-radius: 12px;
-            margin: 2rem 0;
-        }
-
-        .layout-timeline .timeline {
-            position: relative;
-            padding-left: 3rem;
-            margin: 2rem 0;
-        }
-
-        .layout-timeline .timeline::before {
-            content: '';
-            position: absolute;
-            left: 0.8rem;
-            top: 0; bottom: 0;
-            width: 3px;
-            background: linear-gradient(var(--primary), var(--secondary));
-            border-radius: 3px;
-        }
-
-        .layout-timeline .step {
-            position: relative;
-            margin-bottom: 2rem;
-            padding: 1.5rem;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            backdrop-filter: blur(10px);
-        }
-
-        .layout-timeline .step::before {
-            content: attr(data-num);
-            position: absolute;
-            left: -2.4rem;
-            top: 1.5rem;
-            width: 32px; height: 32px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: var(--bg-dark);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 0.9rem;
-        }
-
-        .layout-timeline .step h4 {
-            font-family: 'Space Grotesk', sans-serif;
-            color: var(--primary);
-            margin-bottom: 0.75rem;
-        }
-
-        .layout-timeline .step p {
-            color: var(--text-muted);
-            line-height: 1.7;
-        }
-
-        .layout-code .code-block {
-            background: #1a1a2e;
-            color: #e0e0e0;
-            padding: 1.5rem;
-            border-radius: 12px;
-            font-family: 'Fira Code', monospace;
-            font-size: 0.9rem;
-            overflow-x: auto;
-            line-height: 1.7;
-            border: 1px solid var(--border);
-            margin: 1.5rem 0;
-        }
-
-        .layout-code .code-block .comment { color: #6b7280; }
-        .layout-code .code-block .tag { color: #00f0ff; }
-        .layout-code .code-block .attr { color: #a78bfa; }
-        .layout-code .code-block .value { color: #ff00aa; }
-
-        .layout-tabs .tabs {
-            display: flex;
-            gap: 0.75rem;
-            margin-bottom: 2rem;
-            border-bottom: 2px solid var(--border);
-            padding-bottom: 0.5rem;
-            flex-wrap: wrap;
-        }
-
-        .layout-tabs .tab-btn {
-            padding: 0.75rem 1.5rem;
-            background: transparent;
-            border: 1px solid var(--border);
-            border-bottom: none;
-            border-radius: 12px 12px 0 0;
-            color: var(--text-muted);
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .layout-tabs .tab-btn.active {
-            background: linear-gradient(135deg, rgba(0, 240, 255, 0.2), rgba(112, 0, 255, 0.2));
-            border-color: var(--primary);
-            color: var(--text);
-        }
-
-        .layout-tabs .tab-content {
-            display: none;
-        }
-
-        .layout-tabs .tab-content.active {
-            display: block;
-            animation: fadeIn 0.4s;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .modal-body h4 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.25rem;
-            color: var(--primary);
-            margin: 2rem 0 1rem;
-        }
-
-        .modal-body p {
-            color: var(--text-muted);
-            margin-bottom: 1rem;
-            line-height: 1.8;
-        }
-
-        .modal-body ul {
-            margin: 1rem 0 1.5rem 1.5rem;
-            color: var(--text-muted);
-        }
-
-        .modal-body ul li {
-            margin-bottom: 0.6rem;
-            line-height: 1.7;
-        }
-
-        .modal-body ul li::marker {
-            color: var(--primary);
-        }
-
-        .modal-footer {
-            padding: 1.5rem 2rem;
-            background: var(--bg-card);
-            border-top: 1px solid var(--border);
-            text-align: right;
-            border-radius: 0 0 30px 30px;
-        }
-
-        /* --- ABOUT --- */
-        .about {
-            background: linear-gradient(135deg, rgba(0, 240, 255, 0.05), rgba(112, 0, 255, 0.05));
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .about-inner {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .about-image {
-            height: 400px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 6rem;
-            box-shadow: var(--glow-primary), var(--glow-secondary);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .about-image::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: repeating-linear-gradient(
-                45deg,
-                transparent,
-                transparent 10px,
-                rgba(255,255,255,0.05) 10px,
-                rgba(255,255,255,0.05) 20px
-            );
-        }
-
-        .about-text h3 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, #fff, var(--primary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .about-text p {
-            color: var(--text-muted);
-            margin-bottom: 1.5rem;
-            line-height: 1.8;
-            font-size: 1.05rem;
-        }
-
-        .about-list {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .about-list li {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            color: var(--text-muted);
-            padding: 0.75rem 1rem;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            transition: all 0.3s;
-        }
-
-        .about-list li:hover {
-            border-color: var(--primary);
-            transform: translateX(5px);
-        }
-
-        .about-list li::before {
-            content: '✓';
-            color: var(--primary);
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-
-        /* --- CONTACT --- */
-        .contact {
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .contact-form {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 30px;
-            padding: 3rem;
-            backdrop-filter: blur(20px);
-        }
-
-        .form-group {
-            margin-bottom: 1.75rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.75rem;
-            font-weight: 500;
-            color: var(--text);
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 1rem 1.25rem;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            color: var(--text);
-            font-size: 1rem;
-            transition: all 0.3s;
-            font-family: inherit;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-            background: rgba(0, 240, 255, 0.05);
-            box-shadow: 0 0 0 4px rgba(0, 240, 255, 0.1);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 140px;
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 1.25rem;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: var(--bg-dark);
-            border: none;
-            border-radius: 12px;
-            font-weight: 700;
-            font-size: 1.05rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: var(--glow-primary);
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 0 60px rgba(0, 240, 255, 0.5);
-        }
-
-        /* --- FOOTER --- */
-        .footer {
-            background: rgba(0, 0, 0, 0.5);
-            border-top: 1px solid var(--border);
-            padding: 3rem 2rem;
-            text-align: center;
-            color: var(--text-muted);
-        }
-
-        .footer strong {
-            color: var(--text);
-            font-family: 'Space Grotesk', sans-serif;
-        }
-
-        .footer a {
-            color: var(--primary);
-        }
-
-        .footer a:hover {
-            color: var(--accent);
-        }
-
-        /* --- RESPONSIVE --- */
-        @media (max-width: 968px) {
-            .about-inner {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            .about-list {
-                justify-content: center;
-            }
-            .layout-alternating .content-row,
-            .layout-alternating .content-row.reverse {
-                grid-template-columns: 1fr;
-                direction: ltr;
-            }
-        }
-
+        :root {
+            --primary-color: #667eea; --secondary-color: #764ba2; --accent-color: #f093fb;
+            --text-dark: #2d3748; --text-light: #718096; --bg-light: #f7fafc; --white: #ffffff;
+            --shadow: 0 10px 30px rgba(0,0,0,0.1); --shadow-hover: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: var(--text-dark); background: var(--bg-light); }
+
+        /* Header */
+        header { background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%); position: fixed; width: 100%; top: 0; z-index: 1000; box-shadow: var(--shadow); }
+        nav { max-width: 1400px; margin: 0 auto; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 2rem; font-weight: bold; color: var(--white); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; letter-spacing: 1px; }
+        .logo i { font-size: 1.8rem; }
+        .nav-menu { display: flex; list-style: none; gap: 2rem; align-items: center; }
+        .nav-menu a { color: var(--white); text-decoration: none; font-weight: 500; transition: all 0.3s; padding: 0.5rem 1rem; border-radius: 5px; }
+        .nav-menu a:hover { background: rgba(255,255,255,0.2); transform: translateY(-2px); }
+        .search-box { position: relative; }
+        .search-box input { padding: 0.6rem 2.5rem 0.6rem 1rem; border: none; border-radius: 25px; width: 250px; outline: none; font-size: 0.95rem; transition: all 0.3s; }
+        .search-box input:focus { width: 300px; box-shadow: 0 0 0 3px rgba(255,255,255,0.3); }
+        .search-box button { position: absolute; right: 5px; top: 50%; transform: translateY(-50%); background: var(--primary-color); border: none; color: white; padding: 0.4rem 0.8rem; border-radius: 20px; cursor: pointer; transition: all 0.3s; }
+        .search-box button:hover { background: var(--secondary-color); }
+        .mobile-menu { display: none; color: white; font-size: 1.5rem; cursor: pointer; }
+
+        /* Hero */
+        .hero { margin-top: 80px; background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%); color: white; padding: 4rem 2rem; text-align: center; }
+        .hero h1 { font-size: 3rem; margin-bottom: 1rem; animation: fadeInUp 0.8s; }
+        .hero p { font-size: 1.3rem; opacity: 0.9; max-width: 600px; margin: 0 auto 2rem; animation: fadeInUp 0.8s 0.2s both; }
+
+        /* Filtros */
+        .categories-filter { max-width: 1400px; margin: 2rem auto; padding: 0 2rem; display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+        .filter-btn { padding: 0.6rem 1.5rem; border: 2px solid var(--primary-color); background: white; color: var(--primary-color); border-radius: 25px; cursor: pointer; font-weight: 600; transition: all 0.3s; font-size: 0.95rem; }
+        .filter-btn:hover, .filter-btn.active { background: var(--primary-color); color: white; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4); }
+
+        /* Grid */
+        .container { max-width: 1400px; margin: 0 auto; padding: 2rem; }
+        .album-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 2rem; margin-bottom: 4rem; }
+        .album-card { background: white; border-radius: 15px; overflow: hidden; box-shadow: var(--shadow); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; position: relative; }
+        .album-card:hover { transform: translateY(-10px) scale(1.02); box-shadow: var(--shadow-hover); }
+        .album-card.hidden { display: none; }
+        .card-image { width: 100%; height: 250px; object-fit: cover; transition: transform 0.4s; }
+        .album-card:hover .card-image { transform: scale(1.1); }
+        .card-content { padding: 1.5rem; }
+        .card-category { display: inline-block; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: white; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem; font-weight: 600; margin-bottom: 0.8rem; text-transform: uppercase; }
+        .card-title { font-size: 1.4rem; color: var(--text-dark); margin-bottom: 0.8rem; line-height: 1.3; }
+        .card-excerpt { color: var(--text-light); font-size: 0.95rem; line-height: 1.6; margin-bottom: 1rem; }
+        .card-footer { display: flex; justify-content: space-between; align-items: center; padding-top: 1rem; border-top: 1px solid #e2e8f0; }
+        .read-more { color: var(--primary-color); text-decoration: none; font-weight: 600; display: flex; align-items: center; gap: 0.5rem; transition: gap 0.3s; cursor: pointer; background: none; border: none; font-size: 1rem; }
+        .read-more:hover { gap: 0.8rem; }
+        .card-date { color: var(--text-light); font-size: 0.85rem; }
+
+        /* Modal */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; overflow-y: auto; backdrop-filter: blur(5px); }
+        .modal.active { display: flex; justify-content: center; align-items: flex-start; padding: 2rem 1rem; }
+        .modal-content { background: white; max-width: 900px; width: 100%; border-radius: 20px; overflow: hidden; animation: modalSlideIn 0.4s; position: relative; margin: 2rem auto; }
+        @keyframes modalSlideIn { from { opacity: 0; transform: translateY(-50px); } to { opacity: 1; transform: translateY(0); } }
+        .modal-close { position: absolute; top: 20px; right: 20px; background: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 1.5rem; color: var(--text-dark); z-index: 10; box-shadow: var(--shadow); transition: all 0.3s; display: flex; align-items: center; justify-content: center; }
+        .modal-close:hover { background: var(--primary-color); color: white; transform: rotate(90deg); }
+        .modal-image { width: 100%; height: 400px; object-fit: cover; }
+        .modal-body { padding: 3rem; }
+        .modal-category { display: inline-block; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: white; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600; margin-bottom: 1rem; }
+        .modal-title { font-size: 2.5rem; color: var(--text-dark); margin-bottom: 1.5rem; line-height: 1.2; }
+        .modal-text { font-size: 1.1rem; line-height: 1.8; color: var(--text-light); margin-bottom: 1.5rem; }
+        .modal-text h3 { color: var(--text-dark); margin: 2rem 0 1rem; font-size: 1.5rem; }
+        .modal-text ul { margin-left: 2rem; margin-bottom: 1.5rem; }
+        .modal-text li { margin-bottom: 0.8rem; color: var(--text-light); }
+        .modal-text strong { color: var(--primary-color); }
+
+        /* Contacto */
+        .contact { max-width: 700px; margin: 0 auto; padding: 4rem 2rem; }
+        .contact-title { text-align: center; margin-bottom: 2rem; }
+        .contact-title h2 { font-size: 2rem; margin-bottom: 0.5rem; color: var(--text-dark); }
+        .contact-title p { color: var(--text-light); }
+        .contact-form { background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1)); border: 2px solid var(--primary-color); border-radius: 30px; padding: 3rem; box-shadow: var(--shadow); }
+        .form-group { margin-bottom: 1.75rem; }
+        .form-group label { display: block; margin-bottom: 0.75rem; font-weight: 600; color: var(--text-dark); }
+        .form-group input, .form-group textarea { width: 100%; padding: 1rem 1.25rem; background: rgba(255, 255, 255, 0.8); border: 2px solid #e2e8f0; border-radius: 12px; color: var(--text-dark); font-size: 1rem; transition: all 0.3s; font-family: inherit; }
+        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--primary-color); background: white; box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.2); }
+        .form-group textarea { resize: vertical; min-height: 140px; }
+        .submit-btn { width: 100%; padding: 1.25rem; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: white; border: none; border-radius: 12px; font-weight: 700; font-size: 1.05rem; cursor: pointer; transition: all 0.3s; box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4); }
+        .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6); }
+
+        /* Footer */
+        footer { background: var(--text-dark); color: white; padding: 3rem 2rem 1rem; margin-top: 4rem; }
+        .footer-content { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; margin-bottom: 2rem; }
+        .footer-section h3 { margin-bottom: 1rem; color: var(--accent-color); }
+        .footer-section p, .footer-section a { color: #a0aec0; text-decoration: none; line-height: 2; transition: color 0.3s; }
+        .footer-section a:hover { color: white; }
+        .social-links { display: flex; gap: 1rem; margin-top: 1rem; }
+        .social-links a { width: 40px; height: 40px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s; }
+        .social-links a:hover { background: var(--primary-color); transform: translateY(-3px); }
+        .footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid #4a5568; color: #a0aec0; }
+
+        /* Animaciones */
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Responsive */
         @media (max-width: 768px) {
-            .header {
-                padding: 1rem 1.5rem;
-            }
-            .nav {
-                display: none;
-            }
-            .hero {
-                padding: 7rem 1.5rem 3rem;
-            }
-            .section {
-                padding: 4rem 1.5rem;
-            }
-            .grid {
-                grid-template-columns: 1fr;
-            }
-            .modal {
-                padding: 1rem;
-            }
-            .modal-content {
-                border-radius: 20px;
-            }
-            .modal-header {
-                padding: 1.5rem;
-            }
-            .modal-body {
-                padding: 1.5rem;
-            }
-            .about-list {
-                grid-template-columns: 1fr;
-            }
-            .contact-form {
-                padding: 2rem 1.5rem;
-            }
+            .nav-menu { display: none; } .mobile-menu { display: block; }
+            .search-box input { width: 150px; } .search-box input:focus { width: 180px; }
+            .hero h1 { font-size: 2rem; } .album-grid { grid-template-columns: 1fr; }
+            .modal-body { padding: 1.5rem; } .modal-title { font-size: 1.8rem; } .modal-image { height: 250px; }
+            .contact-form { padding: 2rem 1.5rem; }
         }
+        .no-results { text-align: center; padding: 4rem 2rem; color: var(--text-light); font-size: 1.2rem; grid-column: 1 / -1; }
+        .no-results i { font-size: 4rem; margin-bottom: 1rem; color: var(--primary-color); }
     </style>
 </head>
 <body>
-
-    <div class="bg-animation"></div>
-    <div class="grid-overlay"></div>
-
-    <!-- HEADER -->
-    <header class="header">
-        <div class="header-inner">
-            <a href="#" class="logo">
-                <span class="logo-icon">🎓</span>
-                Vitvisor
-            </a>
-            <nav class="nav">
-                <a href="#inicio">Inicio</a>
-                <a href="#recursos">Recursos</a>
-                <a href="#sobre">Sobre</a>
-                <a href="#contacto">Contacto</a>
-            </nav>
-        </div>
+    <!-- Header -->
+    <header>
+        <nav>
+            <a href="#" class="logo"><i class="fas fa-eye"></i> Vitvisor</a>
+            <ul class="nav-menu">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#categorias">Categorías</a></li>
+                <li><a href="#album">Álbum</a></li>
+                <li><a href="#contact">Contacto</a></li>
+            </ul>
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Buscar artículos...">
+                <button onclick="searchArticles()"><i class="fas fa-search"></i></button>
+            </div>
+            <div class="mobile-menu" onclick="toggleMobileMenu()"><i class="fas fa-bars"></i></div>
+        </nav>
     </header>
 
-    <!-- HERO -->
+    <!-- Hero -->
     <section class="hero" id="inicio">
-        <div class="hero-content">
-            <div class="hero-badge">
-                <span>✨</span>
-                Recursos Educativos del Futuro
-            </div>
-            <h1>Bienvenido a Vitvisor</h1>
-            <p>Tu plataforma de aprendizaje tecnológico con recursos profesionales, tutoriales interactivos y guías prácticas. ¡Comienza tu viaje educativo hoy!</p>
-            <div class="hero-buttons">
-                <button class="btn-primary" onclick="document.getElementById('recursos').scrollIntoView({behavior:'smooth'})">
-                    Explorar Recursos →
-                </button>
-                <button class="btn-secondary" onclick="document.getElementById('sobre').scrollIntoView({behavior:'smooth'})">
-                    Saber Más
-                </button>
-            </div>
-        </div>
+        <h1>Bienvenido a Vitvisor</h1>
+        <p>Tu ventana al conocimiento tecnológico. Explora conceptos fundamentales de informática y redes</p>
     </section>
 
-    <!-- MAIN -->
-    <main>
-        <!-- RESOURCES -->
-        <section class="section" id="recursos">
-            <div class="section-header">
-                <h2>Recursos Destacados</h2>
-                <p>Material educativo creado por expertos con ejemplos prácticos y proyectos reales</p>
-            </div>
+    <!-- Filtros -->
+    <div class="categories-filter" id="categorias">
+        <button class="filter-btn active" onclick="filterCategory('todos')">Todos</button>
+        <button class="filter-btn" onclick="filterCategory('sistemas-operativos')">Sistemas Operativos</button>
+        <button class="filter-btn" onclick="filterCategory('lenguajes-marcas')">Lenguajes de Marcas</button>
+        <button class="filter-btn" onclick="filterCategory('internet-redes')">Internet y Redes</button>
+        <button class="filter-btn" onclick="filterCategory('servidores')">Servidores</button>
+        <button class="filter-btn" onclick="filterCategory('fundamentos')">Fundamentos</button>
+        <button class="filter-btn" onclick="filterCategory('hardware')">Hardware</button>
+    </div>
 
-            <div class="filters" id="filters">
-                <button class="filter-btn active" data-filter="all" onclick="filterPosts('all', this)">📚 Todos</button>
-            </div>
-
-            <div class="grid" id="grid">
-                <!-- Card 1: BIENVENIDA -->
-                <article class="card" data-category="inicio" data-id="0">
-                    <div class="card-image">
-                        <img src="https://i.postimg.cc/RhbChTfW/portada.png" alt="Bienvenido">
-                        <span class="card-badge">Inicio</span>
-                    </div>
-                    <div class="card-content">
-                        <span class="card-category">Bienvenida</span>
-                        <h3 class="card-title">¡Bienvenido a Vitvisor! 🎓</h3>
-                        <p class="card-excerpt">Descubre una nueva forma de aprender tecnología. Explora nuestros recursos, tutoriales y guías diseñadas para impulsar tu crecimiento profesional.</p>
-                        <div class="card-footer">
-                            <span class="card-meta">🚀 Comienza aquí</span>
-                            <button class="card-link" onclick="openModal('modal0')">Ver más →</button>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Card 2: CURSO HTML -->
-                <article class="card" data-category="web" data-id="1">
-                    <div class="card-image">
-                        <img src="https://i.postimg.cc/SR2Bsx9t/lenguaje_de_marcas.png" alt="Curso HTML">
-                        <span class="card-badge">Popular</span>
-                    </div>
-                    <div class="card-content">
-                        <span class="card-category">Lenguaje de Marcas</span>
-                        <h3 class="card-title">Bienvenido al Curso de HTML</h3>
-                        <p class="card-excerpt">Aprende HTML desde cero: estructura, etiquetas, semántica y buenas prácticas. Crea tu primera página web profesional.</p>
-                        <div class="card-footer">
-                            <span class="card-meta">⏱️ 4-6 horas</span>
-                            <button class="card-link" onclick="openModal('modal1')">Ver más →</button>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Card 3: PRIMER CAPÍTULO HTML -->
-                <article class="card" data-category="web" data-id="2">
-                    <div class="card-image">
-                        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=600&q=80" alt="Capítulo 1 HTML">
-                        <span class="card-badge">Capítulo 1</span>
-                    </div>
-                    <div class="card-content">
-                        <span class="card-category">Lenguaje de Marcas</span>
-                        <h3 class="card-title">Capítulo 1: Estructura Básica HTML</h3>
-                        <p class="card-excerpt">Aprende la estructura fundamental de un documento HTML: DOCTYPE, html, head, body y las etiquetas esenciales para comenzar.</p>
-                        <div class="card-footer">
-                            <span class="card-meta">⏱️ 45 min</span>
-                            <button class="card-link" onclick="openModal('modal2')">Ver más →</button>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Card 4: MÁQUINA VIRTUAL LINUX -->
-                <article class="card" data-category="sistemas" data-id="3">
-                    <div class="card-image">
-                        <img src="https://i.postimg.cc/BbXV8vkt/creando_ubuntu.png" alt="Crear Máquina Linux">
-                        <span class="card-badge">Video Tutorial</span>
-                    </div>
-                    <div class="card-content">
-                        <span class="card-category">Sistemas</span>
-                        <h3 class="card-title">Creación de Máquina Virtual Linux</h3>
-                        <p class="card-excerpt">Tutorial en video paso a paso para crear tu propia máquina virtual con Ubuntu usando VirtualBox. ¡Sin riesgos para tu sistema!</p>
-                        <div class="card-footer">
-                            <span class="card-meta">🎬 25 min</span>
-                            <button class="card-link" onclick="openModal('modal3')">Ver más →</button>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Card 5: MONTAJE PC -->
-                <article class="card" data-category="hardware" data-id="4">
-                    <div class="card-image">
-                        <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=600&q=80" alt="Hardware">
-                        <span class="card-badge">Nuevo</span>
-                    </div>
-                    <div class="card-content">
-                        <span class="card-category">Hardware</span>
-                        <h3 class="card-title">Montaje de PC</h3>
-                        <p class="card-excerpt">Guía paso a paso para ensamblar tu propio ordenador desde cero como un profesional.</p>
-                        <div class="card-footer">
-                            <span class="card-meta">⏱️ 5-7 horas</span>
-                            <button class="card-link" onclick="openModal('modal4')">Ver más →</button>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Card 6: HTML AVANZADO -->
-                <article class="card" data-category="web" data-id="5">
-                    <div class="card-image">
-                        <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=600&q=80" alt="HTML Avanzado">
-                    </div>
-                    <div class="card-content">
-                        <span class="card-category">Web Development</span>
-                        <h3 class="card-title">Guía HTML Avanzada</h3>
-                        <p class="card-excerpt">Domina HTML5 semántico, accesibilidad y SEO para crear sitios profesionales.</p>
-                        <div class="card-footer">
-                            <span class="card-meta">⏱️ 6-8 horas</span>
-                            <button class="card-link" onclick="openModal('modal5')">Ver más →</button>
-                        </div>
-                    </div>
-                </article>
-
-            </div>
-        </section>
-
-        <!-- ABOUT -->
-        <section class="section about" id="sobre">
-            <div class="about-inner">
-                <div class="about-image">🚀</div>
-                <div class="about-text">
-                    <h3>Sobre Vitvisor</h3>
-                    <p>Vitvisor es una plataforma educativa de nueva generación dedicada a proporcionar recursos didácticos de alta calidad sobre informática y tecnología. Creemos en el aprendizaje práctico y accesible.</p>
-                    <p>Ofrecemos plantillas profesionales, tutoriales interactivos y guías detalladas creadas por expertos en la industria.</p>
-                    
-                    <div class="about-list">
-                        <li>Lenguaje de Marcas (HTML, CSS)</li>
-                        <li>Sistemas Operativos (Ubuntu, Windows)</li>
-                        <li>Hardware y Ensamblaje</li>
-                        <li>Redes y Seguridad</li>
-                        <li>Programación Web</li>
-                        <li>Multimedia y Edición</li>
+    <!-- Álbum Grid -->
+    <div class="container" id="album">
+        <div class="album-grid" id="albumGrid">
+            <!-- Entrada 1: Sistema Operativo -->
+            <article class="album-card" data-category="sistemas-operativos">
+                <img src="https://i.postimg.cc/KcL21H9K/que_es_un_sistema_operativo.png" alt="Sistema Operativo" class="card-image">
+                <div class="card-content">
+                    <span class="card-category">Sistemas Operativos</span>
+                    <h3 class="card-title">¿Qué es un Sistema Operativo?</h3>
+                    <p class="card-excerpt">Descubre qué es un sistema operativo, sus funciones principales y cómo gestiona los recursos de hardware...</p>
+                    <div class="card-footer">
+                        <button class="read-more" onclick="openModal(0)">Ver más <i class="fas fa-arrow-right"></i></button>
+                        <span class="card-date"><i class="far fa-calendar"></i> Mar 2026</span>
                     </div>
                 </div>
-            </div>
-        </section>
+            </article>
+            <!-- Entrada 2: Lenguaje de Marcas -->
+            <article class="album-card" data-category="lenguajes-marcas">
+                <img src="https://i.postimg.cc/jqNbDF8f/que_es_el_lenguage_de_marcas.png" alt="Lenguaje de Marcas" class="card-image">
+                <div class="card-content">
+                    <span class="card-category">Lenguajes de Marcas</span>
+                    <h3 class="card-title">¿Qué es un Lenguaje de Marcas?</h3>
+                    <p class="card-excerpt">Aprende sobre los lenguajes de marcas como HTML y XML, cómo funcionan y por qué son esenciales para el desarrollo web...</p>
+                    <div class="card-footer">
+                        <button class="read-more" onclick="openModal(1)">Ver más <i class="fas fa-arrow-right"></i></button>
+                        <span class="card-date"><i class="far fa-calendar"></i> Mar 2026</span>
+                    </div>
+                </div>
+            </article>
+            <!-- Entrada 3: Internet -->
+            <article class="album-card" data-category="internet-redes">
+                <img src="https://i.postimg.cc/Gpc2K15S/que_es_internet.png" alt="¿Qué es Internet?" class="card-image">
+                <div class="card-content">
+                    <span class="card-category">Internet y Redes</span>
+                    <h3 class="card-title">¿Qué es Internet?</h3>
+                    <p class="card-excerpt">Conoce qué es Internet, cómo funciona la red de redes mundial, sus componentes principales y su impacto en la sociedad actual...</p>
+                    <div class="card-footer">
+                        <button class="read-more" onclick="openModal(2)">Ver más <i class="fas fa-arrow-right"></i></button>
+                        <span class="card-date"><i class="far fa-calendar"></i> Mar 2026</span>
+                    </div>
+                </div>
+            </article>
+            <!-- Entrada 4: Servidor -->
+            <article class="album-card" data-category="servidores">
+                <img src="https://i.postimg.cc/63byT1zd/que_es_un_servidor.png" alt="¿Qué es un Servidor?" class="card-image">
+                <div class="card-content">
+                    <span class="card-category">Servidores</span>
+                    <h3 class="card-title">¿Qué es un Servidor?</h3>
+                    <p class="card-excerpt">Descubre qué es un servidor, los diferentes tipos que existen, cómo funcionan y su papel fundamental en Internet...</p>
+                    <div class="card-footer">
+                        <button class="read-more" onclick="openModal(3)">Ver más <i class="fas fa-arrow-right"></i></button>
+                        <span class="card-date"><i class="far fa-calendar"></i> Mar 2026</span>
+                    </div>
+                </div>
+            </article>
+            <!-- Entrada 5: Bit vs Byte -->
+            <article class="album-card" data-category="fundamentos">
+                <img src="https://i.postimg.cc/9fhDR92g/bit-bite.png" alt="Bit vs Byte" class="card-image">
+                <div class="card-content">
+                    <span class="card-category">Fundamentos</span>
+                    <h3 class="card-title">Bit vs Byte: La Base de la Informática</h3>
+                    <p class="card-excerpt">Aprende la diferencia entre bit y byte, cómo se miden los datos digitales y por qué es fundamental entender estas unidades...</p>
+                    <div class="card-footer">
+                        <button class="read-more" onclick="openModal(4)">Ver más <i class="fas fa-arrow-right"></i></button>
+                        <span class="card-date"><i class="far fa-calendar"></i> Mar 2026</span>
+                    </div>
+                </div>
+            </article>
+            <!-- Entrada 6: CPU (NUEVA) -->
+            <article class="album-card" data-category="hardware">
+                <img src="https://i.postimg.cc/XvgYZ7np/que-es-la-cpu.png" alt="¿Qué es la CPU?" class="card-image">
+                <div class="card-content">
+                    <span class="card-category">Hardware</span>
+                    <h3 class="card-title">¿Qué es la CPU? El Cerebro del Ordenador</h3>
+                    <p class="card-excerpt">Descubre qué es la Unidad Central de Procesamiento, cómo funciona, sus componentes principales y por qué es fundamental...</p>
+                    <div class="card-footer">
+                        <button class="read-more" onclick="openModal(5)">Ver más <i class="fas fa-arrow-right"></i></button>
+                        <span class="card-date"><i class="far fa-calendar"></i> Mar 2026</span>
+                    </div>
+                </div>
+            </article>
+        </div>
+        <div class="no-results" id="noResults" style="display: none;"><i class="fas fa-search"></i><p>No se encontraron artículos que coincidan con tu búsqueda</p></div>
+    </div>
 
-        <!-- CONTACT -->
-        <section class="section contact" id="contacto">
-            <div class="section-header">
-                <h2>Contáctanos</h2>
-                <p>¿Tienes dudas o sugerencias? Estamos aquí para ayudarte</p>
-            </div>
-            
-            <form class="contact-form" action="https://formspree.io/f/xgoldllk" method="POST">
-                <div class="form-group">
-                    <label for="nombre">Nombre *</label>
-                    <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Correo Electrónico *</label>
-                    <input type="email" id="email" name="email" placeholder="tu@email.com" required>
-                </div>
-                <div class="form-group">
-                    <label for="mensaje">Mensaje *</label>
-                    <textarea id="mensaje" name="mensaje" placeholder="¿En qué podemos ayudarte?" required></textarea>
-                </div>
-                <button type="submit" class="submit-btn">Enviar Mensaje ✉️</button>
-            </form>
-        </section>
-    </main>
+    <!-- Contacto -->
+    <section class="contact" id="contact">
+        <div class="contact-title">
+            <h2>Contáctanos</h2>
+            <p>¿Tienes dudas o sugerencias? Estamos aquí para ayudarte</p>
+        </div>
+        <form class="contact-form" action="https://formspree.io/f/xgoldllk" method="POST">
+            <div class="form-group"><label for="nombre">Nombre *</label><input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required></div>
+            <div class="form-group"><label for="email">Correo Electrónico *</label><input type="email" id="email" name="email" placeholder="tu@email.com" required></div>
+            <div class="form-group"><label for="mensaje">Mensaje *</label><textarea id="mensaje" name="mensaje" placeholder="¿En qué podemos ayudarte?" required></textarea></div>
+            <button type="submit" class="submit-btn">Enviar Mensaje ✉️</button>
+        </form>
+    </section>
 
-    <!-- FOOTER -->
-    <footer class="footer">
-        <p><strong>Vitvisor</strong> — Recursos Didácticos de Informática</p>
-        <p>📧 vitvisor28@gmail.com</p>
-        <p>&copy; 2024 Todos los derechos reservados.</p>
+    <!-- Modal -->
+    <div class="modal" id="articleModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
+            <img src="" alt="" class="modal-image" id="modalImage">
+            <div class="modal-body">
+                <span class="modal-category" id="modalCategory">Categoría</span>
+                <h2 class="modal-title" id="modalTitle">Título del Artículo</h2>
+                <div class="modal-text" id="modalText"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer ACTUALIZADO con LinkedIn y Gmail -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Vitvisor</h3>
+                <p>Tu fuente de conocimiento tecnológico. Aprende sobre sistemas operativos, lenguajes de marcas, Internet, servidores y más.</p>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/vitvisor-undefined-4290713b2/" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Categorías</h3>
+                <p><a href="#">Sistemas Operativos</a></p>
+                <p><a href="#">Lenguajes de Marcas</a></p>
+                <p><a href="#">Internet y Redes</a></p>
+                <p><a href="#">Servidores</a></p>
+                <p><a href="#">Fundamentos</a></p>
+                <p><a href="#">Hardware</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>Enlaces Rápidos</h3>
+                <p><a href="#inicio">Inicio</a></p>
+                <p><a href="#album">Álbum</a></p>
+                <p><a href="#about">Sobre Nosotros</a></p>
+                <p><a href="#">Política de Privacidad</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>Contacto</h3>
+                <p><i class="fas fa-envelope"></i> <a href="mailto:vitvisor28@gmail.com">vitvisor28@gmail.com</a></p>
+                <p><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/vitvisor-undefined-4290713b2/" target="_blank" rel="noopener">Perfil de LinkedIn</a></p>
+                <p><i class="fas fa-map-marker-alt"></i> Madrid, España</p>
+            </div>
+        </div>
+        <div class="footer-bottom"><p>&copy; 2026 Vitvisor. Todos los derechos reservados.</p></div>
     </footer>
 
-    <!-- MODALS -->
-    
-    <!-- Modal 0: BIENVENIDA -->
-    <div id="modal0" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <div>
-                    <h3>¡Bienvenido a Vitvisor! 🎓</h3>
-                    <span class="category">Inicio • Tu viaje comienza aquí</span>
-                </div>
-                <button class="modal-close" onclick="closeModal('modal0')">&times;</button>
-            </div>
-            <div class="modal-body layout-alternating">
-                <div class="content-row">
-                    <div class="text">
-                        <h4>✨ Tu Plataforma de Aprendizaje</h4>
-                        <p>Vitvisor es tu destino para aprender tecnología de forma práctica y efectiva. Hemos creado recursos educativos diseñados para estudiantes, profesionales y autodidactas que quieren crecer en el mundo digital.</p>
-                    </div>
-                    <div class="image">
-                        <img src="https://i.postimg.cc/RhbChTfW/portada.png" alt="Bienvenido Vitvisor">
-                    </div>
-                </div>
-                <div class="content-row reverse">
-                    <div class="text">
-                        <h4>🎯 ¿Qué encontrarás aquí?</h4>
-                        <ul>
-                            <li>Tutoriales paso a paso con ejemplos reales</li>
-                            <li>Plantillas profesionales listas para usar</li>
-                            <li>Guías detalladas de hardware y software</li>
-                            <li>Proyectos prácticos para consolidar conocimientos</li>
-                            <li>Contenido actualizado con las últimas tecnologías</li>
-                        </ul>
-                    </div>
-                    <div class="image">
-                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80" alt="Aprendizaje">
-                    </div>
-                </div>
-                <div class="info-box">
-                    <strong>🚀 Primeros pasos:</strong> Explora nuestros recursos, filtra por categoría y haz clic en "Ver más" para acceder al contenido completo de cada curso.
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn-secondary" onclick="closeModal('modal0')">¡Comenzar!</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal 1: CURSO HTML -->
-    <div id="modal1" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <div>
-                    <h3>Bienvenido al Curso de HTML</h3>
-                    <span class="category">Lenguaje de Marcas • Principiante</span>
-                </div>
-                <button class="modal-close" onclick="closeModal('modal1')">&times;</button>
-            </div>
-            <div class="modal-body layout-alternating">
-                <div class="content-row">
-                    <div class="text">
-                        <h4>📚 Fundamentos de HTML</h4>
-                        <p>Aprende el lenguaje que construye la web. Este curso te guiará desde los conceptos básicos hasta la creación de páginas web profesionales con estructura semántica y buenas prácticas.</p>
-                    </div>
-                    <div class="image">
-                        <img src="https://i.postimg.cc/SR2Bsx9t/lenguaje_de_marcas.png" alt="Curso HTML">
-                    </div>
-                </div>
-                <div class="content-row reverse">
-                    <div class="text">
-                        <h4>✅ Contenido del Curso</h4>
-                        <ul>
-                            <li>Introducción a HTML5 y su importancia</li>
-                            <li>Estructura básica de un documento HTML</li>
-                            <li>Etiquetas esenciales: head, body, header, nav, main, footer</li>
-                            <li>Texto, enlaces, imágenes y multimedia</li>
-                            <li>Listas, tablas y formularios</li>
-                            <li>Etiquetas semánticas y accesibilidad</li>
-                            <li>Proyecto final: Página web personal</li>
-                        </ul>
-                    </div>
-                    <div class="image">
-                        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80" alt="Código HTML">
-                    </div>
-                </div>
-                <div class="info-box">
-                    <strong>🎯 Resultado:</strong> Al finalizar, podrás crear páginas web bien estructuradas, comprensibles para navegadores y motores de búsqueda, preparadas para aplicar estilos CSS.
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn-secondary" onclick="closeModal('modal1')">Cerrar</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal 2: CAPÍTULO 1 HTML -->
-    <div id="modal2" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <div>
-                    <h3>Capítulo 1: Estructura Básica HTML</h3>
-                    <span class="category">Lenguaje de Marcas • Principiante</span>
-                </div>
-                <button class="modal-close" onclick="closeModal('modal2')">&times;</button>
-            </div>
-            <div class="modal-body layout-alternating">
-                <div class="content-row">
-                    <div class="text">
-                        <h4>🔰 Lo Primero: La Estructura</h4>
-                        <p>Todo documento HTML comienza con una estructura básica que los navegadores necesitan para interpretar correctamente tu contenido. Aprende cada parte y su función.</p>
-                    </div>
-                    <div class="image">
-                        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80" alt="Estructura HTML">
-                    </div>
-                </div>
-                <div class="content-row reverse">
-                    <div class="text">
-                        <h4>📋 Partes de un Documento HTML</h4>
-                        <ul>
-                            <li><strong>&lt;!DOCTYPE html&gt;</strong>: Declara la versión HTML5</li>
-                            <li><strong>&lt;html lang="es"&gt;</strong>: Elemento raíz con idioma</li>
-                            <li><strong>&lt;head&gt;</strong>: Metadatos, título, enlaces a CSS</li>
-                            <li><strong>&lt;meta charset="UTF-8"&gt;</strong>: Codificación de caracteres</li>
-                            <li><strong>&lt;title&gt;</strong>: Título que aparece en la pestaña</li>
-                            <li><strong>&lt;body&gt;</strong>: Contenido visible de la página</li>
-                        </ul>
-                    </div>
-                    <div class="image">
-                        <img src="https://images.unsplash.com/photo-1507721999472-8ed4421c4af2?auto=format&fit=crop&w=800&q=80" alt="Código">
-                    </div>
-                </div>
-                <div class="info-box">
-                    <strong>💡 Práctica:</strong> Copia la estructura básica, guárdala como <code>index.html</code> y ábrela en tu navegador. ¡Ya tienes tu primera página web!
-                </div>
-                <h4>🔍 Ejemplo Completo:</h4>
-                <div class="code-block">
-<span class="tag">&lt;!DOCTYPE</span> <span class="attr">html</span><span class="tag">&gt;</span>
-<span class="tag">&lt;html</span> <span class="attr">lang=</span><span class="value">"es"</span><span class="tag">&gt;</span>
-<span class="tag">&lt;head&gt;</span>
-  <span class="tag">&lt;meta</span> <span class="attr">charset=</span><span class="value">"UTF-8"</span><span class="tag">&gt;</span>
-  <span class="tag">&lt;meta</span> <span class="attr">name=</span><span class="value">"viewport"</span> <span class="attr">content=</span><span class="value">"width=device-width"</span><span class="tag">&gt;</span>
-  <span class="tag">&lt;title&gt;</span>Mi Primera Página<span class="tag">&lt;/title&gt;</span>
-<span class="tag">&lt;/head&gt;</span>
-<span class="tag">&lt;body&gt;</span>
-  <span class="tag">&lt;h1&gt;</span>¡Hola Mundo!<span class="tag">&lt;/h1&gt;</span>
-  <span class="tag">&lt;p&gt;</span>Esta es mi primera página web.<span class="tag">&lt;/p&gt;</span>
-<span class="tag">&lt;/body&gt;</span>
-<span class="tag">&lt;/html&gt;</span>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn-secondary" onclick="closeModal('modal2')">Siguiente Capítulo →</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal 3: MÁQUINA VIRTUAL LINUX -->
-    <div id="modal3" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <div>
-                    <h3>Creación de Máquina Virtual Linux</h3>
-                    <span class="category">Sistemas • Principiante</span>
-                </div>
-                <button class="modal-close" onclick="closeModal('modal3')">&times;</button>
-            </div>
-            <div class="modal-body layout-video">
-                <div class="video-wrapper">
-                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Tutorial Ubuntu VirtualBox" allowfullscreen></iframe>
-                </div>
-                <div class="intro">
-                    <strong>🎬 Tutorial en Video:</strong> Aprende paso a paso a crear tu propia máquina virtual con Ubuntu usando VirtualBox. Ideal para practicar Linux sin afectar tu sistema principal.
-                </div>
-                
-                <h4>📋 Lo que Aprenderás:</h4>
-                <ul>
-                    <li>Descargar e instalar VirtualBox en Windows/macOS/Linux</li>
-                    <li>Configurar recursos: RAM, CPU, almacenamiento dinámico</li>
-                    <li>Descargar Ubuntu Desktop LTS oficial</li>
-                    <li>Crear la máquina virtual paso a paso</li>
-                    <li>Instalar Ubuntu con particionado automático</li>
-                    <li>Configuración inicial: usuario, idioma, actualizaciones</li>
-                    <li>Instalar Guest Additions para mejor integración</li>
-                    <li>Configurar carpetas compartidas entre sistemas</li>
-                </ul>
-
-                <div class="gallery">
-                    <div class="gallery-item">
-                        <img src="https://i.postimg.cc/BbXV8vkt/creando_ubuntu.png" alt="Creando Ubuntu">
-                        <div class="gallery-caption">Configuración Inicial</div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1629654297299-c8506221ca97?auto=format&fit=crop&w=600&q=80" alt="Instalación">
-                        <div class="gallery-caption">Proceso de Instalación</div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1611348523409-2f81bfa02f19?auto=format&fit=crop&w=600&q=80" alt="Ubuntu Desktop">
-                        <div class="gallery-caption">Ubuntu Listo</div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=600&q=80" alt="Terminal">
-                        <div class="gallery-caption">Primeros Comandos</div>
-                    </div>
-                </div>
-
-                <div class="details">
-                    <strong>💡 Beneficios:</strong>
-                    <ul>
-                        <li>Experimenta con Linux sin riesgo para tu sistema</li>
-                        <li>Practica comandos de terminal en entorno seguro</li>
-                        <li>Desarrolla en diferentes entornos simultáneamente</li>
-                        <li>Crea snapshots para recuperar configuraciones</li>
-                    </ul>
-                </div>
-
-                <div style="background:rgba(0,240,255,0.1);border:1px solid rgba(0,240,255,0.3);border-left:4px solid var(--primary);padding:1.5rem;border-radius:12px;margin-top:1.5rem">
-                    <strong>⚙️ Requisitos Mínimos:</strong><br>
-                    • 4GB de RAM (8GB recomendado)<br>
-                    • 25GB de espacio libre en disco<br>
-                    • Procesador con virtualización activada<br>
-                    • Conexión a internet para descargas
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn-secondary" onclick="closeModal('modal3')">Cerrar</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal 4: MONTAJE PC -->
-    <div id="modal4" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <div>
-                    <h3>Montaje de PC</h3>
-                    <span class="category">Hardware • Intermedio</span>
-                </div>
-                <button class="modal-close" onclick="closeModal('modal4')">&times;</button>
-            </div>
-            <div class="modal-body layout-timeline">
-                <p style="margin-bottom:2rem;color:var(--text-muted);font-size:1.1rem">Guía completa paso a paso para ensamblar tu propio ordenador como un profesional.</p>
-                
-                <div class="timeline">
-                    <div class="step" data-num="1">
-                        <h4>Preparación del Área</h4>
-                        <p>Reúne todas las herramientas: destornilladores, pulsera antiestática, superficie limpia. Organiza todos los componentes antes de comenzar.</p>
-                    </div>
-                    <div class="step" data-num="2">
-                        <h4>Instalación de CPU y RAM</h4>
-                        <p>Instala el procesador en el socket con cuidado, aplica pasta térmica si es necesario. Luego instala los módulos de RAM activando dual channel.</p>
-                    </div>
-                    <div class="step" data-num="3">
-                        <h4>Montaje de la Placa Base</h4>
-                        <p>Coloca los separadores en la caja, instala la placa base y fíjala con los tornillos. Conecta el panel frontal (USB, audio, power).</p>
-                    </div>
-                    <div class="step" data-num="4">
-                        <h4>Fuente y Tarjeta Gráfica</h4>
-                        <p>Instala la fuente de alimentación y conecta los cables principales. Luego instala la GPU en el slot PCIe x16 y conecta la alimentación.</p>
-                    </div>
-                    <div class="step" data-num="5">
-                        <h4>Almacenamiento y Cables</h4>
-                        <p>Instala SSDs NVMe o HDDs en sus bahías. Gestiona todos los cables usando bridas para un flujo de aire óptimo.</p>
-                    </div>
-                    <div class="step" data-num="6">
-                        <h4>Primer Encendido y BIOS</h4>
-                        <p>Conecta monitor, teclado y ratón. Enciende el equipo y verifica en BIOS que todo funcione: temperaturas, RAM detectada, orden de boot.</p>
-                    </div>
-                </div>
-                
-                <div style="background:rgba(255,0,170,0.1);border:1px solid rgba(255,0,170,0.3);border-left:4px solid var(--accent);padding:1.5rem;border-radius:12px;margin-top:2rem">
-                    <strong>⚠️ Importante:</strong> Trabaja siempre en una superficie antiestática, usa pulsera antiestática si es posible, y nunca forces los componentes. Cada pieza tiene su posición y orientación correcta.
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn-secondary" onclick="closeModal('modal4')">Cerrar</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal 5: HTML AVANZADO -->
-    <div id="modal5" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <div>
-                    <h3>Guía HTML Avanzada</h3>
-                    <span class="category">Web Development • Intermedio</span>
-                </div>
-                <button class="modal-close" onclick="closeModal('modal5')">&times;</button>
-            </div>
-            <div class="modal-body layout-code">
-                <h4>🚀 HTML5 Semántico y Accesible</h4>
-                <p style="color:var(--text-muted)">Domina las técnicas avanzadas de HTML5 para crear sitios web profesionales, optimizados para SEO y totalmente accesibles.</p>
-                
-                <h4>🔍 Ejemplo de Código:</h4>
-                <div class="code-block">
-<span class="comment">&lt;!-- Estructura semántica con accesibilidad --&gt;</span>
-<span class="tag">&lt;!DOCTYPE</span> <span class="attr">html</span><span class="tag">&gt;</span>
-<span class="tag">&lt;html</span> <span class="attr">lang=</span><span class="value">"es"</span><span class="tag">&gt;</span>
-<span class="tag">&lt;head&gt;</span>
-  <span class="tag">&lt;meta</span> <span class="attr">charset=</span><span class="value">"UTF-8"</span><span class="tag">&gt;</span>
-  <span class="tag">&lt;meta</span> <span class="attr">name=</span><span class="value">"viewport"</span> <span class="attr">content=</span><span class="value">"width=device-width"</span><span class="tag">&gt;</span>
-  <span class="tag">&lt;title&gt;</span>Mi Sitio Profesional<span class="tag">&lt;/title&gt;</span>
-<span class="tag">&lt;/head&gt;</span>
-<span class="tag">&lt;body&gt;</span>
-  <span class="tag">&lt;header</span> <span class="attr">role=</span><span class="value">"banner"</span><span class="tag">&gt;</span>
-    <span class="tag">&lt;nav</span> <span class="attr">aria-label=</span><span class="value">"Menú principal"</span><span class="tag">&gt;</span>
-      <span class="tag">&lt;ul&gt;</span>
-        <span class="tag">&lt;li&gt;&lt;a</span> <span class="attr">href=</span><span class="value">"#inicio"</span> <span class="attr">aria-current=</span><span class="value">"page"</span><span class="tag">&gt;</span>Inicio<span class="tag">&lt;/a&gt;&lt;/li&gt;</span>
-      <span class="tag">&lt;/ul&gt;</span>
-    <span class="tag">&lt;/nav&gt;</span>
-  <span class="tag">&lt;/header&gt;</span>
-  <span class="tag">&lt;main</span> <span class="attr">role=</span><span class="value">"main"</span><span class="tag">&gt;</span>...<span class="tag">&lt;/main&gt;</span>
-<span class="tag">&lt;/body&gt;</span>
-<span class="tag">&lt;/html&gt;</span>
-                </div>
-
-                <h4>📚 Temas Avanzados:</h4>
-                <ul>
-                    <li>HTML5 semántico: article, section, aside, figure, figcaption</li>
-                    <li>Microdatos y Schema.org para SEO estructurado</li>
-                    <li>ARIA labels y roles para accesibilidad WCAG 2.1</li>
-                    <li>Formularios avanzados con validación nativa</li>
-                    <li>APIs de HTML5: LocalStorage, Geolocation, Canvas</li>
-                    <li>Elementos multimedia: audio, video, source, track</li>
-                    <li>Optimización SEO on-page y meta tags avanzados</li>
-                </ul>
-            </div>
-            <div class="modal-footer">
-                <button class="btn-secondary" onclick="closeModal('modal5')">Cerrar</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- JAVASCRIPT -->
     <script>
-        // ============================================
-        // FILTRO DE CATEGORÍAS (CORREGIDO)
-        // ============================================
-        document.addEventListener('DOMContentLoaded', function() {
-            generateFilters();
-        });
+        // Datos de los artículos (6 entradas)
+        const articles = [
+            { title: "¿Qué es un Sistema Operativo?", category: "Sistemas Operativos", image: "https://i.postimg.cc/KcL21H9K/que_es_un_sistema_operativo.png", content: `<p>Un <strong>sistema operativo</strong> (SO) es el software principal que gestiona los recursos de hardware y provee servicios a los programas de aplicación.</p><h3>Funciones principales:</h3><ul><li><strong>Gestión de memoria:</strong> Controla y organiza el uso de la RAM</li><li><strong>Gestión de procesos:</strong> Administra la ejecución de programas</li><li><strong>Gestión de archivos:</strong> Organiza el acceso a los datos almacenados</li><li><strong>Gestión de dispositivos:</strong> Controla periféricos</li><li><strong>Interfaz de usuario:</strong> Permite la interacción humano-computadora</li></ul><p><strong>Ejemplos:</strong> Windows, macOS, Linux, Android, iOS</p>` },
+            { title: "¿Qué es un Lenguaje de Marcas?", category: "Lenguajes de Marcas", image: "https://i.postimg.cc/jqNbDF8f/que_es_el_lenguage_de_marcas.png", content: `<p>Un <strong>lenguaje de marcas</strong> es un sistema de notación que permite etiquetar documentos para que sean legibles por humanos y máquinas.</p><h3>Características:</h3><ul><li>Utiliza <strong>etiquetas</strong> entre corchetes angulares (&lt; &gt;)</li><li>Describe la estructura, no la lógica de programación</li><li>Es legible y fácil de entender</li><li>Sigue estándares internacionales</li></ul><h3>Ejemplos:</h3><ul><li><strong>HTML:</strong> Para crear páginas web</li><li><strong>XML:</strong> Para almacenar y transportar datos</li><li><strong>Markdown:</strong> Para formatear texto sencillo</li><li><strong>LaTeX:</strong> Para documentos académicos</li></ul>` },
+            { title: "¿Qué es Internet?", category: "Internet y Redes", image: "https://i.postimg.cc/Gpc2K15S/que_es_internet.png", content: `<p><strong>Internet</strong> es una red global de redes informáticas interconectadas que utilizan el protocolo TCP/IP para comunicarse.</p><h3>Componentes principales:</h3><ul><li><strong>Protocolos:</strong> TCP/IP, HTTP, DNS, FTP</li><li><strong>Infraestructura:</strong> Fibra óptica, routers, satélites</li><li><strong>Servidores:</strong> Almacenan y sirven información</li><li><strong>Clientes:</strong> Dispositivos de los usuarios</li><li><strong>ISP:</strong> Proveedores de acceso a Internet</li></ul><h3>Servicios:</h3><ul><li>🌐 World Wide Web</li><li>📧 Correo electrónico</li><li>📁 Transferencia de archivos</li><li>💬 Comunicación en tiempo real</li></ul>` },
+            { title: "¿Qué es un Servidor?", category: "Servidores", image: "https://i.postimg.cc/63byT1zd/que_es_un_servidor.png", content: `<p>Un <strong>servidor</strong> es un sistema informático que proporciona datos, recursos o servicios a otros programas ("clientes") a través de una red.</p><h3>Características:</h3><ul><li>Alto rendimiento: múltiples CPUs, gran RAM</li><li>Almacenamiento robusto con RAID</li><li>Conectividad de red de alta velocidad</li><li>Redundancia y refrigeración avanzada</li></ul><h3>Tipos según función:</h3><ul><li>🌐 Servidor Web (Apache, Nginx)</li><li>📧 Servidor de Correo</li><li>🗄️ Servidor de Base de Datos (MySQL, PostgreSQL)</li><li>🔤 Servidor DNS</li><li>🔐 Servidor Proxy</li></ul>` },
+            { title: "Bit vs Byte: La Base de la Informática", category: "Fundamentos", image: "https://i.postimg.cc/9fhDR92g/bit-bite.png", content: `<p>Un <strong>bit</strong> (binary digit) es la unidad mínima de información en informática. Solo puede tener dos valores: <strong>0 o 1</strong>.</p><p>Un <strong>byte</strong> es un conjunto de <strong>8 bits</strong>. Es la unidad básica para medir almacenamiento de datos.</p><h3>📊 Tabla de Conversión:</h3><ul><li><strong>1 Byte = 8 bits</strong></li><li><strong>1 KB = 1,024 Bytes</strong></li><li><strong>1 MB = 1,024 KB</strong></li><li><strong>1 GB = 1,024 MB</strong></li><li><strong>1 TB = 1,024 GB</strong></li></ul><div style="background:#f7fafc;padding:1rem;border-radius:8px;margin:1rem 0"><strong>💡 Ejemplo:</strong> La letra "A" en ASCII ocupa <strong>1 byte (8 bits)</strong>. Una foto de 12 MP ocupa ~<strong>4-6 MB</strong>.</div><p><strong>⚠️ Importante:</strong> No confundir <strong>Mbps</strong> (megabits/segundo, velocidad de internet) con <strong>MB/s</strong> (megabytes/segundo, velocidad de descarga). <strong>1 Byte = 8 bits</strong>, por lo que 100 Mbps ≈ 12.5 MB/s.</p>` },
+            { title: "¿Qué es la CPU? El Cerebro del Ordenador", category: "Hardware", image: "https://i.postimg.cc/XvgYZ7np/que-es-la-cpu.png", content: `<p>La <strong>Unidad Central de Procesamiento (CPU)</strong> es el componente principal de cualquier computadora. Es el "cerebro" que ejecuta las instrucciones de los programas y procesa los datos.</p><h3>⚙️ Componentes Principales:</h3><ul><li><strong>ALU:</strong> Realiza operaciones matemáticas y comparaciones</li><li><strong>Unidad de Control:</strong> Coordina y dirige el flujo de datos</li><li><strong>Registros:</strong> Memoria ultrarrápida para datos temporales</li><li><strong>Caché:</strong> Memoria pequeña y rápida para acceder a datos frecuentes</li></ul><h3>📊 Características Clave:</h3><ul><li><strong>Frecuencia (GHz):</strong> Ciclos por segundo - determina velocidad</li><li><strong>Núcleos:</strong> Unidades de procesamiento independientes</li><li><strong>Hilos:</strong> Flujos de ejecución simultáneos</li><li><strong>Caché L1/L2/L3:</strong> Memoria interna de alta velocidad</li></ul><div style="background:#f7fafc;padding:1rem;border-radius:8px;margin:1rem 0"><strong>💡 Consejo:</strong> Para uso básico, 4 núcleos son suficientes. Para gaming o edición, busca 6-8 núcleos o más.</div><h3>🏆 Fabricantes Principales:</h3><ul><li><strong>Intel:</strong> Core i3/i5/i7/i9, Xeon</li><li><strong>AMD:</strong> Ryzen 3/5/7/9, EPYC</li><li><strong>Apple:</strong> Chips M1/M2/M3 (arquitectura ARM)</li></ul>` }
+        ];
 
-        function generateFilters() {
-            const cards = document.querySelectorAll('.card');
-            const categories = new Set();
-            
-            cards.forEach(card => {
-                if (card.dataset.category) categories.add(card.dataset.category);
-            });
-
-            const container = document.getElementById('filters');
-            
-            // Asegurar que el botón "Todos" tenga el onclick
-            const allBtn = container.querySelector('[data-filter="all"]');
-            if (allBtn) {
-                allBtn.onclick = () => filterPosts('all', allBtn);
-            }
-            
-            // Generar botones de categorías
-            Array.from(categories).sort().forEach(cat => {
-                const btn = document.createElement('button');
-                btn.className = 'filter-btn';
-                btn.dataset.filter = cat;
-                btn.textContent = cat.charAt(0).toUpperCase() + cat.slice(1);
-                btn.onclick = () => filterPosts(cat, btn);
-                container.appendChild(btn);
-            });
-        }
-
-        function filterPosts(category, btn) {
-            // Remover active de todos los botones
-            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-            // Añadir active al botón clickeado
-            btn.classList.add('active');
-
-            const cards = document.querySelectorAll('.card');
-            
-            cards.forEach(card => {
-                if (category === 'all' || card.dataset.category === category) {
-                    card.style.display = 'block';
-                    setTimeout(() => {
-                        card.style.opacity = '1';
-                        card.style.transform = 'translateY(0)';
-                    }, 50);
-                } else {
-                    card.style.opacity = '0';
-                    card.style.transform = 'translateY(20px)';
-                    setTimeout(() => {
-                        card.style.display = 'none';
-                    }, 300);
-                }
-            });
-        }
-
-        // ============================================
-        // MODALES
-        // ============================================
-        function openModal(id) {
-            document.getElementById(id).classList.add('show');
+        // Funciones del Modal
+        function openModal(index) {
+            const modal = document.getElementById('articleModal');
+            const article = articles[index];
+            document.getElementById('modalImage').src = article.image;
+            document.getElementById('modalCategory').textContent = article.category;
+            document.getElementById('modalTitle').textContent = article.title;
+            document.getElementById('modalText').innerHTML = article.content;
+            modal.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
-
-        function closeModal(id) {
-            document.getElementById(id).classList.remove('show');
-            document.body.style.overflow = '';
+        function closeModal() {
+            const modal = document.getElementById('articleModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
         }
+        document.getElementById('articleModal').addEventListener('click', function(e) { if (e.target === this) closeModal(); });
+        document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
 
-        function switchTab(modalId, tabId) {
-            const modal = document.getElementById(modalId);
-            modal.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            modal.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        // Filtrar por categoría
+        function filterCategory(category) {
+            const cards = document.querySelectorAll('.album-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
-            document.getElementById(tabId).classList.add('active');
-        }
-
-        // Cerrar modal al hacer clic fuera
-        document.querySelectorAll('.modal').forEach(modal => {
-            modal.addEventListener('click', e => {
-                if (e.target === modal) {
-                    modal.classList.remove('show');
-                    document.body.style.overflow = '';
-                }
+            cards.forEach(card => {
+                if (category === 'todos' || card.dataset.category === category) {
+                    card.classList.remove('hidden');
+                    card.style.animation = 'fadeInUp 0.5s';
+                } else { card.classList.add('hidden'); }
             });
-        });
-
-        // Cerrar con tecla ESC
-        document.addEventListener('keydown', e => {
-            if (e.key === 'Escape') {
-                document.querySelectorAll('.modal.show').forEach(m => {
-                    m.classList.remove('show');
-                    document.body.style.overflow = '';
-                });
-            }
-        });
-
-        // Smooth scroll para navegación
-        document.querySelectorAll('a[href^="#"]').forEach(link => {
-            link.addEventListener('click', function(e) {
+            checkResults();
+        }
+        // Buscador
+        function searchArticles() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const cards = document.querySelectorAll('.album-card');
+            cards.forEach(card => {
+                const title = card.querySelector('.card-title').textContent.toLowerCase();
+                const excerpt = card.querySelector('.card-excerpt').textContent.toLowerCase();
+                const category = card.querySelector('.card-category').textContent.toLowerCase();
+                if (title.includes(searchTerm) || excerpt.includes(searchTerm) || category.includes(searchTerm)) {
+                    card.classList.remove('hidden');
+                } else { card.classList.add('hidden'); }
+            });
+            checkResults();
+        }
+        document.getElementById('searchInput').addEventListener('input', searchArticles);
+        function checkResults() {
+            const visibleCards = document.querySelectorAll('.album-card:not(.hidden)').length;
+            document.getElementById('noResults').style.display = visibleCards === 0 ? 'block' : 'none';
+        }
+        function toggleMobileMenu() {
+            const navMenu = document.querySelector('.nav-menu');
+            navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
+        }
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    document.querySelectorAll('.nav a').forEach(a => a.classList.remove('active'));
-                    this.classList.add('active');
-                }
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+        window.addEventListener('load', () => {
+            const cards = document.querySelectorAll('.album-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    card.style.transition = 'all 0.5s';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
             });
         });
     </script>
